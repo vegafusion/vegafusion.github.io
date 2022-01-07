@@ -1,6 +1,4 @@
-# Quickstart
-
-## Accelerate Altair in Jupyter
+# Altair in Jupyter
 VegaFusion can be used to provide serverside acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila). First, install the `vegafusion-jupyter` package, along with `vega-datasets` for the example below.
 
 ```bash
