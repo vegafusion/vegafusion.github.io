@@ -34,3 +34,16 @@ See [panel.holoviz.org/user_guide/Custom_Components.html](https://panel.holoviz.
 ### Create Hosted gallery examples with Voila
 Gallery examples could be written as Voila dashboards and hosted using Binder or Heroku
 
+## Altair Integration
+
+(roadmap_extract_data)=
+### Extracting Data from Altair Chart
+The [Extracting Data](https://github.com/altair-viz/altair-transform#example-extracting-data) workflow supported by `altair-transform` could be implemented. This would involve directly converting Altair transforms into Vega transforms without using Vega-Lite in the browser. The transforms are nearly identical, so this shouldn't present a major challenge.
+
+(roadmap_pre_agg)=
+### Pre-Aggregating Large Datasets in Altair Chart
+The [Pre-Aggregating Large Datasets](https://github.com/altair-viz/altair-transform#example-pre-aggregating-large-datasets) workflow from `altair-transform` could be implemented. As above, this would involve directly converting Altair transforms into Vega transforms without using Vega-Lite in the browser.
+
+(roadmap_external_data_providers)=
+## External Data Providers
+Specialized runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the runtime.

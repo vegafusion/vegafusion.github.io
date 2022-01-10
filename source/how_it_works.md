@@ -1,4 +1,4 @@
-# How VegaFusion works
+# How VegaFusion Works
 VegaFusion currently has two components: The Planner and the Runtime.
 
 (planner)=
@@ -9,9 +9,9 @@ VegaFusion does not (yet) provide full coverage of all of Vega's transforms and 
 
 Along with the client and server specifications, the planner also creates a communication plan.  The communication plan is a specification of the datasets and signals that must be passed from server to client, and from client to server in order for the interactive behavior of the original specification to be preserved.
 
-After planning, the client specification is evaluated by the Vega JavaScript library while the server specification is evaluated by the VegaFusion Runtime.
+The client specification will be evaluated by the Vega JavaScript library while the server specification will be evaluated by the VegaFusion Runtime.
 
 ## Runtime
-After planning, the server specification is compiled into a VegaFusion specific task graph specification.  The job of the runtime is to calculate the value of requested nodes within a task graph specification.
+After planning, the server specification is compiled into a VegaFusion task graph specification.  The job of the runtime is to calculate the value of requested nodes within a task graph specification.
 
 A task graph specification includes the values of the root nodes (those with no parents), but it does not include the values of any of the interior nodes (those with parents).  Each node in the task graph is a pure function of the values of its parents.  This enables the Runtime to calculate the value of any node in the Task graph from the specification.  The Runtime uses fingerprinting and caching to avoid repeated calculations of the same nodes.
