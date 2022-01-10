@@ -10,7 +10,7 @@ quickstart_jupyter
 ```
 
 ```{toctree}
-:maxdepth: 1
+:maxdepth: 2
 :hidden: true
 :caption: "User Guide"
 installation
@@ -35,6 +35,7 @@ how_it_works
 architecture_and_technology
 about_the_name
 related_projects
+roadmap
 ```
 
 ```{toctree}
