@@ -57,7 +57,7 @@ Then, open a jupyter notebook (either the classic notebook, or a notebook inside
 
 ```python
 import vegafusion_jupyter as vf
-vf.enable_renderer()
+vf.enable()
 ```
 VegaFusion will now be used to accelerate any Altair chart. For example, here's the [interactive average](https://altair-viz.github.io/gallery/selection_layer_bar_month.html) Altair gallery example.
 
