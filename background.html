@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background and Motivation &mdash; VegaFusion 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How VegaFusion Works" href="how_it_works.html" />
+    <link rel="prev" title="Example Gallery" href="example_gallery.html" />    
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> VegaFusion
+            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example_gallery.html">Example Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Background and Motivation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vega-vega-lite-and-altair">Vega, Vega-Lite, and Altair</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms-and-signals">Transforms and Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#motivation-for-vegafusion">Motivation for VegaFusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How VegaFusion Works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">License</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">AGPLv3 License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Blog</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="blog.html">Posts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VegaFusion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Background and Motivation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/background.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <div class="tex2jax_ignore mathjax_ignore section" id="background-and-motivation">
+<h1>Background and Motivation<a class="headerlink" href="#background-and-motivation" title="Permalink to this headline"></a></h1>
+<div class="section" id="vega-vega-lite-and-altair">
+<h2>Vega, Vega-Lite, and Altair<a class="headerlink" href="#vega-vega-lite-and-altair" title="Permalink to this headline"></a></h2>
+<p>VegaFusion is designed to complement the Vega visualization ecosystem. In particular, the <a class="reference external" href="https://vega.github.io/">Vega</a>, <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>, and <a class="reference external" href="https://altair-viz.github.io/">Altair</a> projects.  If you’re not familiar with these projects, it will be helpful to take a few minutes to browse their documentation as background for understanding what VegaFusion adds.</p>
+</div>
+<div class="section" id="transforms-and-signals">
+<h2>Transforms and Signals<a class="headerlink" href="#transforms-and-signals" title="Permalink to this headline"></a></h2>
+<p>One powerful feature of the Vega visualization grammar is that it includes a rich collection of data manipulation functions called <a class="reference external" href="https://vega.github.io/vega/docs/transforms/">transforms</a>.  Transforms have functionality that is similar to that provided by SQL queries or Pandas DataFrame operations, but they are specifically designed to cover data preprocessing tasks that are useful in constructing data visualizations.</p>
+<p>For additional flexibility, Vega also provides the concept of <a class="reference external" href="https://vega.github.io/vega/docs/signals/">signals</a>. These are scalar variables that can be constructed using the <a class="reference external" href="https://vega.github.io/vega/docs/expressions/">Vega expression language</a>, which is a subset of JavaScript.  Transforms can accept and produce signals.</p>
+<p>There are at least two significant advantages to having data transformations and signals included in a visualization specification.</p>
+<ul class="simple">
+<li><p>First, it makes it possible for a visualization to accept raw data files as input and then perform its own data cleaning and manipulation.  This often removes the need to generate temporary intermediary data files.</p></li>
+<li><p>Second, it enables higher-level libraries like Vega-Lite to automate the creation of rich interactive visualizations with features like <a class="reference external" href="https://vega.github.io/vega-lite/examples/interactive_layered_crossfilter.html">cross filtering</a> and <a class="reference external" href="https://altair-viz.github.io/gallery/select_detail.html">drill down</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="motivation-for-vegafusion">
+<h2>Motivation for VegaFusion<a class="headerlink" href="#motivation-for-vegafusion" title="Permalink to this headline"></a></h2>
+<p>Vega makes it possible to create declarative JSON specifications of rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.</p>
+<p>For datasets of a few thousand rows or fewer, this architecture results in extremely smooth and responsive interactivity. However, this architecture doesn’t scale very well to datasets of hundreds of thousands of rows or more.  This is the problem that VegaFusion aims to solve.</p>
+</div>
+</div>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="example_gallery.html" class="btn btn-neutral float-left" title="Example Gallery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="how_it_works.html" class="btn btn-neutral float-right" title="How VegaFusion Works" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jon Mease.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

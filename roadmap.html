@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VegaFusion Roadmap &mdash; VegaFusion 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AGPLv3 License" href="license_overview.html" />
+    <link rel="prev" title="Related Projects" href="related_projects.html" />    
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> VegaFusion
+            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example_gallery.html">Example Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How VegaFusion Works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">VegaFusion Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#packaging">Packaging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#conda-forge-packages">conda-forge packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#npm-packages">NPM packages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#environments">Environments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dash-support">Dash support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streamlit-support">Streamlit support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#panel-support">Panel support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#demos">Demos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-hosted-gallery-examples-with-voila">Create Hosted gallery examples with Voila</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#altair-integration">Altair Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-data-from-altair-chart">Extracting Data from Altair Chart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pre-aggregating-large-datasets-in-altair-chart">Pre-Aggregating Large Datasets in Altair Chart</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#external-data-providers">External Data Providers</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">License</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">AGPLv3 License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Blog</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="blog.html">Posts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VegaFusion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>VegaFusion Roadmap</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/roadmap.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <div class="tex2jax_ignore mathjax_ignore section" id="vegafusion-roadmap">
+<h1>VegaFusion Roadmap<a class="headerlink" href="#vegafusion-roadmap" title="Permalink to this headline"></a></h1>
+<div class="section" id="packaging">
+<h2>Packaging<a class="headerlink" href="#packaging" title="Permalink to this headline"></a></h2>
+<div class="section" id="conda-forge-packages">
+<span id="roadmap-conda-forge-packages"></span><h3>conda-forge packages<a class="headerlink" href="#conda-forge-packages" title="Permalink to this headline"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">vegafusion-python</span></code> and <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> packages could be submitted to conda-forge.  <code class="docutils literal notranslate"><span class="pre">vegafusion-python</span></code> is written in Rust and must be compiled to each supported operating systema and Python version individually.  <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> will be a <code class="docutils literal notranslate"><span class="pre">noarch</span></code> package that depends on <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code>.</p>
+</div>
+<div class="section" id="npm-packages">
+<span id="roadmap-widget-npm-packages"></span><h3>NPM packages<a class="headerlink" href="#npm-packages" title="Permalink to this headline"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> and <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> packages could be published as npm packages.  This will enable compatibility with Voila without the <a class="reference external" href="https://voila.readthedocs.io/en/latest/using.html#using-third-party-widgets-with-voila"><code class="docutils literal notranslate"><span class="pre">enable_nbextensions</span></code></a> flag.  It should also enable compatibility with Google Colab and other non-Jupyter environments that provide support for Jupyter Widgets.</p>
+</div>
+</div>
+<div class="section" id="environments">
+<h2>Environments<a class="headerlink" href="#environments" title="Permalink to this headline"></a></h2>
+<p>The VegaFusion Jupyter Widget was intentionally designed to push as much logic as possible into the <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> package.  The logic that is left in the Jupyter Widget extension is primarily related to client-server communication, and html layout.  With this approach, it shouldn’t require a substantial amount of addition code in order to support alternative dashboard environments.</p>
+<div class="section" id="dash-support">
+<span id="roadmap-dash"></span><h3>Dash support<a class="headerlink" href="#dash-support" title="Permalink to this headline"></a></h3>
+<p>A Dash component for VegaFusion could be written.<br />
+See <a class="reference external" href="https://dash.plotly.com/plugins">dash.plotly.com/plugins</a>.</p>
+</div>
+<div class="section" id="streamlit-support">
+<span id="roadmap-streamlit"></span><h3>Streamlit support<a class="headerlink" href="#streamlit-support" title="Permalink to this headline"></a></h3>
+<p>A Streamlit component for VegaFusion could be written.<br />
+See <a class="reference external" href="https://docs.streamlit.io/library/components/create">docs.streamlit.io/library/components/create</a>.</p>
+</div>
+<div class="section" id="panel-support">
+<span id="roadmap-panel"></span><h3>Panel support<a class="headerlink" href="#panel-support" title="Permalink to this headline"></a></h3>
+<p>A Panel component for VegaFusion could be written.<br />
+See <a class="reference external" href="https://panel.holoviz.org/user_guide/Custom_Components.html">panel.holoviz.org/user_guide/Custom_Components.html</a></p>
+</div>
+</div>
+<div class="section" id="demos">
+<h2>Demos<a class="headerlink" href="#demos" title="Permalink to this headline"></a></h2>
+<div class="section" id="create-hosted-gallery-examples-with-voila">
+<span id="roadmap-voila-gallery"></span><h3>Create Hosted gallery examples with Voila<a class="headerlink" href="#create-hosted-gallery-examples-with-voila" title="Permalink to this headline"></a></h3>
+<p>Gallery examples could be written as Voila dashboards and hosted using Binder or Heroku</p>
+</div>
+</div>
+<div class="section" id="altair-integration">
+<h2>Altair Integration<a class="headerlink" href="#altair-integration" title="Permalink to this headline"></a></h2>
+<div class="section" id="extracting-data-from-altair-chart">
+<span id="roadmap-extract-data"></span><h3>Extracting Data from Altair Chart<a class="headerlink" href="#extracting-data-from-altair-chart" title="Permalink to this headline"></a></h3>
+<p>The <a class="reference external" href="https://github.com/altair-viz/altair-transform#example-extracting-data">Extracting Data</a> workflow supported by <code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> could be implemented. This would involve directly converting Altair transforms into Vega transforms without using Vega-Lite in the browser. The transforms are nearly identical, so this shouldn’t present a major challenge.</p>
+</div>
+<div class="section" id="pre-aggregating-large-datasets-in-altair-chart">
+<span id="roadmap-pre-agg"></span><h3>Pre-Aggregating Large Datasets in Altair Chart<a class="headerlink" href="#pre-aggregating-large-datasets-in-altair-chart" title="Permalink to this headline"></a></h3>
+<p>The <a class="reference external" href="https://github.com/altair-viz/altair-transform#example-pre-aggregating-large-datasets">Pre-Aggregating Large Datasets</a> workflow from <code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> could be implemented. As above, this would involve directly converting Altair transforms into Vega transforms without using Vega-Lite in the browser.</p>
+</div>
+</div>
+<div class="section" id="external-data-providers">
+<span id="roadmap-external-data-providers"></span><h2>External Data Providers<a class="headerlink" href="#external-data-providers" title="Permalink to this headline"></a></h2>
+<p>Specialized runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the runtime.</p>
+</div>
+</div>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="related_projects.html" class="btn btn-neutral float-left" title="Related Projects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license_overview.html" class="btn btn-neutral float-right" title="AGPLv3 License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Jon Mease.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
