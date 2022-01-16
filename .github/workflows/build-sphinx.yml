@@ -9,12 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Install sphinx dependencies
-      run: |
-        pip install sphinx myst-parser sphinx-rtd-theme ablog
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "."
+        pre-build-command: "pip install myst-parser sphinx-rtd-theme ablog"
 
     # Publish built docs to gh-pages branch.
     # ===============================
