@@ -12,6 +12,6 @@ There are at least two significant advantages to having data transformations and
   - Second, it enables higher-level libraries like Vega-Lite to automate the creation of rich interactive visualizations with features like [cross filtering](https://vega.github.io/vega-lite/examples/interactive_layered_crossfilter.html) and [drill down](https://altair-viz.github.io/gallery/select_detail.html).
 
 ## Motivation for VegaFusion
-Vega makes it possible to create declarative JSON specifications for rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.
+Vega makes it possible to create declarative JSON specifications of rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.
 
 For datasets of a few thousand rows or fewer, this architecture results in extremely smooth and responsive interactivity. However, this architecture doesn't scale very well to datasets of hundreds of thousands of rows or more.  This is the problem that VegaFusion aims to solve.
