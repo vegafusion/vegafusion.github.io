@@ -1,6 +1,8 @@
 # VegaFusion
 
-VegaFusion is a project that provides serverside acceleration for the Vega visualization grammar.
+VegaFusion provides serverside acceleration for the [Vega](https://vega.github.io/) visualization grammar. While not limited to Python, an initial application of VegaFusion is the acceleration of the [Altair](https://altair-viz.github.io/) Python interface to [Vega-Lite](https://vega.github.io/vega-lite/).
+
+The core VegaFusion algorithms are implemented in Rust. Python integration is provided using [PyO3](https://pyo3.rs/v0.15.1/) and JavaScript integration is provided using [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen). 
 
 ```{toctree}
 :maxdepth: 2
