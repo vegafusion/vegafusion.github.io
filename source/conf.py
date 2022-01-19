@@ -75,3 +75,8 @@ html_favicon = "_static/favicon.ico"
 blog_post_pattern = "posts/*/*"
 blog_path = "blog"
 blog_title = "VegaFusion Blog"
+
+# -- Theme options ----
+html_theme_options = {
+    'analytics_id': 'G-LVD2GWXRQZ',
+}
