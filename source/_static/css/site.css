@@ -5,3 +5,10 @@
 .wy-nav-top {
     background-color: rebeccapurple;
 }
+
+video {
+    border: solid gray 1px;
+    width: 100%;
+    max-height: 600px;
+    margin-bottom: 30px;
+}

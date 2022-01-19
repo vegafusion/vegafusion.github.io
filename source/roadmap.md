@@ -29,10 +29,6 @@ See [docs.streamlit.io/library/components/create](https://docs.streamlit.io/libr
 A Panel component for VegaFusion could be written.\
 See [panel.holoviz.org/user_guide/Custom_Components.html](https://panel.holoviz.org/user_guide/Custom_Components.html)
 
-## Demos
-(roadmap_voila_gallery)=
-### Create Hosted gallery examples with Voila
-Gallery examples could be written as Voila dashboards and hosted using Binder or Heroku
 
 ## Altair Integration
 
