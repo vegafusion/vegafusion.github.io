@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Background and Motivation &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>10 Million Taxi Rides &mdash; VegaFusion 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How VegaFusion Works" href="how_it_works.html" />
-    <link rel="prev" title="10 Million Taxi Rides" href="example_nyc_taxi.html" />    
+    <link rel="next" title="Background and Motivation" href="background.html" />
+    <link rel="prev" title="Large Altair Gallery Examples" href="example_large_altair_gallery.html" />    
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -72,17 +72,16 @@
 <li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="example_gallery.html">Example Gallery</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Background and Motivation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#vega-vega-lite-and-altair">Vega, Vega-Lite, and Altair</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transforms-and-signals">Transforms and Signals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#motivation-for-vegafusion">Motivation for VegaFusion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="example_gallery.html">Example Gallery</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example_large_altair_gallery.html">Large Altair Gallery Examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10 Million Taxi Rides</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background and Motivation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How VegaFusion Works</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
@@ -113,36 +112,27 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Background and Motivation</li>
+          <li><a href="example_gallery.html">Example Gallery</a> &raquo;</li>
+      <li>10 Million Taxi Rides</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/background.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/example_nyc_taxi.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="background-and-motivation">
-<h1>Background and Motivation<a class="headerlink" href="#background-and-motivation" title="Permalink to this headline"></a></h1>
-<div class="section" id="vega-vega-lite-and-altair">
-<h2>Vega, Vega-Lite, and Altair<a class="headerlink" href="#vega-vega-lite-and-altair" title="Permalink to this headline"></a></h2>
-<p>VegaFusion is designed to complement the Vega visualization ecosystem. In particular, the <a class="reference external" href="https://vega.github.io/">Vega</a>, <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>, and <a class="reference external" href="https://altair-viz.github.io/">Altair</a> projects.  If you’re not familiar with these projects, it will be helpful to take a few minutes to browse their documentation as background for understanding what VegaFusion adds.</p>
-</div>
-<div class="section" id="transforms-and-signals">
-<h2>Transforms and Signals<a class="headerlink" href="#transforms-and-signals" title="Permalink to this headline"></a></h2>
-<p>One powerful feature of the Vega visualization grammar is that it includes a rich collection of data manipulation functions called <a class="reference external" href="https://vega.github.io/vega/docs/transforms/">transforms</a>.  Transforms have functionality that is similar to that provided by SQL queries or Pandas DataFrame operations, but they are specifically designed to cover data preprocessing tasks that are useful in constructing data visualizations.</p>
-<p>For additional flexibility, Vega also provides the concept of <a class="reference external" href="https://vega.github.io/vega/docs/signals/">signals</a>. These are scalar variables that can be constructed using the <a class="reference external" href="https://vega.github.io/vega/docs/expressions/">Vega expression language</a>, which is a subset of JavaScript.  Transforms can accept and produce signals.</p>
-<p>There are at least two significant advantages to having data transformations and signals included in a visualization specification.</p>
+              <div class="tex2jax_ignore mathjax_ignore section" id="million-taxi-rides">
+<h1>10 Million Taxi Rides<a class="headerlink" href="#million-taxi-rides" title="Permalink to this headline"></a></h1>
+<p>This example creates a dashboard to explore 10 million taxi rides in New York City from January 2015.  It supports zoom-based rasterization of the pickup locations, and combines that with cross filtering across a histogram of trip distances and a heatmap of tip rate by hour and day of the week.</p>
+<p>See the <a class="reference external" href="https://examples.pyviz.org/nyc_taxi/nyc_taxi.html">PyViz documentation example</a> for more information on the dataset.</p>
 <ul class="simple">
-<li><p>First, it makes it possible for a visualization to accept raw data files as input and then perform its own data cleaning and manipulation.  This often removes the need to generate temporary intermediary data files.</p></li>
-<li><p>Second, it enables higher-level libraries like Vega-Lite to automate the creation of rich interactive visualizations with features like <a class="reference external" href="https://vega.github.io/vega-lite/examples/interactive_layered_crossfilter.html">cross filtering</a> and <a class="reference external" href="https://altair-viz.github.io/gallery/select_detail.html">drill down</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/nyc_taxi/nyc_taxi.ipynb">Notebook file</a></p></li>
 </ul>
-</div>
-<div class="section" id="motivation-for-vegafusion">
-<h2>Motivation for VegaFusion<a class="headerlink" href="#motivation-for-vegafusion" title="Permalink to this headline"></a></h2>
-<p>Vega makes it possible to create declarative JSON specifications of rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.</p>
-<p>For datasets of a few thousand rows or fewer, this architecture results in extremely smooth and responsive interactivity. However, this architecture doesn’t scale very well to datasets of hundreds of thousands of rows or more.  This is the problem that VegaFusion aims to solve.</p>
-</div>
+<video controls>
+  <source src="https://vegafusion-datasets.s3.amazonaws.com/screencasts/10MillionTaxiRides.mov" type="video/mp4">
+This browser does not support the video tag.
+</video>
 </div>
 
 <div class="section">
@@ -152,8 +142,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="example_nyc_taxi.html" class="btn btn-neutral float-left" title="10 Million Taxi Rides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="how_it_works.html" class="btn btn-neutral float-right" title="How VegaFusion Works" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="example_large_altair_gallery.html" class="btn btn-neutral float-left" title="Large Altair Gallery Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="background.html" class="btn btn-neutral float-right" title="Background and Motivation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example Gallery &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Large Altair Gallery Examples &mdash; VegaFusion 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Large Altair Gallery Examples" href="example_large_altair_gallery.html" />
-    <link rel="prev" title="Altair Renderer and Data Transformer" href="renderer.html" />    
+    <link rel="next" title="10 Million Taxi Rides" href="example_nyc_taxi.html" />
+    <link rel="prev" title="Example Gallery" href="example_gallery.html" />    
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -73,8 +73,13 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Example Gallery</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="example_large_altair_gallery.html">Large Altair Gallery Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="example_gallery.html">Example Gallery</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Large Altair Gallery Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-crossfilter">Interactive Crossfilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-average">Interactive Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-chart-with-cross-highlight">Interactive Chart with Cross-Highlight</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="example_nyc_taxi.html">10 Million Taxi Rides</a></li>
 </ul>
 </li>
@@ -112,23 +117,54 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Example Gallery</li>
+          <li><a href="example_gallery.html">Example Gallery</a> &raquo;</li>
+      <li>Large Altair Gallery Examples</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/example_gallery.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/example_large_altair_gallery.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="example-gallery">
-<h1>Example Gallery<a class="headerlink" href="#example-gallery" title="Permalink to this headline"></a></h1>
-<p>VegaFusion is compatible with all of the examples in the <a class="reference external" href="https://altair-viz.github.io/gallery/index.html">Altair gallery</a>. Here are a few additional examples that demonstrate the benefits of serverside acceleration.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="example_large_altair_gallery.html">Large Altair Gallery Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="example_nyc_taxi.html">10 Million Taxi Rides</a></li>
+              <div class="tex2jax_ignore mathjax_ignore section" id="large-altair-gallery-examples">
+<h1>Large Altair Gallery Examples<a class="headerlink" href="#large-altair-gallery-examples" title="Permalink to this headline"></a></h1>
+<p>The following examples are modifications of Altair Gallery examples that use larger datasets.  Each example displays the same plot with plain Altair and with Altair + VegaFusion to make is easy to compare performance.</p>
+<div class="section" id="interactive-crossfilter">
+<h2>Interactive Crossfilter<a class="headerlink" href="#interactive-crossfilter" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/flights_crossfilter.ipynb">Notebook file</a></p></li>
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Fflights_crossfilter.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - Voila Dashboard</p></li>
+<li><p><a class="reference external" href="https://gesis.mybinder.org/binder/v2/gh/vegafusion/demos/93a9a68100de0d6282b114f8cf01cbb30c672267?urlpath=lab%2Ftree%2Fnotebooks%2Flarge_altair_examples%2Fflights_crossfilter.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - Jupyterlab</p></li>
 </ul>
+<video controls>
+  <source src="https://user-images.githubusercontent.com/15064365/150031835-5b5b4294-eb88-47db-bbcc-91e89708ce40.mov" type="video/mp4">
+This browser does not support the video tag.
+</video>
+</div>
+<div class="section" id="interactive-average">
+<h2>Interactive Average<a class="headerlink" href="#interactive-average" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/interactive_average.ipynb">Notebook file</a></p></li>
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Finteractive_average.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - Voila Dashboard</p></li>
+<li><p><a class="reference external" href="https://gesis.mybinder.org/binder/v2/gh/vegafusion/demos/93a9a68100de0d6282b114f8cf01cbb30c672267?urlpath=lab%2Ftree%2Fnotebooks%2Flarge_altair_examples%2Finteractive_average.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - JupyterLab</p></li>
+</ul>
+<video controls>
+  <source src="https://user-images.githubusercontent.com/15064365/150031863-3d877f08-2f9a-41a3-8cbb-95bc52f8b206.mov" type="video/mp4">
+This browser does not suppor class="video-border"t the video tag.
+</video>
+</div>
+<div class="section" id="interactive-chart-with-cross-highlight">
+<h2>Interactive Chart with Cross-Highlight<a class="headerlink" href="#interactive-chart-with-cross-highlight" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/movies_cross_highlight.ipynb">Notebook file</a></p></li>
+<li><p><a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Fmovies_cross_highlight.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - Voila Dashboard</p></li>
+<li><p><a class="reference external" href="https://gesis.mybinder.org/binder/v2/gh/vegafusion/demos/93a9a68100de0d6282b114f8cf01cbb30c672267?urlpath=lab%2Ftree%2Fnotebooks%2Flarge_altair_examples%2Fmovies_cross_highlight.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - JupyterLab</p></li>
+</ul>
+<video controls>
+  <source src="https://user-images.githubusercontent.com/15064365/150031895-f57fa806-0f66-413f-95b1-01167c61482a.mov" type="video/mp4">
+This browser does not support the video tag.
+</video>
 </div>
 </div>
 
@@ -139,8 +175,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="renderer.html" class="btn btn-neutral float-left" title="Altair Renderer and Data Transformer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="example_large_altair_gallery.html" class="btn btn-neutral float-right" title="Large Altair Gallery Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="example_gallery.html" class="btn btn-neutral float-left" title="Example Gallery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="example_nyc_taxi.html" class="btn btn-neutral float-right" title="10 Million Taxi Rides" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
