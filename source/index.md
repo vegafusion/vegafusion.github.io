@@ -33,14 +33,14 @@ architecture
 technology
 about_the_name
 related_projects
-roadmap
 ```
 
 ```{toctree}
 :maxdepth: 1
 :hidden: true
-:caption: "License"
+:caption: "Future"
 license_overview
+roadmap
 ```
 
 ```{toctree}
