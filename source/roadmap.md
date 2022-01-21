@@ -31,7 +31,6 @@ See [docs.streamlit.io/library/components/create](https://docs.streamlit.io/libr
 A Panel component for VegaFusion could be written.\
 See [panel.holoviz.org/user_guide/Custom_Components.html](https://panel.holoviz.org/user_guide/Custom_Components.html)
 
-
 ## Altair Integration
 
 (roadmap_extract_data)=
@@ -44,6 +43,14 @@ The [Pre-Aggregating Large Datasets](https://github.com/altair-viz/altair-transf
 
 ### Provide Selection Access from Python
 The current state of Altair [selections](https://altair-viz.github.io/user_guide/interactions.html#selections-building-blocks-of-interactions) could be made available through the `VegaFusionWidget`.  This would make it possible to register custom Python logic to run in response to user interaction events. It would also make it possible to synchronize selections across Charts displayed in different notebook output cells.
+
+## Serverside Rendering
+The initial focus of VegaFusion is to accelerate data processing operations by running them on a server with efficient parallelization rather than in a single-threaded browser context. This can provide significant benefit for chart specifications that make use of aggregation to reduce the size of a dataset before transferring it to the client for rendering by the Vega JavaScript library.  A histogram is the canonical example of this kind of visualization, where the binning and aggregation are performed on the server and only the bin edges and heights of the bars are transferred from the server to the client. 
+
+This approach is not particularly helpful for charts that include a large number of mark instances. A scatter plot is the canonical example of this kind of visualization, where currently the entire dataset must be transferred to the client for rendering with the Vega JavaScript library.
+
+To improve the performance of scatter-plot style charts, we could extend the VegaFusion runtime to include support for rendering a subset of the Vega [marks](https://vega.github.io/vega/docs/marks/).  One approach to investigate is the possibility of using the VegaFusion Planner to replace a large mark (e.g. a [symbol](https://vega.github.io/vega/docs/marks/symbol/) mark with 10 million points) with an [image](https://vega.github.io/vega/docs/marks/image/) mark. Then the VegaFusion runtime would render the symbol mark to a PNG image, and send the image (rather than the full dataset) to the client.
+
 
 ## Beyond Python
 ### Standalone gRPC Server
