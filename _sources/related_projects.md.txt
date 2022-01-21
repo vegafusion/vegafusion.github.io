@@ -14,7 +14,7 @@ Neither of these workflows are implemented in VegaFusion yet, though they are bo
 `altair-transform` does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which is an initial focus of VegaFusion. 
 
 ## [`ibis-vega-transform`](https://github.com/Quansight/ibis-vega-transform)
-`ibis-vega-transform` is a Python library and JupyterLab extension developed by [Quansite](https://www.quansight.com/). It translates pipelines of Vega transforms into [Ibis](https://ibis-project.org/) query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci). 
+`ibis-vega-transform` is a Python library and JupyterLab extension developed by [Quansight](https://www.quansight.com/). It translates pipelines of Vega transforms into [Ibis](https://ibis-project.org/) query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci). 
 
 The JupyterLab extension makes two-way communication between the browser and the Python kernel possible, and this is used to support interactive visualizations like histogram brushing.
 

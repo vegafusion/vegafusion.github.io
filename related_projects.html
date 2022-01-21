@@ -91,7 +91,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">License</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">AGPLv3 License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -140,7 +140,7 @@
 </div>
 <div class="section" id="ibis-vega-transform">
 <h2><a class="reference external" href="https://github.com/Quansight/ibis-vega-transform"><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code></a><a class="headerlink" href="#ibis-vega-transform" title="Permalink to this headline"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> is a Python library and JupyterLab extension developed by <a class="reference external" href="https://www.quansight.com/">Quansite</a>. It translates pipelines of Vega transforms into <a class="reference external" href="https://ibis-project.org/">Ibis</a> query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci).</p>
+<p><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> is a Python library and JupyterLab extension developed by <a class="reference external" href="https://www.quansight.com/">Quansight</a>. It translates pipelines of Vega transforms into <a class="reference external" href="https://ibis-project.org/">Ibis</a> query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci).</p>
 <p>The JupyterLab extension makes two-way communication between the browser and the Python kernel possible, and this is used to support interactive visualizations like histogram brushing.</p>
 <p>In contrast to the Planner approach used by VegaFusion, <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> replaces pipelines of Vega transforms with a custom transform type and then registers a JavaScript handler for this custom transform type.  This JavaScript handler then uses Jupyter Comms to communicate with the Python portion of the library. The Python library converts the requested Vega transforms into an ibis query, evaluates the query, and sends the resulting dataset back to the browser using a Jupyter Comm.</p>
 <p>An advantage of this approach is that the Vega JavaScript library remains in control of the entire specification so the external <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> library does not need to maintain an independent task graph in order to support interactivity.  A downside of this approach is that the result of every transform pipeline must be sent back to the client and be stored in the Vega dataflow graph.  Often times this is not a problem, because the transform pipeline includes an aggregation stage that significantly reduces the dataset size.  However, sometimes the result of a transform pipeline is quite large, but it is only used as input to other transform pipelines.  In this case, it is advantageous to keep the large intermediary result cached on the server and to not send it to the client at all.  This use case is one of the reasons that VegaFusion uses the Planner+Runtime architecture described previously.</p>
