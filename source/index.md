@@ -46,9 +46,20 @@ roadmap
 ```{toctree}
 :maxdepth: 1
 :hidden: true
+:caption: "Community"
+Source Code <https://github.com/vegafusion/vegafusion/>
+Report an Issue <https://github.com/vegafusion/vegafusion/issues>
+Start a Discussion <https://github.com/vegafusion/vegafusion/discussions>
+```
+
+```{toctree}
+:maxdepth: 1
+:hidden: true
 :caption: "Blog"
 blog
 ```
+
+
 
 ## Quickstart: Accelerate Altair in Jupyter
 VegaFusion can be used to provide serverside acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila). First, install the `vegafusion-jupyter` package, along with `vega-datasets` for the example below.
@@ -100,8 +111,6 @@ This browser does not support the video tag.
 Histogram binning, aggregation, selection filtering, and average calculations will now be evaluated in the Python kernel process with efficient parallelization, rather than in the single-threaded browser context.
 
 You can see that VegaFusion acceleration is working by noticing that the Python [kernel is running](https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions) as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.
-
-
 
 ## Recent Posts
 
