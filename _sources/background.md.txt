@@ -1,4 +1,8 @@
 # Background and Motivation
+
+## History
+VegaFusion was created by [Jon Mease](https://jonmmease.dev) after stepping down as [Plotly's](https://plotly.com/) Chief Scientist in the fall of 2021.  Its design was motivated by years of experience working on visualization libraries ([Plotly](https://plotly.com/python/), [HoloViews](https://holoviews.org/), and [Datashader](https://datashader.org/)) and dashboard technologies ([Dash](https://dash.plotly.com/), [Jupyter Widgets](https://ipywidgets.readthedocs.io/en/latest/index.html), and [Panel](https://panel.holoviz.org/)).  For more information on the future direction of the project, see the [Roadmap](./roadmap).
+
 ## Vega, Vega-Lite, and Altair
 VegaFusion is designed to complement the Vega visualization ecosystem. In particular, the [Vega](https://vega.github.io/), [Vega-Lite](https://vega.github.io/vega-lite/), and [Altair](https://altair-viz.github.io/) projects.  If you're not familiar with these projects, it will be helpful to take a few minutes to browse their documentation as background for understanding what VegaFusion adds.
 
