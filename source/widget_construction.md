@@ -1,6 +1,6 @@
 # Construction
 A `VegaFusionWidget` can be constructed from:
- 1. A Altair `Chart` instance
+ 1. An Altair `Chart` instance
  2. A Python dict representing a Vega or Vega-Lite JSON specification
  3. A String containing a Vega or Vega-Lite JSON specification
 
