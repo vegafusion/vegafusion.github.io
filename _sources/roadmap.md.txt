@@ -51,14 +51,12 @@ This approach is not particularly helpful for charts that include a large number
 
 To improve the performance of scatter-plot style charts, we could extend the VegaFusion runtime to include support for rendering a subset of the Vega [marks](https://vega.github.io/vega/docs/marks/).  One approach to investigate is the possibility of using the VegaFusion Planner to replace a large mark (e.g. a [symbol](https://vega.github.io/vega/docs/marks/symbol/) mark with 10 million points) with an [image](https://vega.github.io/vega/docs/marks/image/) mark. Then the VegaFusion runtime would render the symbol mark to a PNG image, and send the image (rather than the full dataset) to the client.
 
-
-## Beyond Python
-### Standalone gRPC Server
+## Standalone gRPC Server
 The VegaFusion Runtime is currently embedded in Python in the `vegafusion-python` package. As an alternative, the Runtime could operate as a standalone [gRPC](https://grpc.io/) server.  The Runtime interface is already defined in terms of protocol buffer messages, so very little refactoring will be required to accomplish this.
 
 The advantage of using this server architecture is that multiple clients will be able to share the same runtime. This can substantially reduce memory usage if the same dashboard is being served to many individual users.  It also opens up the possibility for the server to run on a separate machine.
 
-### JavaScript API / Business Intelligence Architecture
+## JavaScript API / Business Intelligence Architecture
 The VegaFusion client logic is currently compiled to WebAssembly and embedded in a Jupyter Widget extension.  Once the VegaFusion Runtime is available as a standalone gRPC server, it will be possible to embed the VegaFusion WebAssembly client library into custom web applications.  The client library would then communicate with a VegaFusion Runtime using [gRPC-Web](https://github.com/grpc/grpc-web).
 
 A motivating use-case for this architecture is a web-based Business Intelligence tool that generates Vega/Vega-Lite specifications.  Such a tool could operate entirely in the browser for small to medium sized datasets, and then use VegaFusion to provide optional server-side acceleration for large datasets.  Thanks to the server architecture described above, a single gRPC server could support many simultaneous user sessions.
@@ -67,15 +65,18 @@ Here's what this architecture might look like
 
 <img width="895" alt="Screen Shot 2022-01-19 at 3 57 32 PM" src="https://user-images.githubusercontent.com/15064365/150212638-5a4d6e74-926b-4426-8310-4ebbb9244b0c.png"> 
 
-### Elastic Scaling and High Availability
+## Elastic Scaling and High Availability
 
 When the anticipated user load surpasses the capabilities of a single server, a pool of VegaFusion gRPC servers could run behind a load-balancer.  Thanks to Vega Fusion's state model and the gRPC architecture, it would be possible to freely move a user session between servers without losing the user's session state.  This architectural feature is the key to providing reliable implementations of elastic scaling (adjusting the server pool size based on the current user load) and High Availability (recovering from the failure of a single server without disrupting active user sessions).
 
 (roadmap_external_data_providers)=
 ## External Data Providers
-Specialized runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the runtime.
+Specialized Runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These Runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the Runtime.
 
-Here's what an architecture with external Data Providers might look like
+## Edge Runtime
+A subset of the Runtime (in particular the cache) could be compiled to [WASI](https://wasi.dev/) and run on edge services like Fastly's [compute@edge](https://www.fastly.com/products/edge-compute/serverless) or Cloudflare's [Cloudfare workers](https://workers.cloudflare.com/).  A user session would connect directly to an edge Runtime. The edge runtime would perform cheap computations itself to minimize latency and delegate expensive computations to a server Runtime running on a powerful VM from a traditional cloud provider. The edge Runtime would use the regular VegaFusion caching mechanism to cache the results of calculations performed by the server, and share that cache across all user sessions sharing that edge node.
+
+Here's what an architecture the combines the Edge Runtime and External Data Providers might look like
 
 
 <img width="584" alt="Screen Shot 2022-01-19 at 4 00 03 PM" src="https://user-images.githubusercontent.com/15064365/150212960-2da194db-05e7-4d38-96cc-69c293689f44.png">

@@ -109,13 +109,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#serverside-rendering">Serverside Rendering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#beyond-python">Beyond Python</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#standalone-grpc-server">Standalone gRPC Server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#javascript-api-business-intelligence-architecture">JavaScript API / Business Intelligence Architecture</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#elastic-scaling-and-high-availability">Elastic Scaling and High Availability</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#standalone-grpc-server">Standalone gRPC Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#javascript-api-business-intelligence-architecture">JavaScript API / Business Intelligence Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elastic-scaling-and-high-availability">Elastic Scaling and High Availability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#external-data-providers">External Data Providers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#edge-runtime">Edge Runtime</a></li>
 </ul>
 </li>
 </ul>
@@ -210,29 +208,30 @@ See <a class="reference external" href="https://panel.holoviz.org/user_guide/Cus
 <p>This approach is not particularly helpful for charts that include a large number of mark instances. A scatter plot is the canonical example of this kind of visualization, where currently the entire dataset must be transferred to the client for rendering with the Vega JavaScript library.</p>
 <p>To improve the performance of scatter-plot style charts, we could extend the VegaFusion runtime to include support for rendering a subset of the Vega <a class="reference external" href="https://vega.github.io/vega/docs/marks/">marks</a>.  One approach to investigate is the possibility of using the VegaFusion Planner to replace a large mark (e.g. a <a class="reference external" href="https://vega.github.io/vega/docs/marks/symbol/">symbol</a> mark with 10 million points) with an <a class="reference external" href="https://vega.github.io/vega/docs/marks/image/">image</a> mark. Then the VegaFusion runtime would render the symbol mark to a PNG image, and send the image (rather than the full dataset) to the client.</p>
 </div>
-<div class="section" id="beyond-python">
-<h2>Beyond Python<a class="headerlink" href="#beyond-python" title="Permalink to this headline"></a></h2>
 <div class="section" id="standalone-grpc-server">
-<h3>Standalone gRPC Server<a class="headerlink" href="#standalone-grpc-server" title="Permalink to this headline"></a></h3>
+<h2>Standalone gRPC Server<a class="headerlink" href="#standalone-grpc-server" title="Permalink to this headline"></a></h2>
 <p>The VegaFusion Runtime is currently embedded in Python in the <code class="docutils literal notranslate"><span class="pre">vegafusion-python</span></code> package. As an alternative, the Runtime could operate as a standalone <a class="reference external" href="https://grpc.io/">gRPC</a> server.  The Runtime interface is already defined in terms of protocol buffer messages, so very little refactoring will be required to accomplish this.</p>
 <p>The advantage of using this server architecture is that multiple clients will be able to share the same runtime. This can substantially reduce memory usage if the same dashboard is being served to many individual users.  It also opens up the possibility for the server to run on a separate machine.</p>
 </div>
 <div class="section" id="javascript-api-business-intelligence-architecture">
-<h3>JavaScript API / Business Intelligence Architecture<a class="headerlink" href="#javascript-api-business-intelligence-architecture" title="Permalink to this headline"></a></h3>
+<h2>JavaScript API / Business Intelligence Architecture<a class="headerlink" href="#javascript-api-business-intelligence-architecture" title="Permalink to this headline"></a></h2>
 <p>The VegaFusion client logic is currently compiled to WebAssembly and embedded in a Jupyter Widget extension.  Once the VegaFusion Runtime is available as a standalone gRPC server, it will be possible to embed the VegaFusion WebAssembly client library into custom web applications.  The client library would then communicate with a VegaFusion Runtime using <a class="reference external" href="https://github.com/grpc/grpc-web">gRPC-Web</a>.</p>
 <p>A motivating use-case for this architecture is a web-based Business Intelligence tool that generates Vega/Vega-Lite specifications.  Such a tool could operate entirely in the browser for small to medium sized datasets, and then use VegaFusion to provide optional server-side acceleration for large datasets.  Thanks to the server architecture described above, a single gRPC server could support many simultaneous user sessions.</p>
 <p>Here’s what this architecture might look like</p>
 <img width="895" alt="Screen Shot 2022-01-19 at 3 57 32 PM" src="https://user-images.githubusercontent.com/15064365/150212638-5a4d6e74-926b-4426-8310-4ebbb9244b0c.png"> 
 </div>
 <div class="section" id="elastic-scaling-and-high-availability">
-<h3>Elastic Scaling and High Availability<a class="headerlink" href="#elastic-scaling-and-high-availability" title="Permalink to this headline"></a></h3>
+<h2>Elastic Scaling and High Availability<a class="headerlink" href="#elastic-scaling-and-high-availability" title="Permalink to this headline"></a></h2>
 <p>When the anticipated user load surpasses the capabilities of a single server, a pool of VegaFusion gRPC servers could run behind a load-balancer.  Thanks to Vega Fusion’s state model and the gRPC architecture, it would be possible to freely move a user session between servers without losing the user’s session state.  This architectural feature is the key to providing reliable implementations of elastic scaling (adjusting the server pool size based on the current user load) and High Availability (recovering from the failure of a single server without disrupting active user sessions).</p>
-</div>
 </div>
 <div class="section" id="external-data-providers">
 <span id="roadmap-external-data-providers"></span><h2>External Data Providers<a class="headerlink" href="#external-data-providers" title="Permalink to this headline"></a></h2>
-<p>Specialized runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the runtime.</p>
-<p>Here’s what an architecture with external Data Providers might look like</p>
+<p>Specialized Runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These Runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the Runtime.</p>
+</div>
+<div class="section" id="edge-runtime">
+<h2>Edge Runtime<a class="headerlink" href="#edge-runtime" title="Permalink to this headline"></a></h2>
+<p>A subset of the Runtime (in particular the cache) could be compiled to <a class="reference external" href="https://wasi.dev/">WASI</a> and run on edge services like Fastly’s <a class="reference external" href="https://www.fastly.com/products/edge-compute/serverless">compute&#64;edge</a> or Cloudflare’s <a class="reference external" href="https://workers.cloudflare.com/">Cloudfare workers</a>.  A user session would connect directly to an edge Runtime. The edge runtime would perform cheap computations itself to minimize latency and delegate expensive computations to a server Runtime running on a powerful VM from a traditional cloud provider. The edge Runtime would use the regular VegaFusion caching mechanism to cache the results of calculations performed by the server, and share that cache across all user sessions sharing that edge node.</p>
+<p>Here’s what an architecture the combines the Edge Runtime and External Data Providers might look like</p>
 <img width="584" alt="Screen Shot 2022-01-19 at 4 00 03 PM" src="https://user-images.githubusercontent.com/15064365/150212960-2da194db-05e7-4d38-96cc-69c293689f44.png">
 </div>
 </div>
