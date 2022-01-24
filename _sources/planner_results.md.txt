@@ -37,6 +37,6 @@ Then print out the value of the following widget properties:
 
  - `widget.spec`: This is the Vega-Lite specification created by Altair
  - `widget.full_vega_spec`: This is the Vega specification produced by Vega-Lite
- - `widget.server_vega_spec`: This is the portion of the full Vega spec that was planned to run on the server (The Python kernel in case)
- - `widget.client_vega_spec`: This is the portion of the full Vega spec that was planned to run on the client, being rendered by Vega.js
+ - `widget.server_vega_spec`: This is the portion of the full Vega spec that was planned to run on the server (The Python kernel in this case)
+ - `widget.client_vega_spec`: This is the portion of the full Vega spec that was planned to run on the client and be rendered by the Vega JavaScript Library.
  - `widget.comm_plan`: This is the specification of which signals and datasets must be transfered between the client and server in order to preserve the interactive behavior of the original specification.
