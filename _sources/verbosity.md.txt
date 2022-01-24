@@ -1,5 +1,5 @@
 # Verbosity
-The `VegaFusionWidget` provides a `verbose` flag that can be used to enable verbose logging of the messages sent between the server and client.  When set, log messages are written to the browsers JavaScript console.
+The `VegaFusionWidget` provides a `verbose` flag that can be used to enable verbose logging of the messages sent between the server and client.  When set, log messages are written to the browser's JavaScript console.
 
 Here is an example of enabling verbose logging for the [interactive average](https://altair-viz.github.io/gallery/selection_layer_bar_month.html) example.
 
