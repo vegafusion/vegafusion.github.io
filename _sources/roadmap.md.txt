@@ -5,7 +5,7 @@ This page contains an assortment of capabilities that we would like to add to Ve
 
 (roadmap_conda_forge_packages)=
 ### conda-forge packages
-The `vegafusion-python` and `vegafusion-jupyter` packages could be submitted to conda-forge.  `vegafusion-python` is written in Rust and must be compiled to each supported operating systema and Python version individually.  `vegafusion-jupyter` will be a `noarch` package that depends on `vegafusion-jupyter`.
+The `vegafusion-python` and `vegafusion-jupyter` packages could be submitted to conda-forge.  `vegafusion-python` is written in Rust and must be compiled to each supported operating system and Python version individually.  `vegafusion-jupyter` will be a `noarch` package that depends on `vegafusion-jupyter`.
 
 ## Non-Jupyter Notebook Environments
 
@@ -14,7 +14,7 @@ Colab supports custom JupyterWidgets, so it should be possible to support `vegaf
 
 ## Python Dashboard Environments
 
-The VegaFusion Jupyter Widget was intentionally designed to push as much logic as possible into the `vegafusion-wasm` package.  The logic that is left in the Jupyter Widget extension is primarily related to client-server communication, and html layout.  With this approach, it shouldn't require a substantial amount of addition code in order to support alternative dashboard environments. 
+The VegaFusion Jupyter Widget was intentionally designed to push as much logic as possible into the `vegafusion-wasm` package.  The logic that is left in the Jupyter Widget extension is primarily related to client-server communication, and html layout.  With this approach, it shouldn't require a substantial amount of additional code in order to support alternative dashboard environments. 
 
 (roadmap_dash)=
 ### Dash support
