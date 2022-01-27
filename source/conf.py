@@ -82,10 +82,11 @@ html_theme_options = {
 }
 
 myst_html_meta = {
-    "description lang=en": "VegaFusion: Serverside acceleration of the Vega visualization grammar",
-    "property=og:description":  "VegaFusion: Serverside acceleration of the Vega visualization grammar",
+    "description lang=en": "VegaFusion provides serverside acceleration of the Vega visualization grammar",
+    "property=og:description":  "VegaFusion provides serverside acceleration of the Vega visualization grammar",
     "property=og:locale":  "en_US",
     "property=og:url":  "https://vegafusion.io/",
     "twitter:site": "@vegafusion_io",
-    "property=twitter:image": "https://vegafusion.io/_static/VegaFusionLogo-Color.svg"
+    "property=twitter:image": "https://vegafusion.io/_static/vegafusion_social.png",
+    "twitter:card": "summary"
 }
