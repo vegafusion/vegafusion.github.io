@@ -4,7 +4,7 @@ VegaFusion uses a fairly diverse technology stack. The planner and runtime are b
 
 In the context of `vegafusion-jupyter`, both the Planner and the client portion of the Runtime are compiled to WebAssembly using [wasm-pack](https://github.com/rustwasm/wasm-pack) and wrapped in a TypeScript API using [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen).  This TypeScript API is used to integrate the WebAssembly library into the VegaFusion Jupyter Widget.
 
-The server portion of the Runtime is wrapped in a Python API using [PyO3](https://github.com/PyO3/pyo3), resulting in the `vegafusion-python` package.  The `vegafusion-jupyter` package is used to integrate vegafusion-python with Altair and the Python portion of VegaFusion Jupyter Widget.
+The server portion of the Runtime is wrapped in a Python API using [PyO3](https://github.com/PyO3/pyo3), resulting in the `vegafusion-python` package.  The `vegafusion-jupyter` package is used to integrate `vegafusion-python` with Altair and the Python portion of VegaFusion Jupyter Widget.
 
 The Task Graph specifications are defined as protocol buffer messages. The [prost](https://github.com/tokio-rs/prost) library is used to generate Rust data structures from these protocol buffer messages.  When Arrow tables appear as task graph root values, they are serialized inside the protocol buffer specification using the [Apache Arrow IPC format](https://arrow.apache.org/docs/format/Columnar.html#serialization-and-interprocess-communication-ipc).  The binary representation of the task graph protocol buffer message is what is transferred across the Jupyter Comms protocol.
 
