@@ -81,12 +81,18 @@ html_theme_options = {
     'analytics_id': 'G-LVD2GWXRQZ',
 }
 
+_social_img = "https://vegafusion.io/_static/vegafusion_social.png"
+_description = "VegaFusion provides serverside acceleration of the Vega visualization grammar"
+_title = "VegaFusion"
+
 myst_html_meta = {
-    "description lang=en": "VegaFusion provides serverside acceleration of the Vega visualization grammar",
-    "property=og:description":  "VegaFusion provides serverside acceleration of the Vega visualization grammar",
+    "description lang=en": _description,
+    "property=og:title":  _title,
+    "property=og:description":  _description,
     "property=og:locale":  "en_US",
     "property=og:url":  "https://vegafusion.io/",
-    "twitter:site": "@vegafusion_io",
-    "property=twitter:image": "https://vegafusion.io/_static/vegafusion_social.png",
-    "twitter:card": "summary"
+    "property=og:image":  _social_img,
+    "property=twitter:site": "@vegafusion_io",
+    "property=twitter:image": _social_img,
+    "property=twitter:card": "summary"
 }
