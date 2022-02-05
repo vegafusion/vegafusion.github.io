@@ -9,7 +9,7 @@
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
 <meta content="&#64;vegafusion_io" property="twitter:site" />
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
-<meta content="summary" property="twitter:card" />
+<meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Download Source Link &mdash; VegaFusion 0.1.0 documentation</title>
@@ -145,7 +145,7 @@
 <p>If you’re only using VegaFusion in a Jupyter Notebook to look at plots and save them as images, the AGPLv3 license does not impose any additional requirements.  The source code requirement would only be triggered if you use VegaFusion in a dashboard setting like Voila. In this case, the source code of the dashboard must be made available to any users who has the ability to view it.</p>
 <p>To make it as easy as possible to comply with the terms of the license, the VegaFusion drop-down menu can be configured with a link to the dashboard’s source code (e.g. a public GitHub repository). This link can be provided as the <code class="docutils literal notranslate"><span class="pre">download_source_link</span></code> keyword argument to the <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> (or as a keyword argument to the <code class="docutils literal notranslate"><span class="pre">vf.enable</span></code> function).</p>
 <p>If no such link is provided (the default), then the dropdowm menu will display a message informing the user of their right to download the application’s source code.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion_jupyter</span> <span class="k">as</span> <span class="nn">vf</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 <span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
 
@@ -155,12 +155,12 @@
     <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;IMDB_Rating:Q&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">vf</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
 </pre></div>
 </div>
 <img width="529" alt="Dropdown menu with requirement message" src="https://user-images.githubusercontent.com/15064365/148812890-d2a51d88-8f79-47d9-800c-9d456ae56eb1.png">
 <p>When the link is provided, a <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Source</span></code> entry is added to the menu that will navigate to the link location.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion_jupyter</span> <span class="k">as</span> <span class="nn">vf</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 <span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
 
@@ -170,7 +170,7 @@
     <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;IMDB_Rating:Q&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">vf</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span>
     <span class="n">chart</span><span class="p">,</span>
     <span class="n">download_source_link</span><span class="o">=</span><span class="s2">&quot;https://github.com/vegafusion/vegafusion.github.io&quot;</span>
 <span class="p">)</span>

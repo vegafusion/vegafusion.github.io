@@ -9,7 +9,7 @@
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
 <meta content="&#64;vegafusion_io" property="twitter:site" />
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
-<meta content="summary" property="twitter:card" />
+<meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Altair Renderer and Data Transformer &mdash; VegaFusion 0.1.0 documentation</title>
@@ -150,8 +150,8 @@
 <div class="section" id="activating-renderer-and-data-transformer">
 <h2>Activating Renderer and Data Transformer<a class="headerlink" href="#activating-renderer-and-data-transformer" title="Permalink to this headline"></a></h2>
 <p>The VegaFusion renderer and data transformer can both be activated using the <code class="docutils literal notranslate"><span class="pre">enable</span></code> function from the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion_jupyter</span> <span class="k">as</span> <span class="nn">vf</span>
-<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>After calling <code class="docutils literal notranslate"><span class="pre">enable</span></code>, subsequent Altair charts will automatically be rendered using VegaFusion.</p>
@@ -160,7 +160,7 @@
 
 <span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">movies</span><span class="o">.</span><span class="n">url</span>
 
-<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;IMDB_Rating:Q&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
 <span class="p">)</span>

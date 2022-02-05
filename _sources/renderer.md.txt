@@ -9,8 +9,8 @@ VegaFusion also provides a custom [data transformer](https://altair-viz.github.i
 The VegaFusion renderer and data transformer can both be activated using the `enable` function from the `vegafusion-jupyter` package.
 
 ```python
-import vegafusion_jupyter as vf
-vf.enable()
+import vegafusion as vf
+vf.jupyter.enable()
 ```
 
 After calling `enable`, subsequent Altair charts will automatically be rendered using VegaFusion.
@@ -21,7 +21,7 @@ from vega_datasets import data
 
 source = data.movies.url
 
-chart = alt.Chart(source).mark_bar().encode(
+alt.Chart(source).mark_bar().encode(
     alt.X("IMDB_Rating:Q", bin=True),
     y='count()',
 )

@@ -9,7 +9,7 @@
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
 <meta content="&#64;vegafusion_io" property="twitter:site" />
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
-<meta content="summary" property="twitter:card" />
+<meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Verbosity &mdash; VegaFusion 0.1.0 documentation</title>
@@ -150,6 +150,7 @@
 <p>Here is an example of enabling verbose logging for the <a class="reference external" href="https://altair-viz.github.io/gallery/selection_layer_bar_month.html">interactive average</a> example.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 <span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 
 <span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">seattle_weather</span><span class="p">()</span>
 <span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
@@ -170,7 +171,7 @@
 <span class="p">)</span>
 
 <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">layer</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
-<span class="n">widget</span> <span class="o">=</span> <span class="n">vf</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">widget</span>
 </pre></div>
 </div>

@@ -6,6 +6,7 @@ First, wrap the chart in a `VegaFusionWidget` and display it.
 ```python
 import altair as alt
 from vega_datasets import data
+import vegafusion as vf
 
 source = data.seattle_weather()
 brush = alt.selection(type='interval', encodings=['x'])
@@ -25,7 +26,7 @@ line = alt.Chart().mark_rule(color='firebrick').encode(
     brush
 )
 
-widget = vf.VegaFusionWidget(alt.layer(bars, line, data=source))
+widget = vf.jupyter.VegaFusionWidget(alt.layer(bars, line, data=source))
 widget
 ```
 <video width="600" controls>

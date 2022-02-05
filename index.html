@@ -9,7 +9,7 @@
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
 <meta content="&#64;vegafusion_io" property="twitter:site" />
 <meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
-<meta content="summary" property="twitter:card" />
+<meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VegaFusion &mdash; VegaFusion 0.1.0 documentation</title>
@@ -151,12 +151,12 @@
 <div class="section" id="quickstart-accelerate-altair-in-jupyter">
 <h2>Quickstart: Accelerate Altair in Jupyter<a class="headerlink" href="#quickstart-accelerate-altair-in-jupyter" title="Permalink to this headline"></a></h2>
 <p>VegaFusion can be used to provide serverside acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila). First, install the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package, along with <code class="docutils literal notranslate"><span class="pre">vega-datasets</span></code> for the example below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install vegafusion-jupyter vega-datasets
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install <span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span> vega-datasets
 </pre></div>
 </div>
 <p>Then, open a jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion_jupyter</span> <span class="k">as</span> <span class="nn">vf</span>
-<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>VegaFusion will now be used to accelerate any Altair chart. For example, here’s the <a class="reference external" href="https://altair-viz.github.io/gallery/selection_layer_bar_month.html">interactive average</a> Altair gallery example.</p>
