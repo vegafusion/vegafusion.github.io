@@ -9,7 +9,7 @@ Here is the specification for a chart that provides histogram data selection on 
 import altair as alt
 from vega_datasets import data
 import pandas as pd
-import vegafusion_jupyter as vf
+import vegafusion as vf
 
 source = pd.concat([data.flights_2k()] * 5000).reset_index()
 
@@ -40,7 +40,7 @@ chart = alt.layer(
     data=source
 ).repeat(column=["distance", "delay"])
 
-widget = vf.VegaFusionWidget(chart)
+widget = vf.jupyter.VegaFusionWidget(chart)
 widget
 ```
 
@@ -58,7 +58,7 @@ You can see that the server falls behind, resulting in a poor interaction experi
 Debouncing can be adjusted to improve the interaction experience.  By setting `debounce_wait` to 50ms and `debounce_max_wait` to `None` the client will not send a request to the server until there has been a period of 50ms without any user interaction events.  This results in a user interaction experience where the chart is not updated until the full interaction has completed.
 
 ```python
-vf.VegaFusionWidget(chart, debounce_wait=50, debounce_max_wait=None)
+vf.jupyter.VegaFusionWidget(chart, debounce_wait=50, debounce_max_wait=None)
 ```
 
 <video width="600" controls>

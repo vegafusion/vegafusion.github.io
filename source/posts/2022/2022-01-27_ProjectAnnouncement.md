@@ -27,8 +27,8 @@ $ pip install vegafusion-jupyter vega-datasets
 Then, open a Jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.
 
 ```python
-import vegafusion_jupyter as vf
-vf.enable()
+import vegafusion as vf
+vf.jupyter.enable()
 ```
 VegaFusion will now be used to accelerate any Altair chart. For example, here's the [interactive average](https://altair-viz.github.io/gallery/selection_layer_bar_month.html) Altair gallery example.
 

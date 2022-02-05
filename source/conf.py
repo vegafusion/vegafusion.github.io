@@ -94,5 +94,5 @@ myst_html_meta = {
     "property=og:image":  _social_img,
     "property=twitter:site": "@vegafusion_io",
     "property=twitter:image": _social_img,
-    "property=twitter:card": "summary"
+    "property=twitter:card": "summary_large_image"
 }

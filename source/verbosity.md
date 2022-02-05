@@ -6,6 +6,7 @@ Here is an example of enabling verbose logging for the [interactive average](htt
 ```python
 import altair as alt
 from vega_datasets import data
+import vegafusion as vf
 
 source = data.seattle_weather()
 brush = alt.selection(type='interval', encodings=['x'])
@@ -26,7 +27,7 @@ line = alt.Chart().mark_rule(color='firebrick').encode(
 )
 
 chart = alt.layer(bars, line, data=source)
-widget = vf.VegaFusionWidget(chart, verbose=True)
+widget = vf.jupyter.VegaFusionWidget(chart, verbose=True)
 widget
 ```
 

@@ -9,7 +9,7 @@ These values may be passed to the `VegaFusionWidget` as the sole positional argu
 ## Construct from an Altair Chart
 
 ```python
-import vegafusion_jupyter as vf
+import vegafusion as vf
 import altair as alt
 from vega_datasets import data
 
@@ -19,14 +19,14 @@ chart = alt.Chart(source).mark_bar().encode(
     alt.X("IMDB_Rating:Q", bin=True),
     y='count()',
 )
-vf.VegaFusionWidget(chart)
+vf.jupyter.VegaFusionWidget(chart)
 ```
 <img width="519" alt="Histogram" src="https://user-images.githubusercontent.com/15064365/148783521-81c5d183-0a6f-41ca-a0c1-0c76e23d65df.png">
 
 ## Construct from a Vega-Lite Specification Dictionary
 
 ```python
-import vegafusion_jupyter as vf
+import vegafusion as vf
 import altair as alt
 
 vegalite_spec = {
@@ -55,14 +55,14 @@ vegalite_spec = {
     }
   }
 }
-vf.VegaFusionWidget(vegalite_spec)
+vf.jupyter.VegaFusionWidget(vegalite_spec)
 ```
 <img width="424" alt="Screen Shot 2022-01-10 at 9 39 23 AM" src="https://user-images.githubusercontent.com/15064365/148783961-8106bc35-f584-42de-ac9e-fb1a8d2af637.png">
 
 ## Construct from a Vega Specification String
 
 ```python
-import vegafusion_jupyter as vf
+import vegafusion as vf
 import altair as alt
 
 vega_spec = r"""
@@ -192,7 +192,7 @@ vega_spec = r"""
 }
 """
 
-vf.VegaFusionWidget(vega_spec)
+vf.jupyter.VegaFusionWidget(vega_spec)
 ```
 
 <img width="360" alt="Screen Shot 2022-01-10 at 10 03 15 AM" src="https://user-images.githubusercontent.com/15064365/148787878-675daf43-f228-4486-96ad-788481e3315d.png">

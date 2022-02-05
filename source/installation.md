@@ -3,7 +3,7 @@
 ## pip
 VegaFusion Jupyter can be installed into a Python environment using pip with
 ```bash
-pip install vegafusion-jupyter
+pip install "vegafusion-jupyter[embed]"
 ```
 
 ## conda

@@ -10,7 +10,7 @@ To make it as easy as possible to comply with the terms of the license, the Vega
 If no such link is provided (the default), then the dropdowm menu will display a message informing the user of their right to download the application's source code.  
 
 ```python
-import vegafusion_jupyter as vf
+import vegafusion as vf
 import altair as alt
 from vega_datasets import data
 
@@ -20,14 +20,14 @@ chart = alt.Chart(source).mark_bar().encode(
     alt.X("IMDB_Rating:Q", bin=True),
     y='count()',
 )
-vf.VegaFusionWidget(chart)
+vf.jupyter.VegaFusionWidget(chart)
 ```
 <img width="529" alt="Dropdown menu with requirement message" src="https://user-images.githubusercontent.com/15064365/148812890-d2a51d88-8f79-47d9-800c-9d456ae56eb1.png">
 
 When the link is provided, a `Download Source` entry is added to the menu that will navigate to the link location.
 
 ```python
-import vegafusion_jupyter as vf
+import vegafusion as vf
 import altair as alt
 from vega_datasets import data
 
@@ -37,7 +37,7 @@ chart = alt.Chart(source).mark_bar().encode(
     alt.X("IMDB_Rating:Q", bin=True),
     y='count()',
 )
-vf.VegaFusionWidget(
+vf.jupyter.VegaFusionWidget(
     chart,
     download_source_link="https://github.com/vegafusion/vegafusion.github.io"
 )
