@@ -21,7 +21,7 @@ VegaFusion can be used to provide server-side acceleration for Altair visualizat
 First, install the `vegafusion-jupyter` package, along with `vega-datasets` for the example below.
 
 ```bash
-$ pip install vegafusion-jupyter vega-datasets
+$ pip install "vegafusion-jupyter[embed]" vega-datasets
 ```
 
 Then, open a Jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.

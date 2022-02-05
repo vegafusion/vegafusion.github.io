@@ -141,7 +141,7 @@
 <h2>Quickstart: Accelerate Altair in Jupyter<a class="headerlink" href="#quickstart-accelerate-altair-in-jupyter" title="Permalink to this headline"></a></h2>
 <p>VegaFusion can be used to provide server-side acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila).  It also eliminates the Altair <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code> when generating a chart with over 5000 rows.</p>
 <p>First, install the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package, along with <code class="docutils literal notranslate"><span class="pre">vega-datasets</span></code> for the example below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install vegafusion-jupyter vega-datasets
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install <span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span> vega-datasets
 </pre></div>
 </div>
 <p>Then, open a Jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.</p>
