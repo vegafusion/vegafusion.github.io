@@ -12,8 +12,9 @@ The core VegaFusion algorithms are implemented in Rust. Python integration is pr
 :caption: "User Guide"
 installation
 supported_environments
-widget
-renderer
+mime_renderer
+widget_renderer
+transformed_data
 ```
 
 ```{toctree}
