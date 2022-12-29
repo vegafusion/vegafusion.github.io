@@ -62,8 +62,8 @@ blog
 ## Quickstart 1: Overcome `MaxRowsError` with VegaFusion
 The VegaFusion mime renderer can be used to overcome the Altair [`MaxRowsError`](https://altair-viz.github.io/user_guide/faq.html#maxrowserror-how-can-i-plot-large-datasets) by performing data-intensive aggregations on the server and pruning unused columns from the source dataset.  First install the `vegafusion` Python package with the `embed` extras enabled
 
-```
-$ pip install "vegafusion[embed]"
+```bash
+pip install "vegafusion[embed]"
 ```
 
 Then open a Jupyter notebook (either the classic notebook or a notebook inside JupyterLab), and create an Altair histogram of a 1 million row flights dataset
@@ -152,8 +152,8 @@ To address this situation, VegaFusion provides a [Jupyter Widget](https://ipywid
 
 The VegaFusion widget renderer is provided by the `vegafusion-jupyter` package.
 
-```
-$ pip install "vegafusion-jupyter[embed]"
+```bash
+pip install "vegafusion-jupyter[embed]"
 ```
 
 Instead of enabling the mime render with `vf.enable_mime()`, the widget renderer is enabled with `vf.enable_widget()`.  Here is a full example that uses the widget renderer to display an interactive Altair chart that implements linked histogram brushing for a 1 million row flights dataset.
