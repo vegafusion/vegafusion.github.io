@@ -1,5 +1,5 @@
 # Example Gallery
-VegaFusion is compatible with all of the examples in the [Altair gallery](https://altair-viz.github.io/gallery/index.html). Here are a few additional examples that demonstrate the benefits of serverside acceleration.
+VegaFusion is compatible with all the examples in the [Altair gallery](https://altair-viz.github.io/gallery/index.html). Here are a few additional interactive examples that demonstrate the benefits of the VegaFusion widget renderer.
 
 ```{toctree}
 :maxdepth: 1
