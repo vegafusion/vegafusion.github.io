@@ -1,16 +1,5 @@
 # VegaFusion Roadmap
-This page contains an assortment of capabilities that we would like to add to VegaFusion over time.  These are not necessarily in chronological or priority order. If you are interested in contributing time and/or funding to help prioritise these items, please [get in touch!](mailto:jon@vegafusion.io)
-
-## Packaging
-
-(roadmap_conda_forge_packages)=
-### conda-forge packages
-The `vegafusion-python` and `vegafusion-jupyter` packages could be submitted to conda-forge.  `vegafusion-python` is written in Rust and must be compiled to each supported operating system and Python version individually.  `vegafusion-jupyter` will be a `noarch` package that depends on `vegafusion-jupyter`.
-
-## Non-Jupyter Notebook Environments
-
-### Colab
-Colab supports custom JupyterWidgets, so it should be possible to support `vegafusion-jupyter` in Colab. For unknown reasons, it does not work today. See [vegafusion#55](https://github.com/vegafusion/vegafusion/issues/55).
+This page contains an assortment of capabilities that we would like to add to VegaFusion over time.  These are not necessarily in chronological or priority order. If you are interested in collaborating on any of these items, please [get in touch!](mailto:jon@vegafusion.io)
 
 ## Python Dashboard Environments
 
@@ -33,14 +22,6 @@ See [panel.holoviz.org/user_guide/Custom_Components.html](https://panel.holoviz.
 
 ## Altair Integration
 
-(roadmap_extract_data)=
-### Extracting Data from Altair Chart
-The [Extracting Data](https://github.com/altair-viz/altair-transform#example-extracting-data) workflow supported by `altair-transform` could be implemented. This would involve directly converting Altair transforms into Vega transforms without using Vega-Lite in the browser. The transforms are nearly identical, so this shouldn't present a major challenge.
-
-(roadmap_pre_agg)=
-### Pre-Aggregating Large Datasets in Altair Chart
-The [Pre-Aggregating Large Datasets](https://github.com/altair-viz/altair-transform#example-pre-aggregating-large-datasets) workflow from `altair-transform` could be implemented. As above, this would involve directly converting Altair transforms into Vega transforms without using Vega-Lite in the browser.
-
 ### Provide Selection Access from Python
 The current state of Altair [selections](https://altair-viz.github.io/user_guide/interactions.html#selections-building-blocks-of-interactions) could be made available through the `VegaFusionWidget`.  This would make it possible to register custom Python logic to run in response to user interaction events. It would also make it possible to synchronize selections across Charts displayed in different notebook output cells.
 
@@ -56,6 +37,8 @@ The VegaFusion Runtime is currently embedded in Python in the `vegafusion-python
 
 The advantage of using this server architecture is that multiple clients will be able to share the same runtime. This can substantially reduce memory usage if the same dashboard is being served to many individual users.  It also opens up the possibility for the server to run on a separate machine.
 
+A prototype of this approach has been developed as [`vegafusion-server`](https://github.com/vegafusion/vegafusion/tree/main/vegafusion-server), but it hasn't been fully proved out with a specific use case.
+
 ## JavaScript API / Business Intelligence Architecture
 The VegaFusion client logic is currently compiled to WebAssembly and embedded in a Jupyter Widget extension.  Once the VegaFusion Runtime is available as a standalone gRPC server, it will be possible to embed the VegaFusion WebAssembly client library into custom web applications.  The client library would then communicate with a VegaFusion Runtime using [gRPC-Web](https://github.com/grpc/grpc-web).
 
@@ -67,16 +50,15 @@ Here's what this architecture might look like
 
 ## Elastic Scaling and High Availability
 
-When the anticipated user load surpasses the capabilities of a single server, a pool of VegaFusion gRPC servers could run behind a load-balancer.  Thanks to Vega Fusion's state model and the gRPC architecture, it would be possible to freely move a user session between servers without losing the user's session state.  This architectural feature is the key to providing reliable implementations of elastic scaling (adjusting the server pool size based on the current user load) and High Availability (recovering from the failure of a single server without disrupting active user sessions).
+When the anticipated user load surpasses the capabilities of a single server, a pool of VegaFusion gRPC servers could run behind a load-balancer.  Thanks to VegaFusion's state model and the gRPC architecture, it would be possible to freely move a user session between servers without losing the user's session state.  This architectural feature is the key to providing reliable implementations of elastic scaling (adjusting the server pool size based on the current user load) and High Availability (recovering from the failure of a single server without disrupting active user sessions).
 
 (roadmap_external_data_providers)=
 ## External Data Providers
-Specialized Runtimes could be written for particular data providers like PostgreSQL, OmniSci, Spark, and Dask.  These Runtimes could support a small subset of transforms and expression language functions and allow the Planner to determine what work to assign to the Runtime.
+Support will eventually be added to the Runtime for compiling Vega transforms into SQL for evaluation in external data providers like PostgreSQL, OmniSci, Spark, and Dask (through [DaskSQL](https://dask-sql.readthedocs.io/en/latest/)).
 
 ## Edge Runtime
 A subset of the Runtime (in particular the cache) could be compiled to [WASI](https://wasi.dev/) and run on edge services like Fastly's [compute@edge](https://www.fastly.com/products/edge-compute/serverless) or Cloudflare's [Cloudfare workers](https://workers.cloudflare.com/).  A user session would connect directly to an edge Runtime. The edge runtime would perform cheap computations itself to minimize latency and delegate expensive computations to a server Runtime running on a powerful VM from a traditional cloud provider. The edge Runtime would use the regular VegaFusion caching mechanism to cache the results of calculations performed by the server, and share that cache across all user sessions sharing that edge node.
 
 Here's what an architecture the combines the Edge Runtime and External Data Providers might look like
-
 
 <img width="584" alt="Screen Shot 2022-01-19 at 4 00 03 PM" src="https://user-images.githubusercontent.com/15064365/150212960-2da194db-05e7-4d38-96cc-69c293689f44.png">
