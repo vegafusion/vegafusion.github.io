@@ -1,2 +1,0 @@
-# Mime Renderer Activation
-asdf

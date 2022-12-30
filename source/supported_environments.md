@@ -25,7 +25,18 @@ vf.enable_mime()
 The widget renderer is not compatible with Hex.
 
 ## Colab
-The VegaFusion widget renderer is compatible with [Google Colab](https://colab.research.google.com/) when the custom widget manager is enabled:
+The VegaFusion mime renderer is compatible with [Google Colab](https://colab.research.google.com/) when the `"html-colab"` mimetype is enabled:
+
+```
+%pip install vegafusion[embed]
+```
+```python
+import vegafusion as vf
+vf.enable_mime(mimetype="html-colab")
+...
+```
+
+The VegaFusion widget renderer is also compatible with [Google Colab](https://colab.research.google.com/) when the custom widget manager is enabled:
 
 ```
 %pip install vegafusion-jupyter[embed]
@@ -39,7 +50,19 @@ vf.enable_widget()
 ...
 ```
 
-The mime renderer is not yet compatible with Colab.
+## Kaggle
+The VegaFusion mime renderer is compatible with [Kaggle Notebooks](https://www.kaggle.com/docs/notebooks) when the `"html-kaggle"` mimetype is enabled:
+
+```
+%pip install vegafusion[embed]
+```
+```python
+import vegafusion as vf
+vf.enable_mime(mimetype="html-kaggle")
+...
+```
+
+The widget renderer is not currently compatible with Kaggle.
 
 ## Dash / Streamlit / Panel
 Extensions for Dash, Streamlit, and Panel are not yet supported. See the following roadmap entries:

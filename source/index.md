@@ -14,6 +14,7 @@ installation
 supported_environments
 mime_renderer
 widget_renderer
+widget
 transformed_data
 ```
 
@@ -149,7 +150,7 @@ vf.transformed_data(delay_hist)
 ## Quickstart 3: Accelerate interactive charts
 While the VegaFusion mime renderer works great for static Altair charts, it's not as well suited for [interactive](https://altair-viz.github.io/user_guide/interactions.html) charts visualizing large datasets. This is because the mime renderer does not maintain a live connection between the browser and the python kernel, so all the data that participates in an interaction must be sent to the browser.
 
-To address this situation, VegaFusion provides a [Jupyter Widget](https://ipywidgets.readthedocs.io/en/stable/) based renderer that does maintain a live connection between the chart in the browser and the Python kernel. In this configuration, selections operations (e.g. filtering to the extents of a brush selection) can be evaluated interactively in the Python kernel, which eliminates the need to transfer the full dataset to the client in order to maintain interactivity.
+To address this situation, VegaFusion provides a [Jupyter Widget](https://ipywidgets.readthedocs.io/en/stable/) based renderer that does maintain a live connection between the chart in the browser and the Python kernel. In this configuration, selection operations (e.g. filtering to the extents of a brush selection) can be evaluated interactively in the Python kernel, which eliminates the need to transfer the full dataset to the client in order to maintain interactivity.
 
 The VegaFusion widget renderer is provided by the `vegafusion-jupyter` package.
 
@@ -207,7 +208,7 @@ chart
 This browser does not support the video tag.
 </video>
 
-Histogram binning, aggregation, and selection filtering is now evaluated in the Python kernel process with efficient parallelization, and only the aggregated data (one row per histogram bar) is sent to the browser.
+Histogram binning, aggregation, and selection filtering are now evaluated in the Python kernel process with efficient parallelization, and only the aggregated data (one row per histogram bar) is sent to the browser.
 
 You can see that the VegaFusion widget renderer maintains a live connection to the Python kernel by noticing that the Python [kernel is running](https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions) as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.
 
