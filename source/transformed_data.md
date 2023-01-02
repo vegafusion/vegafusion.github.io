@@ -167,8 +167,64 @@ vf.transformed_data(chart)
 |  8 | Peter Jackson     |            5.95566e+08 |
 |  9 | All Others        |            8.87602e+07 |
 
+## Datetime Timezone
+Datetime columns will be returned in the local timezone returned by the `vegafusion.get_local_tz()` function. If not overridden using `vegafusion.set_local_tz()`, this will be the local timezone of the Python kernel.
+
+For example:
+
+```python
+import vegafusion as vf
+import altair as alt
+from vega_datasets import data
+
+# Manually set timezone to Seattle's since this a seattle weather
+# dataset
+vf.set_local_tz("America/Los_Angeles")
+
+source = data.seattle_weather()
+
+chart = alt.Chart(source).mark_bar(
+    cornerRadiusTopLeft=3,
+    cornerRadiusTopRight=3
+).encode(
+    x='month(date):O',
+    y='count():Q',
+    color='weather:N'
+)
+chart
+```
+
+![visualization](https://user-images.githubusercontent.com/15064365/210239728-020244de-15c3-4b2d-89fc-1b33b89c9b1d.png)
+
+```python
+tx_df = vf.transformed_data(chart, row_limit=5)
+tx_df
+```
+
+|    | weather   | month_date                |   __count |   __count_start |   __count_end |
+|---:|:----------|:--------------------------|----------:|----------------:|--------------:|
+|  0 | drizzle   | 2012-01-01 00:00:00-08:00 |        10 |             114 |           124 |
+|  1 | rain      | 2012-01-01 00:00:00-08:00 |        35 |              41 |            76 |
+|  2 | sun       | 2012-01-01 00:00:00-08:00 |        33 |               0 |            33 |
+|  3 | snow      | 2012-01-01 00:00:00-08:00 |         8 |              33 |            41 |
+|  4 | rain      | 2012-02-01 00:00:00-08:00 |        40 |              33 |            73 |
+
+```python
+tx_df.dtypes
+```
+
+```
+weather                                       object
+month_date       datetime64[ns, America/Los_Angeles]
+__count                                        int64
+__count_start                                  int64
+__count_end                                    int64
+dtype: object
+```
+
+
 ## Unsupported Transforms
 
 VegaFusion's coverage of Vega transforms is not complete, but it is growing with each release. If a chart makes use of a transform that is not yet supported, an error will be raised by the `transformed_data()` function. 
 
-Note, charts with unsupported transforms will still render properly using the mime and widget renderers as these transforms will be pushed to the client for evaluation by the Vega JavaScript library.
+**Note:** Charts with unsupported transforms will still render properly using the mime and widget renderers as these transforms will be pushed to the client for evaluation by the Vega JavaScript library.
