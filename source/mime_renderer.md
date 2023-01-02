@@ -1,6 +1,8 @@
 # Mime Renderer
 
-The VegaFusion mime renderer makes it possible to display Altair charts that reference large datasets in a wide variety of Python notebook and compute environments.  While the mime renderer is compatible with both static and interactive charts, the widget renderer is better suited for interactive charts that reference large datasets.
+The VegaFusion mime renderer makes it possible to display Altair charts that reference large datasets in a wide variety of Python notebook and compute environments.  
+
+**Note:** While the mime renderer is compatible with both static and interactive charts, the [widget renderer](./widget.md) is better suited for interactive charts that reference large datasets.
 
 ## Installation
 The mime renderer is included in the `vegafusion` Python package:
@@ -14,7 +16,7 @@ The VegaFusion mime renderer is enabled using the `vegafusion.enable_mime()` fun
 
 ```python
 import vegafusion as vf
-vf.enable_mime(mimetype="vega")
+vf.enable_mime(mimetype="html")
 ...
 chart
 ```
@@ -24,7 +26,7 @@ The mime renderer can also be enabled temporarily by using `vegafusion.enable_mi
 ```python
 import vegafusion as vf
 from IPython.display import display
-with vf.enable_mime(mimetype="vega"):
+with vf.enable_mime(mimetype="html"):
     ...
     display(chart)
 ```
@@ -36,7 +38,7 @@ import pandas as pd
 import altair as alt
 import vegafusion as vf
 
-vf.enable_mime(mimetype="vega")
+vf.enable_mime(mimetype="html")
 flights = pd.read_parquet(
     "https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet"
 )
@@ -48,6 +50,23 @@ alt.Chart(flights).mark_bar().encode(
 ```
 ![Flight Delay Histogram](https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png)
 
+## Row Limit
+Charts of large datasets that do not perform any form of aggregation (e.g. Scatter Plots) can still result in very large chart specification that risk crashing the web browser they are displayed in. To protect against this, the VegaFusion mime renderer supports an optional `row_limit` argument to the `enable_mime()` function.  Unlike the default Altair row limit, this row limit is enforced _after_ all supported data transformations have been applied. For example, in the case of a histogram there will be one row per histogram bin after transforms are applied. 
+
+The default `row_limit` is 10,000, but it can be customized like this:
+
+```python
+import vegafusion as vf
+vf.enable_mime(row_limit=50000)
+```
+
+The row limit check can be disabled by setting the `row_limit` argument to `None` as follows:
+
+```python
+import vegafusion as vf
+vf.enable_mime(row_limit=None)
+```
+
 ## Supported mimetypes
 The mime renderer can display the resulting Vega spec using a variety of mimetypes
 
@@ -57,27 +76,35 @@ When the `mimetype` argument to `vf.enable_mime()` is set to `"vega"` (the defau
 ### `html`
 When the `mimetype` argument is set to `"html"`, the resulting mime bundle will have type `"text/html"` and will contain an HTML snippet that loads several JavaScript dependencies from a CDN location and displays the Vega spec using [`vega-embed`](https://github.com/vega/vega-embed). This renderer is compatible with both the classic Jupyter Notebook and JupyterLab, but note that it does require an active internet connection.
 
-### `html-colab`
-The `"html-colab"` mimetype is a variant of `"html"` that is customized to work in [Google Colab](https://colab.research.google.com/). It can also be specified as `"colab"`.
-
-### `html-kaggle`
-The `"html-kaggle"` mimetype is a variant of `"html"` that is customized to work in [Kaggle Notebooks](https://www.kaggle.com/docs/notebooks). It can also be specified as `"kaggle"`.
-
 ### `svg`
 When the `mimetype` argument is set to `"svg"`, the resulting mime bundle will have type `"image/svg+xml"` and will contain a static SVG image of the chart.
 
 ### `png`
 When the `mimetype` argument is set to `"png"`, the resulting mime bundle will have type `"image/png"` and will contain a static PNG image of the chart.
 
+## Local timezone
+The behavior of certain Vega/Vega-Lite transforms and expression functions depends on the local timezone of the chart. The [Time Unit](https://vega.github.io/vega-lite/docs/timeunit.html) transform is one such example. When transforms are evaluated in the Vega JavaScript library, the chart's local timezone is set to the local timezone of the web browser.
+
+When the VegaFusion mime renderer evaluates Vega transforms in the Python kernel, it does not have access to the browser's local timezone.  Instead, it uses the local timezone of the Python kernel (as determined by VlConvert's `vl_convert.get_local_tz()` function).  When the Python kernel and web browser are running on the same machine (as is the case when running Jupyter locally), the charts produced by the VegaFusion mime renderer will look identical to those processed by Vega entirely in the web browser.   However, if Jupyter is running on a remote VM (as is the case when using Colab or Binder) then the kernel's local timezone may not match the browser's local timezone.
+
+In this case, it's possible to override VegaFusion's local timezone using the `vegafusion.set_local_tz()` function. For example:
+
+```python
+import vegafusion as vf
+vf.set_local_tz("America/New_York")
+```
+
+**Note:** The `set_local_tz` configuration affects only the mime renderer. The VegaFusion widget renderer maintains a two-way connection between the Python kernel and the browser, so it is able to use the browser's local timezone directly.
+
 ## How it works
 The mime renderer plugs into Altair's [data transformer](https://altair-viz.github.io/user_guide/data_transformers.html) and [renderer](https://altair-viz.github.io/user_guide/custom_renderers.html) frameworks to intercept requests to render the Vega-Lite specs produced by Altair and performs the following:
 
 1. Inline pandas DataFrames are extracted and converted into Arrow tables
-2. The Vega-Lite spec is compiled to Vega using [vl-convert](https://github.com/vega/vl-convert)
+2. The Vega-Lite spec is compiled to Vega using [VlConvert](https://github.com/vega/vl-convert)
 3. The Arrow tables from (1) and the Vega spec from (2) are fed into the VegaFusion runtime. The runtime evaluates transforms and identifies the subset of columns that are actually required by the visualization. The resulting data is inlined back into the Vega spec.
 4. The Vega spec resulting from (3) is displayed using a Jupyter [mimetype bundle](https://docs.jupyter.org/en/latest/reference/mimetype.html)
 
-Unlike the widget renderer, the mime renderer works entirely in Python and does not require any custom notebook extensions.  This makes 
+Unlike the widget renderer, the mime renderer works entirely in Python and does not require any custom notebook extensions. 
 
 ## Inline Data Transformer
 Unlike the VegaFusion widget renderer, the mime renderer does not require writing Chart DataFrames to files on disk. Instead, these DataFrames are converted to Arrow tables and passed directly to the VegaFusion runtime (bypassing JSON serialization).
