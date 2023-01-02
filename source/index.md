@@ -97,7 +97,7 @@ Run these two lines to import and enable the VegaFusion mime renderer
 
 ```python
 import vegafusion as vf
-vf.enable_mime()
+vf.enable()
 ```
 
 Now the chart displays quickly without errors 
@@ -148,7 +148,7 @@ vf.transformed_data(delay_hist)
 | 17 |                    360 |                        380 |       100 |
 
 ## Quickstart 3: Accelerate interactive charts
-While the VegaFusion mime renderer works great for static Altair charts, it's not as well suited for [interactive](https://altair-viz.github.io/user_guide/interactions.html) charts visualizing large datasets. This is because the mime renderer does not maintain a live connection between the browser and the python kernel, so all the data that participates in an interaction must be sent to the browser.
+While the VegaFusion mime renderer works great for non-interactive Altair charts, it's not as well suited for [interactive](https://altair-viz.github.io/user_guide/interactions.html) charts visualizing large datasets. This is because the mime renderer does not maintain a live connection between the browser and the python kernel, so all the data that participates in an interaction must be sent to the browser.
 
 To address this situation, VegaFusion provides a [Jupyter Widget](https://ipywidgets.readthedocs.io/en/stable/) based renderer that does maintain a live connection between the chart in the browser and the Python kernel. In this configuration, selection operations (e.g. filtering to the extents of a brush selection) can be evaluated interactively in the Python kernel, which eliminates the need to transfer the full dataset to the client in order to maintain interactivity.
 
@@ -158,7 +158,7 @@ The VegaFusion widget renderer is provided by the `vegafusion-jupyter` package.
 pip install "vegafusion-jupyter[embed]"
 ```
 
-Instead of enabling the mime render with `vf.enable_mime()`, the widget renderer is enabled with `vf.enable_widget()`.  Here is a full example that uses the widget renderer to display an interactive Altair chart that implements linked histogram brushing for a 1 million row flights dataset.
+Instead of enabling the mime render with `vf.enable()`, the widget renderer is enabled with `vf.enable_widget()`.  Here is a full example that uses the widget renderer to display an interactive Altair chart that implements linked histogram brushing for a 1 million row flights dataset.
 
 ```python
 import pandas as pd

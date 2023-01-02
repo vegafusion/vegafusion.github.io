@@ -12,21 +12,21 @@ pip install "vegafusion[embed]"
 ```
 
 ## Activation
-The VegaFusion mime renderer is enabled using the `vegafusion.enable_mime()` function. For example:
+The VegaFusion mime renderer is enabled using the `vegafusion.enable()` function. For example:
 
 ```python
 import vegafusion as vf
-vf.enable_mime(mimetype="html")
+vf.enable(mimetype="html")
 ...
 chart
 ```
 
-The mime renderer can also be enabled temporarily by using `vegafusion.enable_mime()` as a context manager:
+The mime renderer can also be enabled temporarily by using `vegafusion.enable()` as a context manager:
 
 ```python
 import vegafusion as vf
 from IPython.display import display
-with vf.enable_mime(mimetype="html"):
+with vf.enable(mimetype="html"):
     ...
     display(chart)
 ```
@@ -38,7 +38,7 @@ import pandas as pd
 import altair as alt
 import vegafusion as vf
 
-vf.enable_mime(mimetype="html")
+vf.enable(mimetype="html")
 flights = pd.read_parquet(
     "https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet"
 )
@@ -51,27 +51,27 @@ alt.Chart(flights).mark_bar().encode(
 ![Flight Delay Histogram](https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png)
 
 ## Row Limit
-Charts of large datasets that do not perform any form of aggregation (e.g. Scatter Plots) can still result in very large chart specification that risk crashing the web browser they are displayed in. To protect against this, the VegaFusion mime renderer supports an optional `row_limit` argument to the `enable_mime()` function.  Unlike the default Altair row limit, this row limit is enforced _after_ all supported data transformations have been applied. For example, in the case of a histogram there will be one row per histogram bin after transforms are applied. 
+Charts of large datasets that do not perform any form of aggregation (e.g. Scatter Plots) can still result in very large chart specification that risk crashing the web browser they are displayed in. To protect against this, the VegaFusion mime renderer supports an optional `row_limit` argument to the `enable()` function.  Unlike the default Altair row limit, this row limit is enforced _after_ all supported data transformations have been applied. For example, in the case of a histogram there will be one row per histogram bin after transforms are applied. 
 
 The default `row_limit` is 10,000, but it can be customized like this:
 
 ```python
 import vegafusion as vf
-vf.enable_mime(row_limit=50000)
+vf.enable(row_limit=50000)
 ```
 
 The row limit check can be disabled by setting the `row_limit` argument to `None` as follows:
 
 ```python
 import vegafusion as vf
-vf.enable_mime(row_limit=None)
+vf.enable(row_limit=None)
 ```
 
 ## Supported mimetypes
 The mime renderer can display the resulting Vega spec using a variety of mimetypes
 
 ### `vega` (default)
-When the `mimetype` argument to `vf.enable_mime()` is set to `"vega"` (the default), the resulting mime bundle will have type `"application/vnd.vega.v5+json"` and will contain the Vega spec. This approach works in JupyterLab, Visual Studio Code, Hex, and other compute environments that include built-in support for rendering Vega charts. No internet connection is required, but note that this mimetype is not supported by the classic Jupyter Notebook.
+When the `mimetype` argument to `vf.enable()` is set to `"vega"` (the default), the resulting mime bundle will have type `"application/vnd.vega.v5+json"` and will contain the Vega spec. This approach works in JupyterLab, Visual Studio Code, Hex, and other compute environments that include built-in support for rendering Vega charts. No internet connection is required, but note that this mimetype is not supported by the classic Jupyter Notebook.
 
 ### `html`
 When the `mimetype` argument is set to `"html"`, the resulting mime bundle will have type `"text/html"` and will contain an HTML snippet that loads several JavaScript dependencies from a CDN location and displays the Vega spec using [`vega-embed`](https://github.com/vega/vega-embed). This renderer is compatible with both the classic Jupyter Notebook and JupyterLab, but note that it does require an active internet connection.
@@ -109,4 +109,4 @@ Unlike the widget renderer, the mime renderer works entirely in Python and does 
 ## Inline Data Transformer
 Unlike the VegaFusion widget renderer, the mime renderer does not require writing Chart DataFrames to files on disk. Instead, these DataFrames are converted to Arrow tables and passed directly to the VegaFusion runtime (bypassing JSON serialization).
 
-This approach is implemented by the `"vegafusion-inline"` data transformer, which is automatically enabled by the `vegafusion.enable_mime()` function.
+This approach is implemented by the `"vegafusion-inline"` data transformer, which is automatically enabled by the `vegafusion.enable()` function.

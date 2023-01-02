@@ -6,7 +6,7 @@ Both the VegaFusion mime and widget renderers are compatible with version 6 of t
 
 ```python
 import vegafusion as vf
-vf.enable_mime(mimetype="html")
+vf.enable(mimetype="html")
 ...
 ```
 
@@ -24,7 +24,7 @@ The VegaFusion mime renderer is compatible with the [Hex notebook](https://hex.t
 
 ```python
 import vegafusion as vf
-vf.enable_mime()
+vf.enable()
 ...
 ```
 
@@ -38,7 +38,7 @@ The VegaFusion mime renderer is compatible with [Google Colab](https://colab.res
 ```
 ```python
 import vegafusion as vf
-vf.enable_mime(mimetype="html")
+vf.enable(mimetype="html")
 ...
 ```
 
@@ -64,7 +64,7 @@ The VegaFusion mime renderer is compatible with [Kaggle Notebooks](https://www.k
 ```
 ```python
 import vegafusion as vf
-vf.enable_mime(mimetype="html")
+vf.enable(mimetype="html")
 ...
 ```
 
