@@ -16,7 +16,7 @@ The VegaFusion mime renderer is enabled using the `vegafusion.enable()` function
 
 ```python
 import vegafusion as vf
-vf.enable(mimetype="html")
+vf.enable()
 ...
 chart
 ```
@@ -26,7 +26,7 @@ The mime renderer can also be enabled temporarily by using `vegafusion.enable()`
 ```python
 import vegafusion as vf
 from IPython.display import display
-with vf.enable(mimetype="html"):
+with vf.enable():
     ...
     display(chart)
 ```
@@ -38,7 +38,7 @@ import pandas as pd
 import altair as alt
 import vegafusion as vf
 
-vf.enable(mimetype="html")
+vf.enable()
 flights = pd.read_parquet(
     "https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet"
 )
@@ -70,11 +70,13 @@ vf.enable(row_limit=None)
 ## Supported mimetypes
 The mime renderer can display the resulting Vega spec using a variety of mimetypes
 
-### `vega` (default)
-When the `mimetype` argument to `vf.enable()` is set to `"vega"` (the default), the resulting mime bundle will have type `"application/vnd.vega.v5+json"` and will contain the Vega spec. This approach works in JupyterLab, Visual Studio Code, Hex, and other compute environments that include built-in support for rendering Vega charts. No internet connection is required, but note that this mimetype is not supported by the classic Jupyter Notebook.
+### `html` (default)
+When the `mimetype` argument is set to `"html"` (the default), the resulting mime bundle will have type `"text/html"` and will contain an HTML snippet that loads several JavaScript dependencies from a CDN location and displays the Vega spec using [`vega-embed`](https://github.com/vega/vega-embed). This renderer is compatible with the classic Jupyter Notebook, JupyterLab, Visual Studio Code, Colab, Hex, Kaggle, and others.
 
-### `html`
-When the `mimetype` argument is set to `"html"`, the resulting mime bundle will have type `"text/html"` and will contain an HTML snippet that loads several JavaScript dependencies from a CDN location and displays the Vega spec using [`vega-embed`](https://github.com/vega/vega-embed). This renderer is compatible with both the classic Jupyter Notebook and JupyterLab, but note that it does require an active internet connection.
+**Note:** The `html` mimetype requires an active internet connection.
+
+### `vega` 
+When the `mimetype` argument to `vf.enable()` is set to `"vega"`, the resulting mime bundle will have type `"application/vnd.vega.v5+json"` and will contain the Vega spec. This approach works in JupyterLab, Visual Studio Code, Hex, and other compute environments that include built-in support for rendering Vega charts. No internet connection is required, but note that this mimetype is not supported by the classic Jupyter Notebook.
 
 ### `svg`
 When the `mimetype` argument is set to `"svg"`, the resulting mime bundle will have type `"image/svg+xml"` and will contain a static SVG image of the chart.

@@ -2,13 +2,7 @@
 VegaFusion can display Altair visualizations is the following contexts
 
 ## Classic Notebook
-Both the VegaFusion mime and widget renderers are compatible with version 6 of the [Jupyter Notebook](https://github.com/jupyter/notebook) (Sometimes referred to as the Classic Notebook since it predates JupyterLab). The Classic Notebook extension containing the VegaFusion widget is included in the `vegafusion-jupyter` Python package, and it is enabled automatically when the package is installed. The mime renderer should be enabled with the `"html"` mimetype:
-
-```python
-import vegafusion as vf
-vf.enable(mimetype="html")
-...
-```
+Both the VegaFusion mime and widget renderers are compatible with version 6 of the [Jupyter Notebook](https://github.com/jupyter/notebook) (Sometimes referred to as the Classic Notebook since it predates JupyterLab). The Classic Notebook extension containing the VegaFusion widget is included in the `vegafusion-jupyter` Python package, and it is enabled automatically when the package is installed.
 
 ## JupyterLab
 Both the VegaFusion mime and widget renderers are compatible with version 3+ of [JupyterLab](https://github.com/jupyterlab/jupyterlab).  The JupyterLab extension containing the VegaFusion widget is included in the `vegafusion-jupyter` Python package, and it is enabled automatically when the package is installed.
@@ -31,14 +25,14 @@ vf.enable()
 The widget renderer is not compatible with Hex.
 
 ## Colab
-The VegaFusion mime renderer is compatible with [Google Colab](https://colab.research.google.com/) when the `"html"` mimetype is enabled:
+The VegaFusion mime renderer is compatible with [Google Colab](https://colab.research.google.com/):
 
 ```
 %pip install vegafusion[embed]
 ```
 ```python
 import vegafusion as vf
-vf.enable(mimetype="html")
+vf.enable()
 ...
 ```
 
@@ -57,14 +51,14 @@ vf.enable_widget()
 ```
 
 ## Kaggle
-The VegaFusion mime renderer is compatible with [Kaggle Notebooks](https://www.kaggle.com/docs/notebooks) when the `"html"` mimetype is enabled:
+The VegaFusion mime renderer is compatible with [Kaggle Notebooks](https://www.kaggle.com/docs/notebooks):
 
 ```
 %pip install vegafusion[embed]
 ```
 ```python
 import vegafusion as vf
-vf.enable(mimetype="html")
+vf.enable()
 ...
 ```
 
