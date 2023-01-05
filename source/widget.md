@@ -5,6 +5,5 @@ The VegaFusion widget renderer uses the `vegafusion.jupyter.VegaFusionWidget` wi
 :maxdepth: 1
 widget_construction
 debouncing
-download_source_link
 debugging
 ```
