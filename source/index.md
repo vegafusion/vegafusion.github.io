@@ -2,9 +2,9 @@
 
 VegaFusion provides serverside scaling for the [Vega](https://vega.github.io/) visualization library. While not limited to Python, an initial application of VegaFusion is the scaling of the [Altair](https://altair-viz.github.io/) Python interface to [Vega-Lite](https://vega.github.io/vega-lite/).
 
-The core VegaFusion algorithms are implemented in Rust. Python integration is provided using [PyO3](https://pyo3.rs/v0.15.1/) and JavaScript integration is provided using [wasm-bindgen](https://github.com/rustwasm/wasm-bindgen). 
+As of version 1.0, VegaFusion is released under the same license as Vega, Vega-Lite, and Altair: [BSD-3](https://opensource.org/licenses/BSD-3-Clause).
 
-**For more info on the future direction of the project, see the [Roadmap](./roadmap) and [Licensing](./license_overview) pages.**
+**For more info on the future direction of the project, see the [Roadmap](./roadmap).**
 
 ```{toctree}
 :maxdepth: 2
@@ -212,6 +212,15 @@ This browser does not support the video tag.
 Histogram binning, aggregation, and selection filtering are now evaluated in the Python kernel process with efficient parallelization, and only the aggregated data (one row per histogram bar) is sent to the browser.
 
 You can see that the VegaFusion widget renderer maintains a live connection to the Python kernel by noticing that the Python [kernel is running](https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions) as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.
+
+## Stewardship
+The VegaFusion project was created by [Jon Mease](https://jonmmease.dev/) and is now stewarded by [Hex Technologies](https://hex.tech/), which uses VegaFusion in production to accelerate its Vega-Lite powered chart editor.  Hex is committed to supporting VegaFusion's ongoing development and is excited to collaborate with the community to make VegaFusion useful throughout the Vega ecosystem.
+
+```{image} https://user-images.githubusercontent.com/15064365/213193272-b9617431-84a0-4733-8b58-1309d25e925b.svg
+:alt: Hex Logo
+:width: 300px
+:align: center
+```
 
 ## Recent Posts
 
