@@ -1,5 +1,5 @@
 # VegaFusion Roadmap
-This page contains an assortment of capabilities that we would like to add to VegaFusion over time.  These are not necessarily in chronological or priority order. If you are interested in collaborating on any of these items, please [get in touch!](mailto:jon@vegafusion.io)
+This page contains an assortment of capabilities that we would like to add to VegaFusion over time.  These are not necessarily in chronological or priority order. If you are interested in collaborating on any of these items, please [get in touch!](https://github.com/hex-inc/vegafusion/discussions)
 
 ## Python Dashboard Environments
 
@@ -24,6 +24,9 @@ See [panel.holoviz.org/user_guide/Custom_Components.html](https://panel.holoviz.
 
 ### Provide Selection Access from Python
 The current state of Altair [selections](https://altair-viz.github.io/user_guide/interactions.html#selections-building-blocks-of-interactions) could be made available through the `VegaFusionWidget`.  This would make it possible to register custom Python logic to run in response to user interaction events. It would also make it possible to synchronize selections across Charts displayed in different notebook output cells.
+
+### Alternative Rendering Backends
+There are situations in which it would be helpful to render Altair charts using alternative charting libraries. For example, if an Altair chart could be rendered using [Matplotlib](https://matplotlib.org/), then it would be possible to take advantage of the mathematical typesetting and serverside rendering features supported by Matplotlib. VegaFusion could be used to make this problem much more tractable (at least in the non-interactive case) by pre-evaluating all the data transforms in the spec.
 
 ## Serverside Rendering
 The initial focus of VegaFusion is to accelerate data processing operations by running them on a server with efficient parallelization rather than in a single-threaded browser context. This can provide significant benefit for chart specifications that make use of aggregation to reduce the size of a dataset before transferring it to the client for rendering by the Vega JavaScript library.  A histogram is the canonical example of this kind of visualization, where the binning and aggregation are performed on the server and only the bin edges and heights of the bars are transferred from the server to the client. 
