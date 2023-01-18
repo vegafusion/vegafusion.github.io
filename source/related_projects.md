@@ -7,7 +7,7 @@ Here are a few related projects that have some overlap with the goals of VegaFus
  1. [Extracting Data](https://github.com/altair-viz/altair-transform#example-extracting-data): Given a Chart with transforms, `altair-transform` can be used to construct a Pandas DataFrame representing the result of the Chart's transforms, and the input to the Chart's mark.
  2. [Pre-Aggregating Large Datasets](https://github.com/altair-viz/altair-transform#example-pre-aggregating-large-datasets): Given a Chart with transforms, `altair-transform` can be used to evaluate the transforms and create a new Chart instance that refers only to this evaluated dataset. For aggregation charts like histograms, this can result in a much smaller dataset being transferred to the browser.
 
-These workflows were not supported by the initial version of VegaFusion, but support for both was added in version 0.11.
+These workflows were not supported by the initial version of VegaFusion, but support for both was added in version 1.0.
 
 `altair-transform` does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which was the initial focus of VegaFusion. 
 
