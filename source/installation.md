@@ -18,4 +18,4 @@ VegaFusion can also be installed using conda from conda-forge
 conda install -c conda-forge vegafusion vegafusion-python-embed vegafusion-jupyter
 ```
 
-**Note:** Conda packages for the `osx-arm64` (aka Apple Silicon, M1) architecture are not yet available. See https://github.com/vegafusion/vegafusion/issues/199. This architecture is already supported by the PyPI packages installable using pip.
+**Note:** Conda packages for the `osx-arm64` (aka Apple Silicon, M1) architecture are not yet available. See https://github.com/hex-inc/vegafusion/issues/199. This architecture is already supported by the PyPI packages installable using pip.

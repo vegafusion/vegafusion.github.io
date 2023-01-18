@@ -172,8 +172,8 @@ This is only the beginning for VegaFusion. There are a lot of possible future di
 
 ## Learn more
 Here are some ways that you can get in touch to learn more.
- - Check out the code on [GitHub](https://github.com/vegafusion/vegafusion/)
- - Start a discussion on [GitHub Discussions](https://github.com/vegafusion/vegafusion/discussions)
- - And of course, if something doesn't work please [open an issue](https://github.com/vegafusion/vegafusion/issues)
+ - Check out the code on [GitHub](https://github.com/hex-inc/vegafusion/)
+ - Start a discussion on [GitHub Discussions](https://github.com/hex-inc/vegafusion/discussions)
+ - And of course, if something doesn't work please [open an issue](https://github.com/hex-inc/vegafusion/issues)
 
 Thanks!

@@ -50,9 +50,9 @@ roadmap
 :maxdepth: 1
 :hidden: true
 :caption: "Community"
-Source Code <https://github.com/vegafusion/vegafusion/>
-Report an Issue <https://github.com/vegafusion/vegafusion/issues>
-Start a Discussion <https://github.com/vegafusion/vegafusion/discussions>
+Source Code <https://github.com/hex-inc/vegafusion/>
+Report an Issue <https://github.com/hex-inc/vegafusion/issues>
+Start a Discussion <https://github.com/hex-inc/vegafusion/discussions>
 ```
 
 ```{toctree}

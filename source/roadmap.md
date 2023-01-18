@@ -37,7 +37,7 @@ The VegaFusion Runtime is currently embedded in Python in the `vegafusion-python
 
 The advantage of using this server architecture is that multiple clients will be able to share the same runtime. This can substantially reduce memory usage if the same dashboard is being served to many individual users.  It also opens up the possibility for the server to run on a separate machine.
 
-A prototype of this approach has been developed as [`vegafusion-server`](https://github.com/vegafusion/vegafusion/tree/main/vegafusion-server), but it hasn't been fully proved out with a specific use case.
+A prototype of this approach has been developed as [`vegafusion-server`](https://github.com/hex-inc/vegafusion/tree/main/vegafusion-server), but it hasn't been fully proved out with a specific use case.
 
 ## JavaScript API / Business Intelligence Architecture
 The VegaFusion client logic is currently compiled to WebAssembly and embedded in a Jupyter Widget extension.  Once the VegaFusion Runtime is available as a standalone gRPC server, it will be possible to embed the VegaFusion WebAssembly client library into custom web applications.  The client library would then communicate with a VegaFusion Runtime using [gRPC-Web](https://github.com/grpc/grpc-web).
