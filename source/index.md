@@ -36,6 +36,7 @@ architecture
 technology
 about_the_name
 related_projects
+license_overview
 citation
 ```
 
@@ -43,7 +44,6 @@ citation
 :maxdepth: 1
 :hidden: true
 :caption: "Future"
-license_overview
 roadmap
 ```
 
