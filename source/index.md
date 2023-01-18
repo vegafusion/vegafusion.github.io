@@ -35,6 +35,7 @@ architecture
 technology
 about_the_name
 related_projects
+citation
 ```
 
 ```{toctree}
