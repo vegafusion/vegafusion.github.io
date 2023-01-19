@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How VegaFusion Works &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>How VegaFusion Works &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -77,8 +79,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -96,17 +101,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -126,8 +132,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>How VegaFusion Works</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">How VegaFusion Works</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/how_it_works.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,17 +142,17 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="how-vegafusion-works">
-<h1>How VegaFusion Works<a class="headerlink" href="#how-vegafusion-works" title="Permalink to this headline"></a></h1>
-<p>VegaFusion currently has two components: The Planner and the Runtime.</p>
+              <div class="section" id="how-vegafusion-works">
+<h1>How VegaFusion Works<a class="headerlink" href="#how-vegafusion-works" title="Permalink to this heading"></a></h1>
+<p>VegaFusion has two main components: The Planner and the Runtime.</p>
 <div class="section" id="planner">
-<span id="id1"></span><h2>Planner<a class="headerlink" href="#planner" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Planner<a class="headerlink" href="#planner" title="Permalink to this heading"></a></h2>
 <p>The Planner starts with an arbitrary Vega specification (typically generated by Vega-Lite, but this is not a requirement). The Planner’s job is to partition the specification into two valid Vega specifications, one that will execute in the browser with the Vega JavaScript library, and one that will execute on the server with the VegaFusion Runtime.</p>
-<p>VegaFusion does not (yet) provide full coverage of all of Vega’s transforms and all of the features of the Vega expression language.  The planner uses information about which transforms and expression functions are supported to make decisions about which parts of the original vega specification can be included in the resulting server specification.  The advantage of this approach is that VegaFusion can accept any Vega specification, and as more support is added over time, more of the input specification will be eligible for inclusion in the server specification.</p>
+<p>VegaFusion does not (yet) provide full coverage of all of Vega’s transforms and all the features of the Vega expression language.  The planner uses information about which transforms and expression functions are supported to make decisions about which parts of the original Vega specification can be included in the resulting server specification.  The advantage of this approach is that VegaFusion can accept any Vega specification, and as more support is added over time, more of the input specification will be eligible for inclusion in the server specification.</p>
 <p>Along with the client and server specifications, the planner also creates a communication plan.  The communication plan is a specification of the datasets and signals that must be passed from server to client, and from client to server in order for the interactive behavior of the original specification to be preserved.</p>
 </div>
 <div class="section" id="runtime">
-<h2>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline"></a></h2>
+<h2>Runtime<a class="headerlink" href="#runtime" title="Permalink to this heading"></a></h2>
 <p>After planning, the server specification is compiled into a VegaFusion task graph.  The job of the Runtime is to calculate the value of requested nodes within a task graph.</p>
 <p>A task graph includes the values of the root nodes (those with no parents), but it does not include the values of any of the interior nodes (those with parents).  Each node in the task graph is a pure function of the values of its parents.  This enables the Runtime to calculate the value of any node in the Task graph from the specification, while keeping the overall task graph size small enough to be efficiently transferred between the client and the server.  The Runtime uses fingerprinting and precise caching to avoid repeated calculations of the same nodes.  The cache is “precise” in the sense that cached values can be shared across visualizations that share a common substructure, even if the full specifications are not identical.</p>
 </div>
@@ -166,7 +172,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

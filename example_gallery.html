@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Example Gallery &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Example Gallery &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,12 +24,14 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Large Altair Gallery Examples" href="example_large_altair_gallery.html" />
-    <link rel="prev" title="Altair Renderer and Data Transformer" href="renderer.html" />    
+    <link rel="prev" title="Low Level Integration" href="low_level.html" />    
 <style type="text/css">
   ul.ablog-archive {
     list-style: none;
@@ -77,8 +79,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul class="current">
@@ -96,17 +101,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -126,8 +132,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Example Gallery</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Example Gallery</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/example_gallery.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,9 +142,9 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="example-gallery">
-<h1>Example Gallery<a class="headerlink" href="#example-gallery" title="Permalink to this headline"></a></h1>
-<p>VegaFusion is compatible with all of the examples in the <a class="reference external" href="https://altair-viz.github.io/gallery/index.html">Altair gallery</a>. Here are a few additional examples that demonstrate the benefits of serverside acceleration.</p>
+              <div class="section" id="example-gallery">
+<h1>Example Gallery<a class="headerlink" href="#example-gallery" title="Permalink to this heading"></a></h1>
+<p>VegaFusion is compatible with all the examples in the <a class="reference external" href="https://altair-viz.github.io/gallery/index.html">Altair gallery</a>. Here are a few additional interactive examples that demonstrate the benefits of the VegaFusion widget renderer.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="example_large_altair_gallery.html">Large Altair Gallery Examples</a></li>
@@ -154,14 +160,14 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="renderer.html" class="btn btn-neutral float-left" title="Altair Renderer and Data Transformer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="low_level.html" class="btn btn-neutral float-left" title="Low Level Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="example_large_altair_gallery.html" class="btn btn-neutral float-right" title="Large Altair Gallery Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

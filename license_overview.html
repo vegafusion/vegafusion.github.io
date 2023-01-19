@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Licensing and Funding &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>License &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,11 +24,13 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="VegaFusion Roadmap" href="roadmap.html" />
+    <link rel="next" title="Citing VegaFusion" href="citation.html" />
     <link rel="prev" title="Related Projects" href="related_projects.html" />    
 <style type="text/css">
   ul.ablog-archive {
@@ -77,32 +79,36 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="example_gallery.html">Example Gallery</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">About</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background and Motivation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How VegaFusion Works</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Licensing and Funding</a></li>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -122,8 +128,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Licensing and Funding</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">License</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/license_overview.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -132,11 +138,10 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="licensing-and-funding">
-<h1>Licensing and Funding<a class="headerlink" href="#licensing-and-funding" title="Permalink to this headline"></a></h1>
-<p>At least until a sustainable funding model is established, VegaFusion will be developed under the <a class="reference external" href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPLv3 license</a>.  This is a copy-left license in the GPL family of licenses. As with all <a class="reference external" href="https://opensource.org/licenses/alphabetical">OSI approved licenses</a>, there are no restrictions on what code licensed under the AGPL can be used for. However, the requirements for what must be shared publicly are greater than for licenses that are more commonly used in the Python ecosystem like <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2</a>, <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a>, and <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a>.</p>
-<p>See the <a class="reference internal" href="download_source_link.html#download-source-link"><span class="std std-ref">Download Source Link</span></a> section for information on how VegaFusion can be configured to display a “Download Source” link in its dropdown  menu.</p>
-<p>Contributors are asked to sign a Contributor License Agreement that will allow their contribution to be re-licensed in the future. For example, the project could be re-licensed to one of the more permissive licenses above, or it could be dual licensed with a commercial license as a means to raise funds.</p>
+              <div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this heading"></a></h1>
+<p>As of version 1.0, VegaFusion is licensed under the <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a> license. This is the same license used by Vega, Vega-Lite, and Altair.</p>
+<p>Prior versions were released under the <a class="reference external" href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPLv3 license</a>.</p>
 </div>
 
 <div class="section">
@@ -147,13 +152,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="related_projects.html" class="btn btn-neutral float-left" title="Related Projects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="roadmap.html" class="btn btn-neutral float-right" title="VegaFusion Roadmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="citation.html" class="btn btn-neutral float-right" title="Citing VegaFusion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

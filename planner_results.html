@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planner Results &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Planner Results &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -77,10 +79,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="widget.html">VegaFusionWidget</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="widget_construction.html">Construction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debouncing.html">Debouncing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="download_source_link.html">Download Source Link</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="debugging.html">Debugging</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Planner Results</a></li>
 <li class="toctree-l3"><a class="reference internal" href="verbosity.html">Verbosity</a></li>
@@ -88,7 +91,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -102,17 +106,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -132,10 +137,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="widget.html">VegaFusionWidget</a> &raquo;</li>
-          <li><a href="debugging.html">Debugging</a> &raquo;</li>
-      <li>Planner Results</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="widget.html">VegaFusionWidget</a></li>
+          <li class="breadcrumb-item"><a href="debugging.html">Debugging</a></li>
+      <li class="breadcrumb-item active">Planner Results</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/planner_results.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,8 +149,8 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="planner-results">
-<h1>Planner Results<a class="headerlink" href="#planner-results" title="Permalink to this headline"></a></h1>
+              <div class="section" id="planner-results">
+<h1>Planner Results<a class="headerlink" href="#planner-results" title="Permalink to this heading"></a></h1>
 <p>As discussed in the <a class="reference internal" href="how_it_works.html#planner"><span class="std std-ref">Planner</span></a> section, VegaFusion uses a planning phase to split an input Vega specification into a specification to run on the client and a specification to run on the server.  Additionally, a communication plan is produced that specifies which signal and dataset values must be passed between the server and client to preserve interactivity.  For debugging, the client spec, server spec, and communication plan are available as properties on the <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> instance after the chart has been displayed.</p>
 <p>First, wrap the chart in a <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> and display it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
@@ -202,7 +207,7 @@ This browser does not support the video tag.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

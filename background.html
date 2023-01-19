@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Background and Motivation &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Background and Motivation &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -77,8 +79,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -98,17 +103,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -128,8 +134,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Background and Motivation</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Background and Motivation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/background.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -138,18 +144,18 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="background-and-motivation">
-<h1>Background and Motivation<a class="headerlink" href="#background-and-motivation" title="Permalink to this headline"></a></h1>
+              <div class="section" id="background-and-motivation">
+<h1>Background and Motivation<a class="headerlink" href="#background-and-motivation" title="Permalink to this heading"></a></h1>
 <div class="section" id="history">
-<h2>History<a class="headerlink" href="#history" title="Permalink to this headline"></a></h2>
+<h2>History<a class="headerlink" href="#history" title="Permalink to this heading"></a></h2>
 <p>VegaFusion was created by <a class="reference external" href="https://jonmmease.dev">Jon Mease</a> after stepping down as <a class="reference external" href="https://plotly.com/">Plotly’s</a> Chief Scientist in the fall of 2021.  Its design was motivated by years of experience working on visualization libraries (<a class="reference external" href="https://plotly.com/python/">Plotly</a>, <a class="reference external" href="https://holoviews.org/">HoloViews</a>, and <a class="reference external" href="https://datashader.org/">Datashader</a>) and dashboard technologies (<a class="reference external" href="https://dash.plotly.com/">Dash</a>, <a class="reference external" href="https://ipywidgets.readthedocs.io/en/latest/index.html">Jupyter Widgets</a>, and <a class="reference external" href="https://panel.holoviz.org/">Panel</a>).  For more information on the future direction of the project, see the <a class="reference internal" href="roadmap.html"><span class="doc std std-doc">Roadmap</span></a>.</p>
 </div>
 <div class="section" id="vega-vega-lite-and-altair">
-<h2>Vega, Vega-Lite, and Altair<a class="headerlink" href="#vega-vega-lite-and-altair" title="Permalink to this headline"></a></h2>
+<h2>Vega, Vega-Lite, and Altair<a class="headerlink" href="#vega-vega-lite-and-altair" title="Permalink to this heading"></a></h2>
 <p>VegaFusion is designed to complement the Vega visualization ecosystem. In particular, the <a class="reference external" href="https://vega.github.io/">Vega</a>, <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>, and <a class="reference external" href="https://altair-viz.github.io/">Altair</a> projects.  If you’re not familiar with these projects, it will be helpful to take a few minutes to browse their documentation as background for understanding what VegaFusion adds.</p>
 </div>
 <div class="section" id="transforms-and-signals">
-<h2>Transforms and Signals<a class="headerlink" href="#transforms-and-signals" title="Permalink to this headline"></a></h2>
+<h2>Transforms and Signals<a class="headerlink" href="#transforms-and-signals" title="Permalink to this heading"></a></h2>
 <p>One powerful feature of the Vega visualization grammar is that it includes a rich collection of data manipulation functions called <a class="reference external" href="https://vega.github.io/vega/docs/transforms/">transforms</a>.  Transforms have functionality that is similar to that provided by SQL queries or Pandas DataFrame operations, but they are specifically designed to cover data preprocessing tasks that are useful in constructing data visualizations.</p>
 <p>For additional flexibility, Vega also provides the concept of <a class="reference external" href="https://vega.github.io/vega/docs/signals/">signals</a>. These are scalar variables that can be constructed using the <a class="reference external" href="https://vega.github.io/vega/docs/expressions/">Vega expression language</a>, which is a subset of JavaScript.  Transforms can accept and produce signals.</p>
 <p>There are at least two significant advantages to having data transformations and signals included in a visualization specification.</p>
@@ -159,9 +165,9 @@
 </ul>
 </div>
 <div class="section" id="motivation-for-vegafusion">
-<h2>Motivation for VegaFusion<a class="headerlink" href="#motivation-for-vegafusion" title="Permalink to this headline"></a></h2>
+<h2>Motivation for VegaFusion<a class="headerlink" href="#motivation-for-vegafusion" title="Permalink to this heading"></a></h2>
 <p>Vega makes it possible to create declarative JSON specifications of rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.</p>
-<p>For datasets of a few tens of thousands rows or fewer, this architecture often results in extremely smooth and responsive interactivity. However, this architecture doesn’t scale very well to datasets of hundreds of thousands of rows or more.  This is the problem gap VegaFusion aims to fill.</p>
+<p>For datasets of a few tens of thousands rows or fewer, this architecture often results in extremely smooth and responsive interactivity. However, this architecture doesn’t scale very well to datasets of hundreds of thousands of rows or more.  This is the gap VegaFusion aims to fill.</p>
 </div>
 </div>
 
@@ -179,7 +185,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

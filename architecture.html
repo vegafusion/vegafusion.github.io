@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architecture &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Architecture &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -77,8 +79,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -96,17 +101,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -126,8 +132,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Architecture</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Architecture</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/architecture.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,15 +142,15 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="architecture">
-<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline"></a></h1>
+              <div class="section" id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h1>
 <div class="section" id="vegafusion-architecture">
-<h2>VegaFusion Architecture<a class="headerlink" href="#vegafusion-architecture" title="Permalink to this headline"></a></h2>
-<p>The Planner runs entirely in the browser.  The responsibilities of the Runtime are split between the client and the server.  The client portion of the runtime is responsible for compiling the server specification into an efficient task graph representation.  As the root values of the task graph change (typically in response to user interaction events), the client runtime traverses the graph and compares the nodes in the traversal with the communication plan to determine which node values to request from the server.</p>
-<p>The client runtime serializes the task graph and the query node ids and sends them as a request to the server runtime.  The server runtime receives the request, and checks whether the requested nodes are already available in its cache. If not it recursively traverses the ancestors of the query nodes until it finds a node value that is in the cache, or an inline root value of the Task Graph specification. It then traverses back down the task graph, evaluating the task functions as it goes. These newly computed task values are stored in the cache, and finally the requested node values are sent to the client.</p>
+<h2>VegaFusion Architecture<a class="headerlink" href="#vegafusion-architecture" title="Permalink to this heading"></a></h2>
+<p>In the case of the VegaFusion widget renderer, the Planner runs entirely in the browser.  The responsibilities of the Runtime are split between the client and the server.  The client portion of the runtime (the middleware) is responsible for compiling the server specification into an efficient task graph representation.  As the root values of the task graph change (typically in response to user interaction events), the middleware traverses the graph and compares the nodes in the traversal with the communication plan to determine which node values to request from the server.</p>
+<p>The middleware serializes the task graph and the query node ids and sends them as a request to the server runtime.  The server runtime receives the request, and checks whether the requested nodes are already available in its cache. If not it recursively traverses the ancestors of the query nodes until it finds a node value that is in the cache, or an inline root value of the Task Graph specification. It then traverses back down the task graph, evaluating the task functions as it goes. These newly computed task values are stored in the cache, and finally the requested node values are sent to the client.</p>
 </div>
 <div class="section" id="architecture-advantages">
-<h2>Architecture Advantages<a class="headerlink" href="#architecture-advantages" title="Permalink to this headline"></a></h2>
+<h2>Architecture Advantages<a class="headerlink" href="#architecture-advantages" title="Permalink to this heading"></a></h2>
 <p>This architecture is more complex than what would be required for only the Jupyter Widget scenario.  A characteristic of Jupyter Widgets is that there is a one-to-one correspondence between the widget state stored in the browser and the state stored on the server. So it would be fine for the task graph specification and the task graph values to be one data structure that is mirrored between the client and server.</p>
 <p>This was actually the initial design. But it was soon apparent that this approach would not scale well to support future client server scenarios where one server process needs to support many clients. For example, when VegaFusion eventually supports Dash and custom client server configurations.  In these scenarios, it’s not desirable for the server to maintain the full state of every visualization for every user.  This is especially wasteful when many users are viewing nearly identical visualizations.</p>
 <p>With the VegaFusion runtime architecture, the server memory usage is independent of the number of simultaneous clients.  Each client request contains the full specification of the task graph, so the server doesn’t need to remember the exact previous state of a client.  At the same time, it would be very inefficient if the server always had to compute every value in the full task graph on each request.  This inefficiency is addressed with precise caching.  The caching is “precise” in that each node of the task graph has a cache key that is generated from both its internal specification and that of all of its parents.  This means that common subgraphs across requests will have a shared cache entry even if the downstream tasks are different.</p>
@@ -166,7 +172,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

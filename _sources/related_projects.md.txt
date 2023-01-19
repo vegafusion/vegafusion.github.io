@@ -6,12 +6,10 @@ Here are a few related projects that have some overlap with the goals of VegaFus
 
  1. [Extracting Data](https://github.com/altair-viz/altair-transform#example-extracting-data): Given a Chart with transforms, `altair-transform` can be used to construct a Pandas DataFrame representing the result of the Chart's transforms, and the input to the Chart's mark.
  2. [Pre-Aggregating Large Datasets](https://github.com/altair-viz/altair-transform#example-pre-aggregating-large-datasets): Given a Chart with transforms, `altair-transform` can be used to evaluate the transforms and create a new Chart instance that refers only to this evaluated dataset. For aggregation charts like histograms, this can result in a much smaller dataset being transferred to the browser.
- 
-Neither of these workflows are implemented in VegaFusion yet, though they are both on the roadmap:
- - {ref}`roadmap_extract_data`
- - {ref}`roadmap_pre_agg`
 
-`altair-transform` does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which is an initial focus of VegaFusion. 
+These workflows were not supported by the initial version of VegaFusion, but support for both was added in version 1.0.
+
+`altair-transform` does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which was the initial focus of VegaFusion. 
 
 ## [`ibis-vega-transform`](https://github.com/Quansight/ibis-vega-transform)
 `ibis-vega-transform` is a Python library and JupyterLab extension developed by [Quansight](https://www.quansight.com/). It translates pipelines of Vega transforms into [Ibis](https://ibis-project.org/) query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci). 
@@ -22,7 +20,4 @@ In contrast to the Planner approach used by VegaFusion, `ibis-vega-transform` re
 
 An advantage of this approach is that the Vega JavaScript library remains in control of the entire specification so the external `ibis-vega-transform` library does not need to maintain an independent task graph in order to support interactivity.  A downside of this approach is that the result of every transform pipeline must be sent back to the client and be stored in the Vega dataflow graph.  Often times this is not a problem, because the transform pipeline includes an aggregation stage that significantly reduces the dataset size.  However, sometimes the result of a transform pipeline is quite large, but it is only used as input to other transform pipelines.  In this case, it is advantageous to keep the large intermediary result cached on the server and to not send it to the client at all.  This use case is one of the reasons that VegaFusion uses the Planner+Runtime architecture described previously.
 
-For the initial release, VegaFusion implements all of its transform logic in the Python process (with efficient multi-threading) and has no capability to connect to external data providers like databases.  This is certainly a desirable capability, and is on the VegaFusion roadmap as the {ref}`roadmap_external_data_providers` item.
- 
- Perhaps there will be a way to collaborate with the `ibis-vega-transform` project in the future to share a collection of Ibis implementations of Vega transforms.
- 
+Currently, VegaFusion implements all of its transform logic in the Python process (with efficient multi-threading) and has no capability to connect to external data providers like databases.  This is certainly a desirable capability, and is on the VegaFusion roadmap as the {ref}`roadmap_external_data_providers` item.

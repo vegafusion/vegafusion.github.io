@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+<meta content="VegaFusion" property="og:title" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
+<meta content="en_US" property="og:locale" />
+<meta content="https://vegafusion.io/" property="og:url" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
+<meta content="&#64;vegafusion_io" property="twitter:site" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
+<meta content="summary_large_image" property="twitter:card" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Announcing VegaFusion 1.0 &mdash; VegaFusion 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/site.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />    
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> VegaFusion
+            <img src="../../_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widget_renderer.html">Widget Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widget.html">VegaFusionWidget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../low_level.html">Low Level Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../example_gallery.html">Example Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../background.html">Background and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_it_works.html">How VegaFusion Works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about_the_name.html">About the Name</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citing VegaFusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Future</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">VegaFusion Roadmap</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Blog</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../blog.html">Posts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">VegaFusion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Announcing VegaFusion 1.0</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/posts/2023/2023-01-18_Release_1.0.0.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <div class="section" id="announcing-vegafusion-1-0">
+<h1>Announcing VegaFusion 1.0<a class="headerlink" href="#announcing-vegafusion-1-0" title="Permalink to this heading"></a></h1>
+<p><strong>Mime renderer, transform evaluation, and a permissive license</strong></p>
+<p>By: Jon Mease</p>
+<hr class="docutils" />
+<p>The VegaFusion team is happy to announce the release of VegaFusion version 1.0. This release is the culmination of several months of work on both VegaFusion itself and its new dependency: <a class="reference external" href="https://medium.com/&#64;jonmmease/introducing-vlconvert-c763f0076e89">VlConvert</a>.  This version introduces a brand new mimetype based renderer that is compatible with many notebook and compute environments without requiring custom extensions. It also includes a new <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> function that makes it possible to evaluate the data transforms associated with an Altair <code class="docutils literal notranslate"><span class="pre">Chart</span></code> and return the result as a pandas DataFrame.</p>
+<p>Finally, we’re thrilled to announce that VegaFusion has been adopted by Hex and is now licensed under the same permissive BSD-3 license used by Vega, Vega-Lite, and Altair.</p>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h2>
+<p>VegaFusion scales Vega, Vega-Lite, and Altair visualizations by moving data transformations from the browser to a server (e.g. a Python kernel).</p>
+<p>The initial focus was on supporting complex interactive visualizations that require a live two-way connection between the client and server.  This approach works well, but it relies on a custom Jupyter widget extension which adds complexity and limits the environments it can be deployed in.</p>
+<p>To reduce complexity while addressing the more common scenario of non-interactive charts, VegaFusion 1.0 introduces an entirely new renderer that does not require any custom extensions but instead leverages the built-in rendering capabilities of modern notebooks and compute environments.</p>
+</div>
+<div class="section" id="vegafusion-mime-renderer">
+<h2>VegaFusion mime renderer<a class="headerlink" href="#vegafusion-mime-renderer" title="Permalink to this heading"></a></h2>
+<p>Altair comes with a default limit of 5,000 input rows to avoid crashing the user’s browser. Because all data transformations are applied in the browser by the Vega JavaScript library, the full input dataset must be loaded into the browser.  The VegaFusion mime renderer performs most common Vega transforms in the Python kernel, and so the row limit is applied to the transformed data rather than the input data. When the chart includes any form of aggregation, the transformed dataset typically has many fewer rows than the input dataset.</p>
+<p>To use the VegaFusion mime renderer, first install the <code class="docutils literal notranslate"><span class="pre">vegafusion</span></code> Python package with the <code class="docutils literal notranslate"><span class="pre">embed</span></code> extras enabled:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span><span class="s2">&quot;vegafusion[embed]&quot;</span>
+</pre></div>
+</div>
+<p>Then open a Jupyter notebook (either the classic notebook or a notebook inside JupyterLab), and create an Altair histogram of a 1 million row flights dataset</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+
+<span class="n">flights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s2">&quot;https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet&quot;</span>
+<span class="p">)</span>
+
+<span class="n">delay_hist</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;delay&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">30</span><span class="p">)),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;count()&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">delay_hist</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="n">MaxRowsError</span>                              <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">MaxRowsError</span><span class="p">:</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">your</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">allowed</span> <span class="p">(</span><span class="mi">5000</span><span class="p">)</span><span class="o">.</span> <span class="n">For</span> <span class="n">information</span> <span class="n">on</span> <span class="n">how</span> <span class="n">to</span> <span class="n">plot</span> <span class="n">larger</span> <span class="n">datasets</span> <span class="ow">in</span> <span class="n">Altair</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">documentation</span>
+</pre></div>
+</div>
+<p>As expected, this results in an Altair <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code>. The VegaFusion mime renderer can be used to overcome this limitation by performing data intensive transforms (e.g. filtering, binning, aggregation, etc.) in the Python kernel before the resulting data is sent to the web browser.</p>
+<p>Run these two lines to import and enable the new VegaFusion mime renderer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now the chart displays quickly without errors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">delay_hist</span>
+</pre></div>
+</div>
+<p><img alt="Flight Delay Histogram" src="https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png" /></p>
+</div>
+<div class="section" id="transform-evaluation">
+<h2>Transform evaluation<a class="headerlink" href="#transform-evaluation" title="Permalink to this heading"></a></h2>
+<p>VegaFusion now supports extracting the transformed data for an Altair Chart using the <code class="docutils literal notranslate"><span class="pre">vegafusion.transformed_data()</span></code> function. This is particularly useful when building a chart that includes a pipeline of transforms, as it’s now possible to see the intermediate results of each transform step.</p>
+<div class="section" id="example-top-k">
+<h3>Example: Top K<a class="headerlink" href="#example-top-k" title="Permalink to this heading"></a></h3>
+<p>Here is an example, based on the <a class="reference external" href="https://altair-viz.github.io/gallery/top_k_with_others.html">Top-K plot with Others</a> example from the Altair documentation, of how <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> can be helpful when building a complex chart.</p>
+<p>First, create an Altair <code class="docutils literal notranslate"><span class="pre">Chart</span></code> wrapping the data source URL.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/movies.json&quot;</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> function can be used on this empty chart to access a preview of the data that is available at the URL. Here the <code class="docutils literal notranslate"><span class="pre">row_limit</span></code> argument is used to limit the result to 3 rows and the DataFrame is transposed to make it easier to read.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p></p></th>
+<th class="text-left head"><p>0</p></th>
+<th class="text-left head"><p>1</p></th>
+<th class="text-left head"><p>2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Title</p></td>
+<td class="text-left"><p>The Land Girls</p></td>
+<td class="text-left"><p>First Love, Last Rites</p></td>
+<td class="text-left"><p>I Married a Strange Person</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>US_Gross</p></td>
+<td class="text-left"><p>146083</p></td>
+<td class="text-left"><p>10876</p></td>
+<td class="text-left"><p>203134</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Worldwide_Gross</p></td>
+<td class="text-left"><p>146083</p></td>
+<td class="text-left"><p>10876</p></td>
+<td class="text-left"><p>203134</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Production_Budget</p></td>
+<td class="text-left"><p>8000000</p></td>
+<td class="text-left"><p>300000</p></td>
+<td class="text-left"><p>250000</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Release_Date</p></td>
+<td class="text-left"><p>Jun 12 1998</p></td>
+<td class="text-left"><p>Aug 07 1998</p></td>
+<td class="text-left"><p>Aug 28 1998</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>MPAA_Rating</p></td>
+<td class="text-left"><p>R</p></td>
+<td class="text-left"><p>R</p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Distributor</p></td>
+<td class="text-left"><p>Gramercy</p></td>
+<td class="text-left"><p>Strand</p></td>
+<td class="text-left"><p>Lionsgate</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>IMDB_Rating</p></td>
+<td class="text-left"><p>6.1</p></td>
+<td class="text-left"><p>6.9</p></td>
+<td class="text-left"><p>6.8</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>IMDB_Votes</p></td>
+<td class="text-left"><p>1071.0</p></td>
+<td class="text-left"><p>207.0</p></td>
+<td class="text-left"><p>865.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Major_Genre</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Drama</p></td>
+<td class="text-left"><p>Comedy</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Rotten_Tomatoes_Rating</p></td>
+<td class="text-left"><p>nan</p></td>
+<td class="text-left"><p>nan</p></td>
+<td class="text-left"><p>nan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Source</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Creative_Type</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Director</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>US_DVD_Sales</p></td>
+<td class="text-left"><p>nan</p></td>
+<td class="text-left"><p>nan</p></td>
+<td class="text-left"><p>nan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Running_Time_min</p></td>
+<td class="text-left"><p>nan</p></td>
+<td class="text-left"><p>nan</p></td>
+<td class="text-left"><p>nan</p></td>
+</tr>
+</tbody>
+</table>
+<p>The first step of making this chart is to compute the average worldwide gross of all the movies for each director. This can be accomplished with the Altair <a class="reference external" href="https://altair-viz.github.io/user_guide/transform/aggregate.html">Aggregate Transform</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">transform_aggregate</span><span class="p">(</span>
+        <span class="n">aggregate_gross</span><span class="o">=</span><span class="s1">&#39;mean(Worldwide_Gross)&#39;</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Director&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-left head"><p>Director</p></th>
+<th class="text-right head"><p>aggregate_gross</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-right"><p>3.59284e+07</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-left"><p>Christopher Nolan</p></td>
+<td class="text-right"><p>3.44251e+08</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-left"><p>Roman Polanski</p></td>
+<td class="text-right"><p>5.13407e+07</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-left"><p>Richard Fleischer</p></td>
+<td class="text-right"><p>2.27635e+07</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-left"><p>Blake Edwards</p></td>
+<td class="text-right"><p>5e+06</p></td>
+</tr>
+</tbody>
+</table>
+<p>Next, the directors are ranked by average gross in descending order. This can be accomplished with the Altair <a class="reference external" href="https://altair-viz.github.io/user_guide/transform/window.html">Window Transform</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">transform_aggregate</span><span class="p">(</span>
+        <span class="n">aggregate_gross</span><span class="o">=</span><span class="s1">&#39;mean(Worldwide_Gross)&#39;</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Director&quot;</span><span class="p">],</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
+        <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;row_number()&#39;</span><span class="p">,</span>
+        <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="n">alt</span><span class="o">.</span><span class="n">SortField</span><span class="p">(</span><span class="s2">&quot;aggregate_gross&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;descending&quot;</span><span class="p">)],</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-left head"><p>Director</p></th>
+<th class="text-right head"><p>aggregate_gross</p></th>
+<th class="text-right head"><p>rank</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-left"><p>David Yates</p></td>
+<td class="text-right"><p>9.37984e+08</p></td>
+<td class="text-right"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-left"><p>James Cameron</p></td>
+<td class="text-right"><p>8.29781e+08</p></td>
+<td class="text-right"><p>2</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-left"><p>Carlos Saldanha</p></td>
+<td class="text-right"><p>7.69293e+08</p></td>
+<td class="text-right"><p>3</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-left"><p>Pete Docter</p></td>
+<td class="text-right"><p>7.31305e+08</p></td>
+<td class="text-right"><p>4</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-left"><p>Andrew Stanton</p></td>
+<td class="text-right"><p>7.00319e+08</p></td>
+<td class="text-right"><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Then, a new column is added that contains the director’s name for the top 9 ranked directors and “All Others” for the remaining directors. This can be accomplished using the Altair <a class="reference external" href="https://altair-viz.github.io/user_guide/transform/calculate.html">Calculate Transform</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">transform_aggregate</span><span class="p">(</span>
+        <span class="n">aggregate_gross</span><span class="o">=</span><span class="s1">&#39;mean(Worldwide_Gross)&#39;</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Director&quot;</span><span class="p">],</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
+        <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;row_number()&#39;</span><span class="p">,</span>
+        <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="n">alt</span><span class="o">.</span><span class="n">SortField</span><span class="p">(</span><span class="s2">&quot;aggregate_gross&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;descending&quot;</span><span class="p">)],</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">transform_calculate</span><span class="p">(</span>
+        <span class="n">ranked_director</span><span class="o">=</span><span class="s2">&quot;datum.rank &lt; 10 ? datum.Director : &#39;All Others&#39;&quot;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-left head"><p>Director</p></th>
+<th class="text-right head"><p>aggregate_gross</p></th>
+<th class="text-right head"><p>rank</p></th>
+<th class="text-left head"><p>ranked_director</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-left"><p>David Yates</p></td>
+<td class="text-right"><p>9.37984e+08</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-left"><p>David Yates</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-left"><p>James Cameron</p></td>
+<td class="text-right"><p>8.29781e+08</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-left"><p>James Cameron</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-left"><p>Carlos Saldanha</p></td>
+<td class="text-right"><p>7.69293e+08</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-left"><p>Carlos Saldanha</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-left"><p>Pete Docter</p></td>
+<td class="text-right"><p>7.31305e+08</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-left"><p>Pete Docter</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-left"><p>Andrew Stanton</p></td>
+<td class="text-right"><p>7.00319e+08</p></td>
+<td class="text-right"><p>5</p></td>
+<td class="text-left"><p>Andrew Stanton</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-left"><p>David Slade</p></td>
+<td class="text-right"><p>6.88155e+08</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-left"><p>David Slade</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-left"><p>George Lucas</p></td>
+<td class="text-right"><p>6.73577e+08</p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-left"><p>George Lucas</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td class="text-left"><p>Andrew Adamson</p></td>
+<td class="text-right"><p>6.43134e+08</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-left"><p>Andrew Adamson</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-left"><p>Peter Jackson</p></td>
+<td class="text-right"><p>5.95566e+08</p></td>
+<td class="text-right"><p>9</p></td>
+<td class="text-left"><p>Peter Jackson</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>9</p></td>
+<td class="text-left"><p>Richard Marquand</p></td>
+<td class="text-right"><p>5.727e+08</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-left"><p>All Others</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>10</p></td>
+<td class="text-left"><p>Eric Darnell</p></td>
+<td class="text-right"><p>5.66099e+08</p></td>
+<td class="text-right"><p>11</p></td>
+<td class="text-left"><p>All Others</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>11</p></td>
+<td class="text-left"><p>Roland Emmerich</p></td>
+<td class="text-right"><p>4.5506e+08</p></td>
+<td class="text-right"><p>12</p></td>
+<td class="text-left"><p>All Others</p></td>
+</tr>
+</tbody>
+</table>
+<p>Finally, this dataset is ready to be encoded as a bar mark:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/movies.json&quot;</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">transform_aggregate</span><span class="p">(</span>
+        <span class="n">aggregate_gross</span><span class="o">=</span><span class="s1">&#39;mean(Worldwide_Gross)&#39;</span><span class="p">,</span>
+        <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Director&quot;</span><span class="p">],</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
+        <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;row_number()&#39;</span><span class="p">,</span>
+        <span class="n">sort</span><span class="o">=</span><span class="p">[</span><span class="n">alt</span><span class="o">.</span><span class="n">SortField</span><span class="p">(</span><span class="s2">&quot;aggregate_gross&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;descending&quot;</span><span class="p">)],</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">transform_calculate</span><span class="p">(</span>
+        <span class="n">ranked_director</span><span class="o">=</span><span class="s2">&quot;datum.rank &lt; 10 ? datum.Director : &#39;All Others&#39;&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;aggregate_gross:Q&quot;</span><span class="p">,</span> <span class="n">aggregate</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span>
+            <span class="s2">&quot;ranked_director:N&quot;</span><span class="p">,</span>
+            <span class="n">sort</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Sort</span><span class="p">(</span><span class="n">op</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;aggregate_gross&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">&quot;descending&quot;</span><span class="p">),</span>
+            <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">chart</span>
+</pre></div>
+</div>
+<p><img alt="Top-K directors" src="https://user-images.githubusercontent.com/15064365/209851553-b6af2a14-affe-4a54-ba17-2590bdbc957d.png" /></p>
+<p>The exact value of each bar can be accessed by applying <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> to the final chart (which includes the implicit transforms in the bar mark encoding).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-left head"><p>ranked_director</p></th>
+<th class="text-right head"><p>mean_aggregate_gross</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-left"><p>David Yates</p></td>
+<td class="text-right"><p>9.37984e+08</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-left"><p>James Cameron</p></td>
+<td class="text-right"><p>8.29781e+08</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-left"><p>Carlos Saldanha</p></td>
+<td class="text-right"><p>7.69293e+08</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-left"><p>Pete Docter</p></td>
+<td class="text-right"><p>7.31305e+08</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-left"><p>Andrew Stanton</p></td>
+<td class="text-right"><p>7.00319e+08</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-left"><p>David Slade</p></td>
+<td class="text-right"><p>6.88155e+08</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-left"><p>George Lucas</p></td>
+<td class="text-right"><p>6.73577e+08</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td class="text-left"><p>Andrew Adamson</p></td>
+<td class="text-right"><p>6.43134e+08</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-left"><p>Peter Jackson</p></td>
+<td class="text-right"><p>5.95566e+08</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>9</p></td>
+<td class="text-left"><p>All Others</p></td>
+<td class="text-right"><p>8.87602e+07</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="increased-transform-coverage">
+<h2>Increased transform coverage<a class="headerlink" href="#increased-transform-coverage" title="Permalink to this heading"></a></h2>
+<p>VegaFusion’s coverage of Vega-Lite’s transforms is not yet complete, but it’s growing with each release. Support for the <a class="reference external" href="https://vega.github.io/vega-lite/docs/pivot.html">Pivot</a>, <a class="reference external" href="https://vega.github.io/vega-lite/docs/impute.html">Impute</a>, <a class="reference external" href="https://vega.github.io/vega-lite/docs/fold.html">Fold</a>, and <a class="reference external" href="https://vega.github.io/vega/docs/transforms/sequence/">Sequence</a> transforms was added in this release. Here is the full set of supported Vega-Lite/Vega transforms:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/aggregate.html">Aggregate</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/bin.html">Bin</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/calculate.html">Calculate</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega/docs/transforms/collect/">Collect</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega/docs/transforms/extent/">Extent</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/filter.html">Filter</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/fold.html">Fold</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega/docs/transforms/identifier/">Identifier</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/impute.html">Impute</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/joinaggregate.html">Join Aggregate</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/pivot.html">Pivot</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega/docs/transforms/project/">Project</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega/docs/transforms/sequence/">Sequence</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/stack.html">Stack</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/timeunit.html">Time Unit</a></p></li>
+<li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/window.html">Window</a></p></li>
+</ul>
+<p>More on the way!</p>
+</div>
+<div class="section" id="leveraging-vlconvert">
+<h2>Leveraging VlConvert<a class="headerlink" href="#leveraging-vlconvert" title="Permalink to this heading"></a></h2>
+<p>Both the new mime renderer and the <code class="docutils literal notranslate"><span class="pre">transfomed_data()</span></code> function require the ability to convert Vega-Lite specifications (as produced by Altair) to Vega specifications (as consumed by VegaFusion). This functionality is provided by the Vega-Lite JavaScript library, which presents a challenge: How can we perform this conversion in Python without a web browser?</p>
+<p>To meet this challenge, we developed a new Python library called <a class="reference external" href="https://github.com/vega/vl-convert">VlConvert</a>.  You can read all about VlConvert in its <a class="reference external" href="https://medium.com/&#64;jonmmease/introducing-vlconvert-c763f0076e89">announcement post</a>, but in short it embeds the <a class="reference external" href="https://deno.land/">Deno</a> JavaScript runtime in a Python library for the purpose of running the Vega-Lite JavaScript library.</p>
+<p>While motivated by the needs of VegaFusion, VlConvert turned out to be a great foundation for implementing static image export, as it is a simple Python package that doesn’t require external dependencies on a web browser or Node.js.  In fact, VlConvert has been adopted by the Vega community and will be the default image export engine for the coming release of Altair 5!</p>
+</div>
+<div class="section" id="a-new-partnership-and-a-new-license">
+<h2>A new partnership and a new license<a class="headerlink" href="#a-new-partnership-and-a-new-license" title="Permalink to this heading"></a></h2>
+<p>VegaFusion was first released in January 2022 under the copyleft AGPL license. I chose to use the AGPL license initially because I wanted to share the work with the Vega community, but I also wanted to leave open the possibility of building a company with a dual-license business model around the project.</p>
+<p>The day of the initial release, Barry McCardel (the CEO of <a class="reference external" href="https://hex.tech/">Hex Technologies</a>) reached out to me, and we started talking about how VegaFusion could help scale the <a class="reference external" href="https://learn.hex.tech/docs/logic-cell-types/display-cells/chart-cells">Hex chart cell</a> (which is itself built on Vega-Lite). I granted them a commercial license exception, and started working with the Hex team to integrate VegaFusion into Hex.  After months of working together with Barry and the Hex team, and lots of conversations around the future of the project, we decided that the best path forward was for me to continue working on VegaFusion as a member of Hex team, and for VegaFusion to be re-licensed to a permissive license that is compatible with the rest of the Vega ecosystem.</p>
+<p>The end result is that VegaFusion 1.0 is licensed under the <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a> license. Also, to make it easier to take advantage of Hex’s testing infrastructure the VegaFusion repositories have been moved under the <a class="reference external" href="https://github.com/hex-inc">hex-inc</a> GitHub organization.</p>
+</div>
+<div class="section" id="learn-more">
+<h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this heading"></a></h2>
+<p>Check out these resources if you’d like to learn more:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://vegafusion.io/">VegaFusion Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion">VegaFusion GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report and Issue</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussions</a></p></li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     Previous:
+    
+    <a href="../2022/2022-01-27_ProjectAnnouncement.html">
+       Announcing VegaFusion 0.1
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+    
+  </span>
+</div>
+  
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jon Mease.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVD2GWXRQZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LVD2GWXRQZ', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

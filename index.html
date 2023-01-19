@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VegaFusion &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>VegaFusion &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -76,8 +78,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -91,17 +96,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -121,8 +127,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-      <li>VegaFusion</li>
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">VegaFusion</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -131,11 +137,11 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="vegafusion">
-<h1>VegaFusion<a class="headerlink" href="#vegafusion" title="Permalink to this headline"></a></h1>
-<p>VegaFusion provides serverside acceleration for the <a class="reference external" href="https://vega.github.io/">Vega</a> visualization grammar. While not limited to Python, an initial application of VegaFusion is the acceleration of the <a class="reference external" href="https://altair-viz.github.io/">Altair</a> Python interface to <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>.</p>
-<p>The core VegaFusion algorithms are implemented in Rust. Python integration is provided using <a class="reference external" href="https://pyo3.rs/v0.15.1/">PyO3</a> and JavaScript integration is provided using <a class="reference external" href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a>.</p>
-<p><strong>For more info on the future direction of the project, see the <a class="reference internal" href="roadmap.html"><span class="doc std std-doc">Roadmap</span></a> and <a class="reference internal" href="license_overview.html"><span class="doc std std-doc">Licensing and Funding</span></a> pages.</strong></p>
+              <div class="section" id="vegafusion">
+<h1>VegaFusion<a class="headerlink" href="#vegafusion" title="Permalink to this heading"></a></h1>
+<p>VegaFusion provides serverside scaling for the <a class="reference external" href="https://vega.github.io/">Vega</a> visualization library. While not limited to Python, an initial application of VegaFusion is the scaling of the <a class="reference external" href="https://altair-viz.github.io/">Altair</a> Python interface to <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>.</p>
+<p>As of version 1.0, VegaFusion is released under the same license as Vega, Vega-Lite, and Altair: <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a>.</p>
+<p><strong>For more info on the future direction of the project, see the <a class="reference internal" href="roadmap.html"><span class="doc std std-doc">Roadmap</span></a>.</strong></p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -148,55 +154,235 @@
 </div>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="quickstart-accelerate-altair-in-jupyter">
-<h2>Quickstart: Accelerate Altair in Jupyter<a class="headerlink" href="#quickstart-accelerate-altair-in-jupyter" title="Permalink to this headline"></a></h2>
-<p>VegaFusion can be used to provide serverside acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila). First, install the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package, along with <code class="docutils literal notranslate"><span class="pre">vega-datasets</span></code> for the example below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install <span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span> vega-datasets
+<div class="section" id="quickstart-1-overcome-maxrowserror-with-vegafusion">
+<h2>Quickstart 1: Overcome <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code> with VegaFusion<a class="headerlink" href="#quickstart-1-overcome-maxrowserror-with-vegafusion" title="Permalink to this heading"></a></h2>
+<p>The VegaFusion mime renderer can be used to overcome the Altair <a class="reference external" href="https://altair-viz.github.io/user_guide/faq.html#maxrowserror-how-can-i-plot-large-datasets"><code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code></a> by performing data-intensive aggregations on the server and pruning unused columns from the source dataset.  First install the <code class="docutils literal notranslate"><span class="pre">vegafusion</span></code> Python package with the <code class="docutils literal notranslate"><span class="pre">embed</span></code> extras enabled</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;vegafusion[embed]&quot;</span>
 </pre></div>
 </div>
-<p>Then, open a jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
-<span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>VegaFusion will now be used to accelerate any Altair chart. For example, here’s the <a class="reference external" href="https://altair-viz.github.io/gallery/selection_layer_bar_month.html">interactive average</a> Altair gallery example.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<p>Then open a Jupyter notebook (either the classic notebook or a notebook inside JupyterLab), and create an Altair histogram of a 1 million row flights dataset</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 
-<span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">seattle_weather</span><span class="p">()</span>
+<span class="n">flights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s2">&quot;https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet&quot;</span>
+<span class="p">)</span>
+
+<span class="n">delay_hist</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;delay&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">30</span><span class="p">)),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;count()&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">delay_hist</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="n">MaxRowsError</span>                              <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">MaxRowsError</span><span class="p">:</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">your</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">allowed</span> <span class="p">(</span><span class="mi">5000</span><span class="p">)</span><span class="o">.</span> <span class="n">For</span> <span class="n">information</span> <span class="n">on</span> <span class="n">how</span> <span class="n">to</span> <span class="n">plot</span> <span class="n">larger</span> <span class="n">datasets</span> <span class="ow">in</span> <span class="n">Altair</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">documentation</span>
+</pre></div>
+</div>
+<p>This results in an Altair <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code>, as by default Altair is configured to allow no more than 5,000 rows of data to be sent to the browser.  This is a safety measure to avoid crashing the user’s browser.  The VegaFusion mime renderer can be used to overcome this limitation by performing data intensive transforms (e.g. filtering, binning, aggregation, etc.) in the Python kernel before the resulting data is sent to the web browser.</p>
+<p>Run these two lines to import and enable the VegaFusion mime renderer</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now the chart displays quickly without errors</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">delay_hist</span>
+</pre></div>
+</div>
+<p><img alt="Flight Delay Histogram" src="https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png" /></p>
+</div>
+<div class="section" id="quickstart-2-extract-transformed-data">
+<h2>Quickstart 2: Extract transformed data<a class="headerlink" href="#quickstart-2-extract-transformed-data" title="Permalink to this heading"></a></h2>
+<p>By default, data transforms in an Altair chart (e.g. filtering, binning, aggregation, etc.) are performed by the Vega JavaScript library running in the browser. This has the advantage of making the charts produced by Altair fully standalone, not requiring access to a running Python kernel to render properly. But it has the disadvantage of making it difficult to access the transformed data (e.g. the histogram bin edges and count values) from Python.  Since VegaFusion evaluates these transforms in the Python kernel, it’s possible to access then from Python using the <code class="docutils literal notranslate"><span class="pre">vegafusion.transformed_data()</span></code> function.</p>
+<p>For example, the following code demonstrates how to access the histogram bin edges and counts for the example above:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+
+<span class="n">flights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s2">&quot;https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet&quot;</span>
+<span class="p">)</span>
+
+<span class="n">delay_hist</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;delay&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">30</span><span class="p">)),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;count()&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">delay_hist</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p></p></th>
+<th class="text-right head"><p>bin_maxbins_30_delay</p></th>
+<th class="text-right head"><p>bin_maxbins_30_delay_end</p></th>
+<th class="text-right head"><p>__count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>-20</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>419400</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-right"><p>80</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>11000</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>392700</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>3</p></td>
+<td class="text-right"><p>40</p></td>
+<td class="text-right"><p>60</p></td>
+<td class="text-right"><p>38400</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>60</p></td>
+<td class="text-right"><p>80</p></td>
+<td class="text-right"><p>21800</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>5</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>40</p></td>
+<td class="text-right"><p>92700</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p>100</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>5300</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7</p></td>
+<td class="text-right"><p>-40</p></td>
+<td class="text-right"><p>-20</p></td>
+<td class="text-right"><p>9900</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-right"><p>120</p></td>
+<td class="text-right"><p>140</p></td>
+<td class="text-right"><p>3300</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>9</p></td>
+<td class="text-right"><p>140</p></td>
+<td class="text-right"><p>160</p></td>
+<td class="text-right"><p>2000</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>10</p></td>
+<td class="text-right"><p>160</p></td>
+<td class="text-right"><p>180</p></td>
+<td class="text-right"><p>1800</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>11</p></td>
+<td class="text-right"><p>320</p></td>
+<td class="text-right"><p>340</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>12</p></td>
+<td class="text-right"><p>180</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>900</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>13</p></td>
+<td class="text-right"><p>240</p></td>
+<td class="text-right"><p>260</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>14</p></td>
+<td class="text-right"><p>-60</p></td>
+<td class="text-right"><p>-40</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>15</p></td>
+<td class="text-right"><p>260</p></td>
+<td class="text-right"><p>280</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>16</p></td>
+<td class="text-right"><p>200</p></td>
+<td class="text-right"><p>220</p></td>
+<td class="text-right"><p>300</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>17</p></td>
+<td class="text-right"><p>360</p></td>
+<td class="text-right"><p>380</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="quickstart-3-accelerate-interactive-charts">
+<h2>Quickstart 3: Accelerate interactive charts<a class="headerlink" href="#quickstart-3-accelerate-interactive-charts" title="Permalink to this heading"></a></h2>
+<p>While the VegaFusion mime renderer works great for non-interactive Altair charts, it’s not as well suited for <a class="reference external" href="https://altair-viz.github.io/user_guide/interactions.html">interactive</a> charts visualizing large datasets. This is because the mime renderer does not maintain a live connection between the browser and the python kernel, so all the data that participates in an interaction must be sent to the browser.</p>
+<p>To address this situation, VegaFusion provides a <a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/">Jupyter Widget</a> based renderer that does maintain a live connection between the chart in the browser and the Python kernel. In this configuration, selection operations (e.g. filtering to the extents of a brush selection) can be evaluated interactively in the Python kernel, which eliminates the need to transfer the full dataset to the client in order to maintain interactivity.</p>
+<p>The VegaFusion widget renderer is provided by the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span>
+</pre></div>
+</div>
+<p>Instead of enabling the mime render with <code class="docutils literal notranslate"><span class="pre">vf.enable()</span></code>, the widget renderer is enabled with <code class="docutils literal notranslate"><span class="pre">vf.enable_widget()</span></code>.  Here is a full example that uses the widget renderer to display an interactive Altair chart that implements linked histogram brushing for a 1 million row flights dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+
+<span class="n">vf</span><span class="o">.</span><span class="n">enable_widget</span><span class="p">()</span>
+
+<span class="n">flights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s2">&quot;https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet&quot;</span>
+<span class="p">)</span>
+
 <span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
 
-<span class="n">bars</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">()</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;month(date):O&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mean(precipitation):Q&#39;</span><span class="p">,</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">OpacityValue</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">OpacityValue</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)),</span>
-<span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span>
-    <span class="n">brush</span>
+<span class="c1"># Define the base chart, with the common parts of the</span>
+<span class="c1"># background and highlights</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">()</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;quantitative&#39;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">20</span><span class="p">)),</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">160</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">130</span>
 <span class="p">)</span>
 
-<span class="n">line</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">()</span><span class="o">.</span><span class="n">mark_rule</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;firebrick&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mean(precipitation):Q&#39;</span><span class="p">,</span>
-    <span class="n">size</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">SizeValue</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="p">)</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span>
-    <span class="n">brush</span>
-<span class="p">)</span>
+<span class="c1"># gray background with selection</span>
+<span class="n">background</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ddd&#39;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
 
-<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">layer</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+<span class="c1"># blue highlights on the selected data</span>
+<span class="n">highlight</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
+
+<span class="c1"># layer the two charts &amp; repeat</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">layer</span><span class="p">(</span>
+    <span class="n">background</span><span class="p">,</span>
+    <span class="n">highlight</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">flights</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform_calculate</span><span class="p">(</span>
+    <span class="s2">&quot;time&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;hours(datum.date)&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="s2">&quot;delay&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">])</span>
 <span class="n">chart</span>
 </pre></div>
 </div>
-<video width="600" controls>
-  <source src="https://user-images.githubusercontent.com/15064365/148408648-43a5cfd0-b0d8-456e-a77a-dd344d8d07df.mov" type="video/mp4">
+<video width="700" controls>
+  <source src="https://user-images.githubusercontent.com/15064365/209974420-480121b4-b206-4bb2-b473-0c663e38ea5e.mov" type="video/mp4">
 This browser does not support the video tag.
 </video>
-<p>Histogram binning, aggregation, selection filtering, and average calculations will now be evaluated in the Python kernel process with efficient parallelization, rather than in the single-threaded browser context.</p>
-<p>You can see that VegaFusion acceleration is working by noticing that the Python <a class="reference external" href="https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions">kernel is running</a> as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.</p>
+<p>Histogram binning, aggregation, and selection filtering are now evaluated in the Python kernel process with efficient parallelization, and only the aggregated data (one row per histogram bar) is sent to the browser.</p>
+<p>You can see that the VegaFusion widget renderer maintains a live connection to the Python kernel by noticing that the Python <a class="reference external" href="https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions">kernel is running</a> as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.</p>
+</div>
+<div class="section" id="stewardship">
+<h2>Stewardship<a class="headerlink" href="#stewardship" title="Permalink to this heading"></a></h2>
+<p>The VegaFusion project was created by <a class="reference external" href="https://jonmmease.dev/">Jon Mease</a> and is now stewarded by <a class="reference external" href="https://hex.tech/">Hex Technologies</a>, which uses VegaFusion in production to accelerate its Vega-Lite powered chart editor.  Hex is committed to supporting VegaFusion’s ongoing development and is excited to collaborate with the community to make VegaFusion useful throughout the Vega ecosystem.</p>
+<a class="reference internal image-reference" href="https://user-images.githubusercontent.com/15064365/213193272-b9617431-84a0-4733-8b58-1309d25e925b.svg"><img alt="Hex Logo" class="align-center" src="https://user-images.githubusercontent.com/15064365/213193272-b9617431-84a0-4733-8b58-1309d25e925b.svg" width="300px" /></a>
 </div>
 <div class="section" id="recent-posts">
-<h2>Recent Posts<a class="headerlink" href="#recent-posts" title="Permalink to this headline"></a></h2>
+<h2>Recent Posts<a class="headerlink" href="#recent-posts" title="Permalink to this heading"></a></h2>
 <ul class="postlist-style-none postlist simple">
-<li class="ablog-post"><p class="ablog-post-title">2022-01-27 - <a class="reference internal" href="posts/2022/2022-01-27_ProjectAnnouncement.html">Announcing VegaFusion</a></p></li>
-<li class="ablog-post"><p class="ablog-post-title">2022-01-19 - <a class="reference internal" href="posts/2022/2022-01-19_Release_0.0.1.html">VegaFusion 0.0.1</a></p></li>
+<li class="ablog-post"><p class="ablog-post-title">2023-01-18 - <a class="reference internal" href="posts/2023/2023-01-18_Release_1.0.0.html">Announcing VegaFusion 1.0</a></p></li>
+<li class="ablog-post"><p class="ablog-post-title">2022-01-27 - <a class="reference internal" href="posts/2022/2022-01-27_ProjectAnnouncement.html">Announcing VegaFusion 0.1</a></p></li>
+<li class="ablog-post"><p class="ablog-post-title">2022-01-19 - <a class="reference internal" href="posts/2022/2022-01-19_Release_0.0.1.html">Announcing VegaFusion 0.0.1</a></p></li>
 </ul>
 </div>
 </div>
@@ -214,7 +400,7 @@ This browser does not support the video tag.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

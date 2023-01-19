@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+<meta content="VegaFusion" property="og:title" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
+<meta content="en_US" property="og:locale" />
+<meta content="https://vegafusion.io/" property="og:url" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
+<meta content="&#64;vegafusion_io" property="twitter:site" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
+<meta content="summary_large_image" property="twitter:card" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mime Renderer &mdash; VegaFusion 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Widget Renderer" href="widget_renderer.html" />
+    <link rel="prev" title="Supported Environments" href="supported_environments.html" />    
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> VegaFusion
+            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mime Renderer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#activation">Activation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#row-limit">Row Limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-mimetypes">Supported mimetypes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#html-default"><code class="docutils literal notranslate"><span class="pre">html</span></code> (default)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vega"><code class="docutils literal notranslate"><span class="pre">vega</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#svg"><code class="docutils literal notranslate"><span class="pre">svg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#png"><code class="docutils literal notranslate"><span class="pre">png</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#local-timezone">Local timezone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inline-data-transformer">Inline Data Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example_gallery.html">Example Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_it_works.html">How VegaFusion Works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Future</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Blog</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="blog.html">Posts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">VegaFusion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Mime Renderer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mime_renderer.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+              <div class="section" id="mime-renderer">
+<h1>Mime Renderer<a class="headerlink" href="#mime-renderer" title="Permalink to this heading"></a></h1>
+<p>The VegaFusion mime renderer makes it possible to display Altair charts that reference large datasets in a wide variety of Python notebook and compute environments.</p>
+<p><strong>Note:</strong> While the mime renderer is compatible with both static and interactive charts, the <a class="reference internal" href="widget.html"><span class="doc std std-doc">widget renderer</span></a> is better suited for interactive charts that reference large datasets.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>The mime renderer is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion</span></code> Python package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;vegafusion[embed]&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="activation">
+<h2>Activation<a class="headerlink" href="#activation" title="Permalink to this heading"></a></h2>
+<p>The VegaFusion mime renderer is enabled using the <code class="docutils literal notranslate"><span class="pre">vegafusion.enable()</span></code> function. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="o">...</span>
+<span class="n">chart</span>
+</pre></div>
+</div>
+<p>The mime renderer can also be enabled temporarily by using <code class="docutils literal notranslate"><span class="pre">vegafusion.enable()</span></code> as a context manager:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="k">with</span> <span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">():</span>
+    <span class="o">...</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When enabled, Altair charts will be automatically processed by VegaFusion when they are displayed. Here is an example of a 1 million row histogram that could not be displayed without a VegaFusion renderer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="n">flights</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span>
+    <span class="s2">&quot;https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet&quot;</span>
+<span class="p">)</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">flights</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;delay&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">30</span><span class="p">)),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;count()&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Flight Delay Histogram" src="https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png" /></p>
+</div>
+<div class="section" id="row-limit">
+<h2>Row Limit<a class="headerlink" href="#row-limit" title="Permalink to this heading"></a></h2>
+<p>Charts of large datasets that do not perform any form of aggregation (e.g. Scatter Plots) can still result in very large chart specification that risk crashing the web browser they are displayed in. To protect against this, the VegaFusion mime renderer supports an optional <code class="docutils literal notranslate"><span class="pre">row_limit</span></code> argument to the <code class="docutils literal notranslate"><span class="pre">enable()</span></code> function.  Unlike the default Altair row limit, this row limit is enforced <em>after</em> all supported data transformations have been applied. For example, in the case of a histogram there will be one row per histogram bin after transforms are applied.</p>
+<p>The default <code class="docutils literal notranslate"><span class="pre">row_limit</span></code> is 10,000, but it can be customized like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">row_limit</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The row limit check can be disabled by setting the <code class="docutils literal notranslate"><span class="pre">row_limit</span></code> argument to <code class="docutils literal notranslate"><span class="pre">None</span></code> as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">row_limit</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="supported-mimetypes">
+<h2>Supported mimetypes<a class="headerlink" href="#supported-mimetypes" title="Permalink to this heading"></a></h2>
+<p>The mime renderer can display the resulting Vega spec using a variety of mimetypes</p>
+<div class="section" id="html-default">
+<h3><code class="docutils literal notranslate"><span class="pre">html</span></code> (default)<a class="headerlink" href="#html-default" title="Permalink to this heading"></a></h3>
+<p>When the <code class="docutils literal notranslate"><span class="pre">mimetype</span></code> argument is set to <code class="docutils literal notranslate"><span class="pre">&quot;html&quot;</span></code> (the default), the resulting mime bundle will have type <code class="docutils literal notranslate"><span class="pre">&quot;text/html&quot;</span></code> and will contain an HTML snippet that loads several JavaScript dependencies from a CDN location and displays the Vega spec using <a class="reference external" href="https://github.com/vega/vega-embed"><code class="docutils literal notranslate"><span class="pre">vega-embed</span></code></a>. This renderer is compatible with the classic Jupyter Notebook, JupyterLab, Visual Studio Code, Colab, Hex, Kaggle, and others.</p>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">html</span></code> mimetype requires an active internet connection.</p>
+</div>
+<div class="section" id="vega">
+<h3><code class="docutils literal notranslate"><span class="pre">vega</span></code><a class="headerlink" href="#vega" title="Permalink to this heading"></a></h3>
+<p>When the <code class="docutils literal notranslate"><span class="pre">mimetype</span></code> argument to <code class="docutils literal notranslate"><span class="pre">vf.enable()</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;vega&quot;</span></code>, the resulting mime bundle will have type <code class="docutils literal notranslate"><span class="pre">&quot;application/vnd.vega.v5+json&quot;</span></code> and will contain the Vega spec. This approach works in JupyterLab, Visual Studio Code, Hex, and other compute environments that include built-in support for rendering Vega charts. No internet connection is required, but note that this mimetype is not supported by the classic Jupyter Notebook.</p>
+</div>
+<div class="section" id="svg">
+<h3><code class="docutils literal notranslate"><span class="pre">svg</span></code><a class="headerlink" href="#svg" title="Permalink to this heading"></a></h3>
+<p>When the <code class="docutils literal notranslate"><span class="pre">mimetype</span></code> argument is set to <code class="docutils literal notranslate"><span class="pre">&quot;svg&quot;</span></code>, the resulting mime bundle will have type <code class="docutils literal notranslate"><span class="pre">&quot;image/svg+xml&quot;</span></code> and will contain a static SVG image of the chart.</p>
+</div>
+<div class="section" id="png">
+<h3><code class="docutils literal notranslate"><span class="pre">png</span></code><a class="headerlink" href="#png" title="Permalink to this heading"></a></h3>
+<p>When the <code class="docutils literal notranslate"><span class="pre">mimetype</span></code> argument is set to <code class="docutils literal notranslate"><span class="pre">&quot;png&quot;</span></code>, the resulting mime bundle will have type <code class="docutils literal notranslate"><span class="pre">&quot;image/png&quot;</span></code> and will contain a static PNG image of the chart.</p>
+</div>
+</div>
+<div class="section" id="local-timezone">
+<h2>Local timezone<a class="headerlink" href="#local-timezone" title="Permalink to this heading"></a></h2>
+<p>The behavior of certain Vega/Vega-Lite transforms and expression functions depends on the local timezone of the chart. The <a class="reference external" href="https://vega.github.io/vega-lite/docs/timeunit.html">Time Unit</a> transform is one such example. When transforms are evaluated in the Vega JavaScript library, the chart’s local timezone is set to the local timezone of the web browser.</p>
+<p>When the VegaFusion mime renderer evaluates Vega transforms in the Python kernel, it does not have access to the browser’s local timezone.  Instead, it uses the local timezone of the Python kernel (as determined by VlConvert’s <code class="docutils literal notranslate"><span class="pre">vl_convert.get_local_tz()</span></code> function).  When the Python kernel and web browser are running on the same machine (as is the case when running Jupyter locally), the charts produced by the VegaFusion mime renderer will look identical to those processed by Vega entirely in the web browser.   However, if Jupyter is running on a remote VM (as is the case when using Colab or Binder) then the kernel’s local timezone may not match the browser’s local timezone.</p>
+<p>In this case, it’s possible to override VegaFusion’s local timezone using the <code class="docutils literal notranslate"><span class="pre">vegafusion.set_local_tz()</span></code> function. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">set_local_tz</span><span class="p">(</span><span class="s2">&quot;America/New_York&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">set_local_tz</span></code> configuration affects only the mime renderer. The VegaFusion widget renderer maintains a two-way connection between the Python kernel and the browser, so it is able to use the browser’s local timezone directly.</p>
+</div>
+<div class="section" id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this heading"></a></h2>
+<p>The mime renderer plugs into Altair’s <a class="reference external" href="https://altair-viz.github.io/user_guide/data_transformers.html">data transformer</a> and <a class="reference external" href="https://altair-viz.github.io/user_guide/custom_renderers.html">renderer</a> frameworks to intercept requests to render the Vega-Lite specs produced by Altair and performs the following:</p>
+<ol class="arabic simple">
+<li><p>Inline pandas DataFrames are extracted and converted into Arrow tables</p></li>
+<li><p>The Vega-Lite spec is compiled to Vega using <a class="reference external" href="https://github.com/vega/vl-convert">VlConvert</a></p></li>
+<li><p>The Arrow tables from (1) and the Vega spec from (2) are fed into the VegaFusion runtime. The runtime evaluates transforms and identifies the subset of columns that are actually required by the visualization. The resulting data is inlined back into the Vega spec.</p></li>
+<li><p>The Vega spec resulting from (3) is displayed using a Jupyter <a class="reference external" href="https://docs.jupyter.org/en/latest/reference/mimetype.html">mimetype bundle</a></p></li>
+</ol>
+<p>Unlike the widget renderer, the mime renderer works entirely in Python and does not require any custom notebook extensions.</p>
+</div>
+<div class="section" id="inline-data-transformer">
+<h2>Inline Data Transformer<a class="headerlink" href="#inline-data-transformer" title="Permalink to this heading"></a></h2>
+<p>Unlike the VegaFusion widget renderer, the mime renderer does not require writing Chart DataFrames to files on disk. Instead, these DataFrames are converted to Arrow tables and passed directly to the VegaFusion runtime (bypassing JSON serialization).</p>
+<p>This approach is implemented by the <code class="docutils literal notranslate"><span class="pre">&quot;vegafusion-inline&quot;</span></code> data transformer, which is automatically enabled by the <code class="docutils literal notranslate"><span class="pre">vegafusion.enable()</span></code> function.</p>
+</div>
+</div>
+
+<div class="section">
+   
+</div>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="supported_environments.html" class="btn btn-neutral float-left" title="Supported Environments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="widget_renderer.html" class="btn btn-neutral float-right" title="Widget Renderer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jon Mease.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVD2GWXRQZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LVD2GWXRQZ', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

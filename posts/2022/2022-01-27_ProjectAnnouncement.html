@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Announcing VegaFusion &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Announcing VegaFusion 0.1 &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />    
@@ -75,8 +77,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -90,17 +95,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../../technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -120,8 +126,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Announcing VegaFusion</li>
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Announcing VegaFusion 0.1</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/posts/2022/2022-01-27_ProjectAnnouncement.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -130,18 +136,18 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="announcing-vegafusion">
-<h1>Announcing VegaFusion<a class="headerlink" href="#announcing-vegafusion" title="Permalink to this headline"></a></h1>
+              <div class="section" id="announcing-vegafusion-0-1">
+<h1>Announcing VegaFusion 0.1<a class="headerlink" href="#announcing-vegafusion-0-1" title="Permalink to this heading"></a></h1>
 <p><strong>Server-side acceleration for the Vega visualization grammar with Rust and WebAssembly</strong></p>
 <p>By: Jon Mease</p>
 <hr class="docutils" />
 <p>Today, I’m happy to announce a new open source project I’ve been working on since stepping down as Plotly’s Chief Scientist this past fall. It’s called VegaFusion.</p>
 <p>VegaFusion provides server-side acceleration for the <a class="reference external" href="https://vega.github.io/">Vega</a> visualization grammar. While not limited to Python, the initial application of VegaFusion is the acceleration of the <a class="reference external" href="https://altair-viz.github.io/">Altair</a> Python interface to <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>. Its design was motivated by years of experience working on visualization libraries (<a class="reference external" href="https://plotly.com/python/">Plotly</a>, <a class="reference external" href="https://holoviews.org/">HoloViews</a>, and <a class="reference external" href="https://datashader.org/">Datashader</a>) and dashboard technologies (<a class="reference external" href="https://dash.plotly.com/">Dash</a>, <a class="reference external" href="https://ipywidgets.readthedocs.io/en/latest/index.html">Jupyter Widgets</a>, and <a class="reference external" href="https://panel.holoviz.org/">Panel</a>).</p>
 <div class="section" id="quickstart-accelerate-altair-in-jupyter">
-<h2>Quickstart: Accelerate Altair in Jupyter<a class="headerlink" href="#quickstart-accelerate-altair-in-jupyter" title="Permalink to this headline"></a></h2>
+<h2>Quickstart: Accelerate Altair in Jupyter<a class="headerlink" href="#quickstart-accelerate-altair-in-jupyter" title="Permalink to this heading"></a></h2>
 <p>VegaFusion can be used to provide server-side acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila).  It also eliminates the Altair <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code> when generating a chart with over 5000 rows.</p>
 <p>First, install the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package, along with <code class="docutils literal notranslate"><span class="pre">vega-datasets</span></code> for the example below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install <span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span> vega-datasets
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span><span class="w"> </span>vega-datasets
 </pre></div>
 </div>
 <p>Then, open a Jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.</p>
@@ -183,10 +189,10 @@ This browser does not support the video tag.
 <p>You can see that VegaFusion acceleration is working by noticing that the Python <a class="reference external" href="https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions">kernel is running</a> as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.</p>
 </div>
 <div class="section" id="vega-ecosystem-background">
-<h2>Vega Ecosystem Background<a class="headerlink" href="#vega-ecosystem-background" title="Permalink to this headline"></a></h2>
+<h2>Vega Ecosystem Background<a class="headerlink" href="#vega-ecosystem-background" title="Permalink to this heading"></a></h2>
 <p>VegaFusion is designed to complement the Vega visualization ecosystem. In particular, the <a class="reference external" href="https://vega.github.io/">Vega</a>, <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>, and <a class="reference external" href="https://altair-viz.github.io/">Altair</a> projects.  If you’re not familiar with these projects, it will be helpful to take a few minutes to browse their documentation as background for understanding what VegaFusion adds.</p>
 <div class="section" id="transforms-and-signals">
-<h3>Transforms and Signals<a class="headerlink" href="#transforms-and-signals" title="Permalink to this headline"></a></h3>
+<h3>Transforms and Signals<a class="headerlink" href="#transforms-and-signals" title="Permalink to this heading"></a></h3>
 <p>One powerful feature of the Vega visualization grammar is that it includes a rich collection of data manipulation functions called <a class="reference external" href="https://vega.github.io/vega/docs/transforms/">transforms</a>.  Transforms have functionality that is similar to that provided by SQL queries or Pandas DataFrame operations, but they are specifically designed to cover data preprocessing tasks that are useful in constructing data visualizations.</p>
 <p>For additional flexibility, Vega also provides the concept of <a class="reference external" href="https://vega.github.io/vega/docs/signals/">signals</a>. These are scalar variables that can be constructed using the <a class="reference external" href="https://vega.github.io/vega/docs/expressions/">Vega expression language</a>, which is a subset of JavaScript.  Transforms can accept and produce signals.</p>
 <p>There are at least two significant advantages to having data transformations and signals included in a visualization specification.</p>
@@ -197,29 +203,29 @@ This browser does not support the video tag.
 </div>
 </div>
 <div class="section" id="motivation-for-vegafusion">
-<h2>Motivation for VegaFusion<a class="headerlink" href="#motivation-for-vegafusion" title="Permalink to this headline"></a></h2>
+<h2>Motivation for VegaFusion<a class="headerlink" href="#motivation-for-vegafusion" title="Permalink to this heading"></a></h2>
 <p>Vega makes it possible to create declarative JSON specifications of rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.</p>
 <p>For datasets of a few tens of thousands rows or fewer, this architecture often results in extremely smooth and responsive interactivity. However, this architecture doesn’t scale very well to datasets of hundreds of thousands of rows or more.  This is the gap VegaFusion aims to fill.</p>
 </div>
 <div class="section" id="how-vegafusion-works">
-<h2>How VegaFusion Works<a class="headerlink" href="#how-vegafusion-works" title="Permalink to this headline"></a></h2>
+<h2>How VegaFusion Works<a class="headerlink" href="#how-vegafusion-works" title="Permalink to this heading"></a></h2>
 <p>VegaFusion has two primary components: The Planner and the Runtime.</p>
 <div class="section" id="planner">
-<h3>Planner<a class="headerlink" href="#planner" title="Permalink to this headline"></a></h3>
+<h3>Planner<a class="headerlink" href="#planner" title="Permalink to this heading"></a></h3>
 <p>The Planner starts with an arbitrary Vega specification (typically generated by Vega-Lite, but this is not a requirement). The Planner’s job is to partition the specification into two valid Vega specifications, one that will execute in the browser with the Vega JavaScript library, and one that will execute on the server with the VegaFusion Runtime.</p>
 <p>VegaFusion does not (yet) provide full coverage of all of Vega’s transforms and all of the features of the Vega expression language.  The planner uses information about which transforms and expression functions are supported to make decisions about which parts of the original Vega specification can be included in the resulting server specification.  The advantage of this approach is that VegaFusion can accept any Vega specification, and as more support is added over time, more of the input specification will be eligible for inclusion in the server specification.</p>
 <p>Along with the client and server specifications, the planner also creates a communication plan.  The communication plan determines which datasets and signals must be passed from server to client, and from client to server in order for the interactive behavior of the original specification to be preserved.</p>
 </div>
 <div class="section" id="runtime">
-<h3>Runtime<a class="headerlink" href="#runtime" title="Permalink to this headline"></a></h3>
+<h3>Runtime<a class="headerlink" href="#runtime" title="Permalink to this heading"></a></h3>
 <p>After planning, the server specification is compiled into a VegaFusion task graph.  The job of the Runtime is to calculate the value of requested nodes within a task graph.</p>
 <p>A task graph includes the values of the root nodes (those with no parents), but it does not include the values of any of the interior nodes (those with parents).  Each node in the task graph is a pure function of the values of its parents.  This enables the Runtime to calculate the value of any node in the Task graph from the specification, while keeping the overall task graph size small enough to be efficiently transferred between the client and the server.  The Runtime uses fingerprinting and precise caching to avoid repeated calculations of the same nodes.  The cache is “precise” in the sense that cached values can be shared across visualizations that share a common substructure, even if the full specifications are not identical.</p>
 </div>
 </div>
 <div class="section" id="technology">
-<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this headline"></a></h2>
+<h2>Technology<a class="headerlink" href="#technology" title="Permalink to this heading"></a></h2>
 <div class="section" id="vegafusion-technology-stack">
-<h3>VegaFusion Technology Stack<a class="headerlink" href="#vegafusion-technology-stack" title="Permalink to this headline"></a></h3>
+<h3>VegaFusion Technology Stack<a class="headerlink" href="#vegafusion-technology-stack" title="Permalink to this heading"></a></h3>
 <p>VegaFusion uses a fairly diverse technology stack. The Planner and Runtime are both implemented in Rust.</p>
 <p>In the context of <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code>, the Planner is compiled to WebAssembly using <a class="reference external" href="https://github.com/rustwasm/wasm-pack">wasm-pack</a> and wrapped in a TypeScript API using <a class="reference external" href="https://github.com/rustwasm/wasm-bindgen">wasm-bindgen</a>.  This TypeScript API is used to integrate the WebAssembly library into the VegaFusion Jupyter Widget.</p>
 <p>The Runtime is wrapped in a Python API using <a class="reference external" href="https://github.com/PyO3/pyo3">PyO3</a>, resulting in the <code class="docutils literal notranslate"><span class="pre">vegafusion-python</span></code> package.  The <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package is used to integrate <code class="docutils literal notranslate"><span class="pre">vegafusion-python</span></code> with Altair and the Python portion of VegaFusion Jupyter Widget.</p>
@@ -227,19 +233,19 @@ This browser does not support the video tag.
 <img width="749" alt="VegaFusion Jupyter Architecture Diagram" src="https://user-images.githubusercontent.com/15064365/148417030-19420ef2-50de-40cf-bd42-c39e1147049c.png">
 </div>
 <div class="section" id="datafusion-integration">
-<h3>DataFusion integration<a class="headerlink" href="#datafusion-integration" title="Permalink to this headline"></a></h3>
+<h3>DataFusion integration<a class="headerlink" href="#datafusion-integration" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://github.com/apache/arrow-datafusion">Apache Arrow DataFusion</a> is an SQL compatible query engine that integrates with the Rust implementation of Apache Arrow.  VegaFusion uses DataFusion to implement many of the Vega transforms, and it compiles the Vega expression language directly into the DataFusion expression language.  In addition to being really fast, a particularly powerful characteristic of DataFusion is that it provides many interfaces that can be extended with custom Rust logic.  For example, VegaFusion defines many custom UDFs that are designed to implement the precise semantics of the Vega expression language and the Vega expression functions.</p>
 <img width="200" alt="DataFusion Logo" src="https://github.com/apache/arrow-datafusion/raw/master/docs/source/_static/images/DataFusion-Logo-Background-White.svg">
 </div>
 </div>
 <div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <p>VegaFusion is compatible with all of the examples in the <a class="reference external" href="https://altair-viz.github.io/gallery/index.html">Altair gallery</a>. Here are a few additional examples that demonstrate the benefits of server-side acceleration.</p>
 <div class="section" id="large-altair-gallery-examples">
-<h3>Large Altair Gallery Examples<a class="headerlink" href="#large-altair-gallery-examples" title="Permalink to this headline"></a></h3>
+<h3>Large Altair Gallery Examples<a class="headerlink" href="#large-altair-gallery-examples" title="Permalink to this heading"></a></h3>
 <p>The following examples are modifications of Altair Gallery examples that use larger datasets.  Each example displays the same plot with plain Altair and with Altair + VegaFusion to make is easy to compare performance.  You can try them out using the binder links below.</p>
 <div class="section" id="interactive-crossfilter">
-<h4>Interactive Crossfilter<a class="headerlink" href="#interactive-crossfilter" title="Permalink to this headline"></a></h4>
+<h4>Interactive Crossfilter<a class="headerlink" href="#interactive-crossfilter" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/flights_crossfilter.ipynb">Notebook file</a></p></li>
 <li><p><a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Fflights_crossfilter.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - Voila Dashboard</p></li>
@@ -251,7 +257,7 @@ This browser does not support the video tag.
 </video>
 </div>
 <div class="section" id="interactive-average">
-<h4>Interactive Average<a class="headerlink" href="#interactive-average" title="Permalink to this headline"></a></h4>
+<h4>Interactive Average<a class="headerlink" href="#interactive-average" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/interactive_average.ipynb">Notebook file</a></p></li>
 <li><p><a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Finteractive_average.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a> - Voila Dashboard</p></li>
@@ -264,7 +270,7 @@ This browser does not suppor class="video-border"t the video tag.
 </div>
 </div>
 <div class="section" id="million-taxi-rides">
-<h3>10 Million Taxi Rides<a class="headerlink" href="#million-taxi-rides" title="Permalink to this headline"></a></h3>
+<h3>10 Million Taxi Rides<a class="headerlink" href="#million-taxi-rides" title="Permalink to this heading"></a></h3>
 <p>This example creates a dashboard to explore 10 million taxi rides in New York City from January 2015.  It supports zoom-based rasterization of the pickup locations (similar to <a class="reference external" href="https://datashader.org/">Datashader</a>), and combines that with cross filtering across a histogram of trip distances and a heatmap of tip rate by hour and day of the week.</p>
 <p>See the <a class="reference external" href="https://examples.pyviz.org/nyc_taxi/nyc_taxi.html">PyViz documentation example</a> for more information on the dataset.</p>
 <ul class="simple">
@@ -277,7 +283,7 @@ This browser does not support the video tag.
 </div>
 </div>
 <div class="section" id="about-the-name">
-<h2>About the Name<a class="headerlink" href="#about-the-name" title="Permalink to this headline"></a></h2>
+<h2>About the Name<a class="headerlink" href="#about-the-name" title="Permalink to this heading"></a></h2>
 <p>There are two meanings behind the name “VegaFusion”</p>
 <ul class="simple">
 <li><p>It’s a reference to the <a class="reference external" href="https://github.com/apache/arrow-datafusion">Apache Arrow DataFusion</a> library described above</p></li>
@@ -285,20 +291,20 @@ This browser does not support the video tag.
 </ul>
 </div>
 <div class="section" id="licensing-and-funding">
-<h2>Licensing and Funding<a class="headerlink" href="#licensing-and-funding" title="Permalink to this headline"></a></h2>
+<h2>Licensing and Funding<a class="headerlink" href="#licensing-and-funding" title="Permalink to this heading"></a></h2>
 <p>At least until a sustainable funding model is established, VegaFusion will be developed under the <a class="reference external" href="https://www.gnu.org/licenses/agpl-3.0.en.html">AGPLv3 license</a>.  This is a copy-left license in the GPL family of licenses. As with all <a class="reference external" href="https://opensource.org/licenses/alphabetical">OSI approved licenses</a>, there are no restrictions on what code licensed under the AGPL can be used for. However, the requirements for what must be shared publicly are greater than for licenses that are more commonly used in the Python ecosystem like <a class="reference external" href="https://opensource.org/licenses/Apache-2.0">Apache-2</a>, <a class="reference external" href="https://opensource.org/licenses/MIT">MIT</a>, and <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a>.</p>
 </div>
 <div class="section" id="roadmap">
-<h2>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this headline"></a></h2>
+<h2>Roadmap<a class="headerlink" href="#roadmap" title="Permalink to this heading"></a></h2>
 <p>This is only the beginning for VegaFusion. There are a lot of possible future directions, and many of them are detailed in the <a class="reference internal" href="../../roadmap.html"><span class="doc std std-doc">roadmap</span></a>.</p>
 </div>
 <div class="section" id="learn-more">
-<h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this headline"></a></h2>
+<h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this heading"></a></h2>
 <p>Here are some ways that you can get in touch to learn more.</p>
 <ul class="simple">
-<li><p>Check out the code on <a class="reference external" href="https://github.com/vegafusion/vegafusion/">GitHub</a></p></li>
-<li><p>Start a discussion on <a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">GitHub Discussions</a></p></li>
-<li><p>And of course, if something doesn’t work please <a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">open an issue</a></p></li>
+<li><p>Check out the code on <a class="reference external" href="https://github.com/hex-inc/vegafusion/">GitHub</a></p></li>
+<li><p>Start a discussion on <a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">GitHub Discussions</a></p></li>
+<li><p>And of course, if something doesn’t work please <a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">open an issue</a></p></li>
 </ul>
 <p>Thanks!</p>
 </div>
@@ -312,12 +318,16 @@ This browser does not support the video tag.
      Previous:
     
     <a href="2022-01-19_Release_0.0.1.html">
-       VegaFusion 0.0.1
+       Announcing VegaFusion 0.0.1
     </a>
     
   </span>
   <span>&nbsp;</span>
   <span style="float: right">
+     Next: 
+    <a href="../2023/2023-01-18_Release_1.0.0.html">
+      Announcing VegaFusion 1.0 
+    </a>
     
   </span>
 </div>
@@ -331,7 +341,7 @@ This browser does not support the video tag.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

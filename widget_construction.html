@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Construction &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Construction &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,7 +24,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -77,6 +79,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="widget.html">VegaFusionWidget</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Construction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#construct-from-an-altair-chart">Construct from an Altair Chart</a></li>
@@ -85,11 +89,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="debouncing.html">Debouncing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="download_source_link.html">Download Source Link</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -103,17 +107,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -133,9 +138,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="widget.html">VegaFusionWidget</a> &raquo;</li>
-      <li>Construction</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="widget.html">VegaFusionWidget</a></li>
+      <li class="breadcrumb-item active">Construction</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/widget_construction.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,8 +149,8 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="construction">
-<h1>Construction<a class="headerlink" href="#construction" title="Permalink to this headline"></a></h1>
+              <div class="section" id="construction">
+<h1>Construction<a class="headerlink" href="#construction" title="Permalink to this heading"></a></h1>
 <p>A <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> can be constructed from:</p>
 <ol class="arabic simple">
 <li><p>An Altair <code class="docutils literal notranslate"><span class="pre">Chart</span></code> instance</p></li>
@@ -154,7 +159,7 @@
 </ol>
 <p>These values may be passed to the <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> as the sole positional argument, or as the <code class="docutils literal notranslate"><span class="pre">spec</span></code> keyword argument</p>
 <div class="section" id="construct-from-an-altair-chart">
-<h2>Construct from an Altair Chart<a class="headerlink" href="#construct-from-an-altair-chart" title="Permalink to this headline"></a></h2>
+<h2>Construct from an Altair Chart<a class="headerlink" href="#construct-from-an-altair-chart" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 <span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
@@ -171,7 +176,7 @@
 <img width="519" alt="Histogram" src="https://user-images.githubusercontent.com/15064365/148783521-81c5d183-0a6f-41ca-a0c1-0c76e23d65df.png">
 </div>
 <div class="section" id="construct-from-a-vega-lite-specification-dictionary">
-<h2>Construct from a Vega-Lite Specification Dictionary<a class="headerlink" href="#construct-from-a-vega-lite-specification-dictionary" title="Permalink to this headline"></a></h2>
+<h2>Construct from a Vega-Lite Specification Dictionary<a class="headerlink" href="#construct-from-a-vega-lite-specification-dictionary" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 
@@ -207,7 +212,7 @@
 <img width="424" alt="Screen Shot 2022-01-10 at 9 39 23 AM" src="https://user-images.githubusercontent.com/15064365/148783961-8106bc35-f584-42de-ac9e-fb1a8d2af637.png">
 </div>
 <div class="section" id="construct-from-a-vega-specification-string">
-<h2>Construct from a Vega Specification String<a class="headerlink" href="#construct-from-a-vega-specification-string" title="Permalink to this headline"></a></h2>
+<h2>Construct from a Vega Specification String<a class="headerlink" href="#construct-from-a-vega-specification-string" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
 
@@ -359,7 +364,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

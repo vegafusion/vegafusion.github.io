@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supported Environments &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Supported Environments &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,11 +24,13 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="VegaFusionWidget" href="widget.html" />
+    <link rel="next" title="Mime Renderer" href="mime_renderer.html" />
     <link rel="prev" title="Installation" href="installation.html" />    
 <style type="text/css">
   ul.ablog-archive {
@@ -80,11 +82,18 @@
 <li class="toctree-l2"><a class="reference internal" href="#classic-notebook">Classic Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#jupyterlab">JupyterLab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#voila">Voila</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visual-studio-code">Visual Studio Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hex">Hex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#colab">Colab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kaggle">Kaggle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dash-streamlit-panel">Dash / Streamlit / Panel</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -98,17 +107,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -128,8 +138,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Supported Environments</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Supported Environments</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/supported_environments.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -138,23 +148,74 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="supported-environments">
-<h1>Supported Environments<a class="headerlink" href="#supported-environments" title="Permalink to this headline"></a></h1>
-<p>VegaFusion Jupyter can display visualizations is the following contexts</p>
+              <div class="section" id="supported-environments">
+<h1>Supported Environments<a class="headerlink" href="#supported-environments" title="Permalink to this heading"></a></h1>
+<p>VegaFusion can display Altair visualizations is the following contexts</p>
 <div class="section" id="classic-notebook">
-<h2>Classic Notebook<a class="headerlink" href="#classic-notebook" title="Permalink to this headline"></a></h2>
-<p>VegaFusion can display charts in version 6 of the <a class="reference external" href="https://github.com/jupyter/notebook">Jupyter Notebook</a> (Sometimes referred to as the Classic Notebook since it predates JupyterLab).  The Classic Notebook extension containing the VegaFusion Jupyter Widget is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package, and it is enabled automatically when the package is installed.</p>
+<h2>Classic Notebook<a class="headerlink" href="#classic-notebook" title="Permalink to this heading"></a></h2>
+<p>Both the VegaFusion mime and widget renderers are compatible with version 6 of the <a class="reference external" href="https://github.com/jupyter/notebook">Jupyter Notebook</a> (Sometimes referred to as the Classic Notebook since it predates JupyterLab). The Classic Notebook extension containing the VegaFusion widget is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package, and it is enabled automatically when the package is installed.</p>
 </div>
 <div class="section" id="jupyterlab">
-<h2>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this headline"></a></h2>
-<p>VegaFusion can display charts in version 3+ of <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a>.  The JupyterLab extension containing the VegaFusion Jupyter Widget is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package, and it is enabled automatically when the package is installed.</p>
+<h2>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this heading"></a></h2>
+<p>Both the VegaFusion mime and widget renderers are compatible with version 3+ of <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a>.  The JupyterLab extension containing the VegaFusion widget is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package, and it is enabled automatically when the package is installed.</p>
 </div>
 <div class="section" id="voila">
-<h2>Voila<a class="headerlink" href="#voila" title="Permalink to this headline"></a></h2>
-<p>VegaFusion can display charts in the <a class="reference external" href="https://github.com/voila-dashboards/voila">Voila</a> dashboard toolkit. This works with or without the <a class="reference external" href="https://voila.readthedocs.io/en/latest/using.html#using-third-party-widgets-with-voila"><code class="docutils literal notranslate"><span class="pre">enable_nbextensions</span></code></a> flag.</p>
+<h2>Voila<a class="headerlink" href="#voila" title="Permalink to this heading"></a></h2>
+<p>Both the VegaFusion mime and widget renderers are compatible with the <a class="reference external" href="https://github.com/voila-dashboards/voila">Voila</a> dashboard toolkit. This works with or without the <a class="reference external" href="https://voila.readthedocs.io/en/latest/using.html#using-third-party-widgets-with-voila"><code class="docutils literal notranslate"><span class="pre">enable_nbextensions</span></code></a> flag.</p>
+</div>
+<div class="section" id="visual-studio-code">
+<h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this heading"></a></h2>
+<p>Both the VegaFusion mime and widget renderers are compatible with Visual Studio Code <a class="reference external" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Python notebooks</a>. The widget extension will be downloaded automatically from a CDN location, so an active internet connection is required to use the widget renderer.</p>
+</div>
+<div class="section" id="hex">
+<h2>Hex<a class="headerlink" href="#hex" title="Permalink to this heading"></a></h2>
+<p>The VegaFusion mime renderer is compatible with the <a class="reference external" href="https://hex.tech/">Hex notebook</a>. VegaFusion comes pre-installed and the mime renderer can be enabled as usual.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The widget renderer is not compatible with Hex.</p>
+</div>
+<div class="section" id="colab">
+<h2>Colab<a class="headerlink" href="#colab" title="Permalink to this heading"></a></h2>
+<p>The VegaFusion mime renderer is compatible with <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">vegafusion</span><span class="p">[</span><span class="n">embed</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The VegaFusion widget renderer is also compatible with <a class="reference external" href="https://colab.research.google.com/">Google Colab</a> when the custom widget manager is enabled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">vegafusion</span><span class="o">-</span><span class="n">jupyter</span><span class="p">[</span><span class="n">embed</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">output</span>
+<span class="n">output</span><span class="o">.</span><span class="n">enable_custom_widget_manager</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable_widget</span><span class="p">()</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="kaggle">
+<h2>Kaggle<a class="headerlink" href="#kaggle" title="Permalink to this heading"></a></h2>
+<p>The VegaFusion mime renderer is compatible with <a class="reference external" href="https://www.kaggle.com/docs/notebooks">Kaggle Notebooks</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">vegafusion</span><span class="p">[</span><span class="n">embed</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The widget renderer is not currently compatible with Kaggle.</p>
 </div>
 <div class="section" id="dash-streamlit-panel">
-<h2>Dash / Streamlit / Panel<a class="headerlink" href="#dash-streamlit-panel" title="Permalink to this headline"></a></h2>
+<h2>Dash / Streamlit / Panel<a class="headerlink" href="#dash-streamlit-panel" title="Permalink to this heading"></a></h2>
 <p>Extensions for Dash, Streamlit, and Panel are not yet supported. See the following roadmap entries:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="roadmap.html#roadmap-dash"><span class="std std-ref">Dash support</span></a></p></li>
@@ -172,13 +233,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="widget.html" class="btn btn-neutral float-right" title="VegaFusionWidget" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mime_renderer.html" class="btn btn-neutral float-right" title="Mime Renderer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

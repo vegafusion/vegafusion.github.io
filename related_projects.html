@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Related Projects &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Related Projects &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,11 +24,13 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Licensing and Funding" href="license_overview.html" />
+    <link rel="next" title="License" href="license_overview.html" />
     <link rel="prev" title="About the Name" href="about_the_name.html" />    
 <style type="text/css">
   ul.ablog-archive {
@@ -77,8 +79,11 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -96,17 +101,18 @@
 <li class="toctree-l2"><a class="reference internal" href="#ibis-vega-transform"><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -126,8 +132,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Related Projects</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Related Projects</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/related_projects.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -136,31 +142,26 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="related-projects">
-<h1>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this headline"></a></h1>
+              <div class="section" id="related-projects">
+<h1>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this heading"></a></h1>
 <p>Here are a few related projects that have some overlap with the goals of VegaFusion.</p>
 <div class="section" id="altair-transform">
-<h2><a class="reference external" href="https://github.com/altair-viz/altair-transform"><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code></a><a class="headerlink" href="#altair-transform" title="Permalink to this headline"></a></h2>
+<h2><a class="reference external" href="https://github.com/altair-viz/altair-transform"><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code></a><a class="headerlink" href="#altair-transform" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> is a Python library created by Jake Vanderplas, one of the creators of Altair. It consists of pandas implementations of most of the Vega expression language and Vega Transforms that are available through Altair. It supports two main use cases:</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://github.com/altair-viz/altair-transform#example-extracting-data">Extracting Data</a>: Given a Chart with transforms, <code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> can be used to construct a Pandas DataFrame representing the result of the Chart’s transforms, and the input to the Chart’s mark.</p></li>
 <li><p><a class="reference external" href="https://github.com/altair-viz/altair-transform#example-pre-aggregating-large-datasets">Pre-Aggregating Large Datasets</a>: Given a Chart with transforms, <code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> can be used to evaluate the transforms and create a new Chart instance that refers only to this evaluated dataset. For aggregation charts like histograms, this can result in a much smaller dataset being transferred to the browser.</p></li>
 </ol>
-<p>Neither of these workflows are implemented in VegaFusion yet, though they are both on the roadmap:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="roadmap.html#roadmap-extract-data"><span class="std std-ref">Extracting Data from Altair Chart</span></a></p></li>
-<li><p><a class="reference internal" href="roadmap.html#roadmap-pre-agg"><span class="std std-ref">Pre-Aggregating Large Datasets in Altair Chart</span></a></p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which is an initial focus of VegaFusion.</p>
+<p>These workflows were not supported by the initial version of VegaFusion, but support for both was added in version 1.0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which was the initial focus of VegaFusion.</p>
 </div>
 <div class="section" id="ibis-vega-transform">
-<h2><a class="reference external" href="https://github.com/Quansight/ibis-vega-transform"><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code></a><a class="headerlink" href="#ibis-vega-transform" title="Permalink to this headline"></a></h2>
+<h2><a class="reference external" href="https://github.com/Quansight/ibis-vega-transform"><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code></a><a class="headerlink" href="#ibis-vega-transform" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> is a Python library and JupyterLab extension developed by <a class="reference external" href="https://www.quansight.com/">Quansight</a>. It translates pipelines of Vega transforms into <a class="reference external" href="https://ibis-project.org/">Ibis</a> query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci).</p>
 <p>The JupyterLab extension makes two-way communication between the browser and the Python kernel possible, and this is used to support interactive visualizations like histogram brushing.</p>
 <p>In contrast to the Planner approach used by VegaFusion, <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> replaces pipelines of Vega transforms with a custom transform type and then registers a JavaScript handler for this custom transform type.  This JavaScript handler then uses Jupyter Comms to communicate with the Python portion of the library. The Python library converts the requested Vega transforms into an ibis query, evaluates the query, and sends the resulting dataset back to the browser using a Jupyter Comm.</p>
 <p>An advantage of this approach is that the Vega JavaScript library remains in control of the entire specification so the external <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> library does not need to maintain an independent task graph in order to support interactivity.  A downside of this approach is that the result of every transform pipeline must be sent back to the client and be stored in the Vega dataflow graph.  Often times this is not a problem, because the transform pipeline includes an aggregation stage that significantly reduces the dataset size.  However, sometimes the result of a transform pipeline is quite large, but it is only used as input to other transform pipelines.  In this case, it is advantageous to keep the large intermediary result cached on the server and to not send it to the client at all.  This use case is one of the reasons that VegaFusion uses the Planner+Runtime architecture described previously.</p>
-<p>For the initial release, VegaFusion implements all of its transform logic in the Python process (with efficient multi-threading) and has no capability to connect to external data providers like databases.  This is certainly a desirable capability, and is on the VegaFusion roadmap as the <a class="reference internal" href="roadmap.html#roadmap-external-data-providers"><span class="std std-ref">External Data Providers</span></a> item.</p>
-<p>Perhaps there will be a way to collaborate with the <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> project in the future to share a collection of Ibis implementations of Vega transforms.</p>
+<p>Currently, VegaFusion implements all of its transform logic in the Python process (with efficient multi-threading) and has no capability to connect to external data providers like databases.  This is certainly a desirable capability, and is on the VegaFusion roadmap as the <a class="reference internal" href="roadmap.html#roadmap-external-data-providers"><span class="std std-ref">External Data Providers</span></a> item.</p>
 </div>
 </div>
 
@@ -172,13 +173,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="about_the_name.html" class="btn btn-neutral float-left" title="About the Name" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="license_overview.html" class="btn btn-neutral float-right" title="Licensing and Funding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="license_overview.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

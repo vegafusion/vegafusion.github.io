@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Debouncing &mdash; VegaFusion 0.1.0 documentation</title>
+  <title>Debouncing &mdash; VegaFusion 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -24,11 +24,13 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Download Source Link" href="download_source_link.html" />
+    <link rel="next" title="Debugging" href="debugging.html" />
     <link rel="prev" title="Construction" href="widget_construction.html" />    
 <style type="text/css">
   ul.ablog-archive {
@@ -77,6 +79,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="widget.html">VegaFusionWidget</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="widget_construction.html">Construction</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Debouncing</a><ul>
@@ -84,11 +88,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#slower-debouncing">Slower debouncing</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="download_source_link.html">Download Source Link</a></li>
 <li class="toctree-l2"><a class="reference internal" href="debugging.html">Debugging</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="renderer.html">Altair Renderer and Data Transformer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level Integration</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
 <ul>
@@ -102,17 +106,18 @@
 <li class="toctree-l1"><a class="reference internal" href="technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_the_name.html">About the Name</a></li>
 <li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Citing VegaFusion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Future</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="license_overview.html">Licensing and Funding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">VegaFusion Roadmap</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/">Source Code</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/issues">Report an Issue</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/vegafusion/vegafusion/discussions">Start a Discussion</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Blog</span></p>
 <ul>
@@ -132,9 +137,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="widget.html">VegaFusionWidget</a> &raquo;</li>
-      <li>Debouncing</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="widget.html">VegaFusionWidget</a></li>
+      <li class="breadcrumb-item active">Debouncing</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/debouncing.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -143,8 +148,8 @@
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="tex2jax_ignore mathjax_ignore section" id="debouncing">
-<h1>Debouncing<a class="headerlink" href="#debouncing" title="Permalink to this headline"></a></h1>
+              <div class="section" id="debouncing">
+<h1>Debouncing<a class="headerlink" href="#debouncing" title="Permalink to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> provides configurable <a class="reference external" href="https://css-tricks.com/debouncing-throttling-explained-examples/">debouncing</a> to control how frequently user interaction updates are sent from the browser to the Python kernel.</p>
 <p>The widget’s <code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> properties correspond to the <code class="docutils literal notranslate"><span class="pre">wait</span></code> and <code class="docutils literal notranslate"><span class="pre">max_wait</span></code> properties of the <a class="reference external" href="https://lodash.com/docs/#debounce">lodash debounce</a> function. VegaFusion uses sensible defaults (<code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> of 30ms and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> of 60ms), but it can be useful to increase the default values to handle interactions on large datasets.</p>
 <p>Here is the specification for a chart that provides histogram data selection on a 10 million row dataset.</p>
@@ -187,7 +192,7 @@
 </pre></div>
 </div>
 <div class="section" id="default-debouncing">
-<h2>Default debouncing<a class="headerlink" href="#default-debouncing" title="Permalink to this headline"></a></h2>
+<h2>Default debouncing<a class="headerlink" href="#default-debouncing" title="Permalink to this heading"></a></h2>
 <p>Here is what the default interactivity looks like using on a 2015 Macbook pro.</p>
 <video width="600" controls>
   <source src="https://user-images.githubusercontent.com/15064365/148806511-879bd7c5-78d3-44f6-8dbe-1c654bd0e89c.mov" type="video/mp4">
@@ -196,7 +201,7 @@ This browser does not support the video tag.
 <p>You can see that the server falls behind, resulting in a poor interaction experience.</p>
 </div>
 <div class="section" id="slower-debouncing">
-<h2>Slower debouncing<a class="headerlink" href="#slower-debouncing" title="Permalink to this headline"></a></h2>
+<h2>Slower debouncing<a class="headerlink" href="#slower-debouncing" title="Permalink to this heading"></a></h2>
 <p>Debouncing can be adjusted to improve the interaction experience.  By setting <code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> to 50ms and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> the client will not send a request to the server until there has been a period of 50ms without any user interaction events.  This results in a user interaction experience where the chart is not updated until the full interaction has completed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">debounce_wait</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">debounce_max_wait</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
@@ -216,13 +221,13 @@ This browser does not support the video tag.
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="widget_construction.html" class="btn btn-neutral float-left" title="Construction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="download_source_link.html" class="btn btn-neutral float-right" title="Download Source Link" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="debugging.html" class="btn btn-neutral float-right" title="Debugging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Jon Mease.</p>
+    <p>&#169; Copyright 2023, Jon Mease.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
