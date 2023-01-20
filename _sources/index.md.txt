@@ -219,8 +219,9 @@ The VegaFusion project was created by [Jon Mease](https://jonmmease.dev/) and is
 
 ```{image} https://user-images.githubusercontent.com/15064365/213193272-b9617431-84a0-4733-8b58-1309d25e925b.svg
 :alt: Hex Logo
-:width: 300px
+:width: 200px
 :align: center
+:target: https://hex.tech
 ```
 
 ## Recent Posts
