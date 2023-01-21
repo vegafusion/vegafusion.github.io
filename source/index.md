@@ -1,4 +1,4 @@
-# VegaFusion
+<img src="https://user-images.githubusercontent.com/15064365/213880036-3d28c1b6-5b76-47c4-a010-2a623522c9f2.svg" width=50%>
 
 VegaFusion provides serverside scaling for the [Vega](https://vega.github.io/) visualization library. While not limited to Python, an initial application of VegaFusion is the scaling of the [Altair](https://altair-viz.github.io/) Python interface to [Vega-Lite](https://vega.github.io/vega-lite/).
 
@@ -63,7 +63,7 @@ Start a Discussion <https://github.com/hex-inc/vegafusion/discussions>
 blog
 ```
 
-## Quickstart 1: Overcome `MaxRowsError` with VegaFusion
+# Quickstart 1: Overcome `MaxRowsError`
 The VegaFusion mime renderer can be used to overcome the Altair [`MaxRowsError`](https://altair-viz.github.io/user_guide/faq.html#maxrowserror-how-can-i-plot-large-datasets) by performing data-intensive aggregations on the server and pruning unused columns from the source dataset.  First install the `vegafusion` Python package with the `embed` extras enabled
 
 ```bash
@@ -108,7 +108,7 @@ delay_hist
 ```
 ![Flight Delay Histogram](https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png)
 
-## Quickstart 2: Extract transformed data
+# Quickstart 2: Extract transformed data
 By default, data transforms in an Altair chart (e.g. filtering, binning, aggregation, etc.) are performed by the Vega JavaScript library running in the browser. This has the advantage of making the charts produced by Altair fully standalone, not requiring access to a running Python kernel to render properly. But it has the disadvantage of making it difficult to access the transformed data (e.g. the histogram bin edges and count values) from Python.  Since VegaFusion evaluates these transforms in the Python kernel, it's possible to access then from Python using the `vegafusion.transformed_data()` function.
 
 For example, the following code demonstrates how to access the histogram bin edges and counts for the example above:
@@ -149,7 +149,7 @@ vf.transformed_data(delay_hist)
 | 16 |                    200 |                        220 |       300 |
 | 17 |                    360 |                        380 |       100 |
 
-## Quickstart 3: Accelerate interactive charts
+# Quickstart 3: Accelerate interactive charts
 While the VegaFusion mime renderer works great for non-interactive Altair charts, it's not as well suited for [interactive](https://altair-viz.github.io/user_guide/interactions.html) charts visualizing large datasets. This is because the mime renderer does not maintain a live connection between the browser and the python kernel, so all the data that participates in an interaction must be sent to the browser.
 
 To address this situation, VegaFusion provides a [Jupyter Widget](https://ipywidgets.readthedocs.io/en/stable/) based renderer that does maintain a live connection between the chart in the browser and the Python kernel. In this configuration, selection operations (e.g. filtering to the extents of a brush selection) can be evaluated interactively in the Python kernel, which eliminates the need to transfer the full dataset to the client in order to maintain interactivity.
@@ -214,7 +214,7 @@ Histogram binning, aggregation, and selection filtering are now evaluated in the
 
 You can see that the VegaFusion widget renderer maintains a live connection to the Python kernel by noticing that the Python [kernel is running](https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions) as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.
 
-## Stewardship
+# Stewardship
 The VegaFusion project was created by [Jon Mease](https://jonmmease.dev/) and is now stewarded by [Hex Technologies](https://hex.tech/), which uses VegaFusion in production to accelerate its Vega-Lite powered chart editor.  Hex is committed to supporting VegaFusion's ongoing development and is excited to collaborate with the community to make VegaFusion useful throughout the Vega ecosystem.
 
 ```{image} https://user-images.githubusercontent.com/15064365/213193272-b9617431-84a0-4733-8b58-1309d25e925b.svg
@@ -224,7 +224,7 @@ The VegaFusion project was created by [Jon Mease](https://jonmmease.dev/) and is
 :target: https://hex.tech
 ```
 
-## Recent Posts
+# Recent Posts
 
 ```{postlist} 10
 :date: "%Y-%m-%d"

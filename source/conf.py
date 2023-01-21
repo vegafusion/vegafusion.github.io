@@ -22,7 +22,7 @@ copyright = '2023, Jon Mease'
 author = 'Jon Mease'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -45,6 +45,8 @@ exclude_patterns = []
 
 
 # -- Options for HTML output -------------------------------------------------
+
+html_title = 'VegaFusion'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -84,6 +86,8 @@ html_theme_options = {
 _social_img = "https://vegafusion.io/_static/vegafusion_social.png"
 _description = "VegaFusion provides serverside acceleration of the Vega visualization grammar"
 _title = "VegaFusion"
+
+pygments_style = "friendly"
 
 myst_html_meta = {
     "description lang=en": _description,
