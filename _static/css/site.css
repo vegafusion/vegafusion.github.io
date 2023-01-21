@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Contrail One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
 .wy-side-nav-search {
     background-color: black;
 }
 
 .wy-nav-top {
-    background-color: #8323a7;
+    background-color: #c13262;
 }
 
 video {
@@ -11,4 +15,32 @@ video {
     width: 100%;
     max-height: 600px;
     margin-bottom: 30px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Contrail One', sans-serif;
+    margin-bottom: 8px !important;
+}
+
+h1 {
+    font-size: 200%;
+}
+h2 {
+    font-size: 175%;
+}
+h3 {
+    font-size: 150%;
+}
+h4 {
+    font-size: 125%;
+}
+
+code.literal {
+    color: #c13262 !important;
+}
+
+p.caption {
+    color: #4dd0e1 !important;
+    font-family: Comfortaa,Lato,proxima-nova,Helvetica Neue,Arial,sans-serif;
+    font-weight: 700 !important;
 }

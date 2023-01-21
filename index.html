@@ -12,7 +12,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VegaFusion &mdash; VegaFusion 1.0.0 documentation</title>
+  <title>Quickstart 1: Overcome MaxRowsError &mdash; VegaFusion</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -125,20 +125,10 @@
 
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">VegaFusion</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
+          <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="vegafusion">
-<h1>VegaFusion<a class="headerlink" href="#vegafusion" title="Permalink to this heading"></a></h1>
+              <img src="https://user-images.githubusercontent.com/15064365/213880036-3d28c1b6-5b76-47c4-a010-2a623522c9f2.svg" width=50%>
 <p>VegaFusion provides serverside scaling for the <a class="reference external" href="https://vega.github.io/">Vega</a> visualization library. While not limited to Python, an initial application of VegaFusion is the scaling of the <a class="reference external" href="https://altair-viz.github.io/">Altair</a> Python interface to <a class="reference external" href="https://vega.github.io/vega-lite/">Vega-Lite</a>.</p>
 <p>As of version 1.0, VegaFusion is released under the same license as Vega, Vega-Lite, and Altair: <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a>.</p>
 <p><strong>For more info on the future direction of the project, see the <a class="reference internal" href="roadmap.html"><span class="doc std std-doc">Roadmap</span></a>.</strong></p>
@@ -154,8 +144,8 @@
 </div>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="quickstart-1-overcome-maxrowserror-with-vegafusion">
-<h2>Quickstart 1: Overcome <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code> with VegaFusion<a class="headerlink" href="#quickstart-1-overcome-maxrowserror-with-vegafusion" title="Permalink to this heading"></a></h2>
+<div class="section" id="quickstart-1-overcome-maxrowserror">
+<h1>Quickstart 1: Overcome <code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code><a class="headerlink" href="#quickstart-1-overcome-maxrowserror" title="Permalink to this heading"></a></h1>
 <p>The VegaFusion mime renderer can be used to overcome the Altair <a class="reference external" href="https://altair-viz.github.io/user_guide/faq.html#maxrowserror-how-can-i-plot-large-datasets"><code class="docutils literal notranslate"><span class="pre">MaxRowsError</span></code></a> by performing data-intensive aggregations on the server and pruning unused columns from the source dataset.  First install the <code class="docutils literal notranslate"><span class="pre">vegafusion</span></code> Python package with the <code class="docutils literal notranslate"><span class="pre">embed</span></code> extras enabled</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;vegafusion[embed]&quot;</span>
 </pre></div>
@@ -194,7 +184,7 @@
 <p><img alt="Flight Delay Histogram" src="https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png" /></p>
 </div>
 <div class="section" id="quickstart-2-extract-transformed-data">
-<h2>Quickstart 2: Extract transformed data<a class="headerlink" href="#quickstart-2-extract-transformed-data" title="Permalink to this heading"></a></h2>
+<h1>Quickstart 2: Extract transformed data<a class="headerlink" href="#quickstart-2-extract-transformed-data" title="Permalink to this heading"></a></h1>
 <p>By default, data transforms in an Altair chart (e.g. filtering, binning, aggregation, etc.) are performed by the Vega JavaScript library running in the browser. This has the advantage of making the charts produced by Altair fully standalone, not requiring access to a running Python kernel to render properly. But it has the disadvantage of making it difficult to access the transformed data (e.g. the histogram bin edges and count values) from Python.  Since VegaFusion evaluates these transforms in the Python kernel, it’s possible to access then from Python using the <code class="docutils literal notranslate"><span class="pre">vegafusion.transformed_data()</span></code> function.</p>
 <p>For example, the following code demonstrates how to access the histogram bin edges and counts for the example above:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -315,7 +305,7 @@
 </table>
 </div>
 <div class="section" id="quickstart-3-accelerate-interactive-charts">
-<h2>Quickstart 3: Accelerate interactive charts<a class="headerlink" href="#quickstart-3-accelerate-interactive-charts" title="Permalink to this heading"></a></h2>
+<h1>Quickstart 3: Accelerate interactive charts<a class="headerlink" href="#quickstart-3-accelerate-interactive-charts" title="Permalink to this heading"></a></h1>
 <p>While the VegaFusion mime renderer works great for non-interactive Altair charts, it’s not as well suited for <a class="reference external" href="https://altair-viz.github.io/user_guide/interactions.html">interactive</a> charts visualizing large datasets. This is because the mime renderer does not maintain a live connection between the browser and the python kernel, so all the data that participates in an interaction must be sent to the browser.</p>
 <p>To address this situation, VegaFusion provides a <a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/">Jupyter Widget</a> based renderer that does maintain a live connection between the chart in the browser and the Python kernel. In this configuration, selection operations (e.g. filtering to the extents of a brush selection) can be evaluated interactively in the Python kernel, which eliminates the need to transfer the full dataset to the client in order to maintain interactivity.</p>
 <p>The VegaFusion widget renderer is provided by the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package.</p>
@@ -373,18 +363,17 @@ This browser does not support the video tag.
 <p>You can see that the VegaFusion widget renderer maintains a live connection to the Python kernel by noticing that the Python <a class="reference external" href="https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions">kernel is running</a> as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.</p>
 </div>
 <div class="section" id="stewardship">
-<h2>Stewardship<a class="headerlink" href="#stewardship" title="Permalink to this heading"></a></h2>
+<h1>Stewardship<a class="headerlink" href="#stewardship" title="Permalink to this heading"></a></h1>
 <p>The VegaFusion project was created by <a class="reference external" href="https://jonmmease.dev/">Jon Mease</a> and is now stewarded by <a class="reference external" href="https://hex.tech/">Hex Technologies</a>, which uses VegaFusion in production to accelerate its Vega-Lite powered chart editor.  Hex is committed to supporting VegaFusion’s ongoing development and is excited to collaborate with the community to make VegaFusion useful throughout the Vega ecosystem.</p>
 <a class="reference external image-reference" href="https://hex.tech"><img alt="Hex Logo" class="align-center" src="https://user-images.githubusercontent.com/15064365/213193272-b9617431-84a0-4733-8b58-1309d25e925b.svg" width="200px" /></a>
 </div>
 <div class="section" id="recent-posts">
-<h2>Recent Posts<a class="headerlink" href="#recent-posts" title="Permalink to this heading"></a></h2>
+<h1>Recent Posts<a class="headerlink" href="#recent-posts" title="Permalink to this heading"></a></h1>
 <ul class="postlist-style-none postlist simple">
-<li class="ablog-post"><p class="ablog-post-title">2023-01-18 - <a class="reference internal" href="posts/2023/2023-01-18_Release_1.0.0.html">Announcing VegaFusion 1.0</a></p></li>
+<li class="ablog-post"><p class="ablog-post-title">2023-01-21 - <a class="reference internal" href="posts/2023/2023-01-21_Release_1.0.0.html">Announcing VegaFusion 1.0</a></p></li>
 <li class="ablog-post"><p class="ablog-post-title">2022-01-27 - <a class="reference internal" href="posts/2022/2022-01-27_ProjectAnnouncement.html">Announcing VegaFusion 0.1</a></p></li>
 <li class="ablog-post"><p class="ablog-post-title">2022-01-19 - <a class="reference internal" href="posts/2022/2022-01-19_Release_0.0.1.html">Announcing VegaFusion 0.0.1</a></p></li>
 </ul>
-</div>
 </div>
 
 <div class="section">
