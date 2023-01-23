@@ -1,4 +1,7 @@
-<img src="https://user-images.githubusercontent.com/15064365/213880036-3d28c1b6-5b76-47c4-a010-2a623522c9f2.svg" width=50%>
+<img 
+    src="https://user-images.githubusercontent.com/15064365/213880036-3d28c1b6-5b76-47c4-a010-2a623522c9f2.svg"
+    width=250px,
+    style="margin-left:-12px;margin-bottom:-26px">
 
 VegaFusion provides serverside scaling for the [Vega](https://vega.github.io/) visualization library. While not limited to Python, an initial application of VegaFusion is the scaling of the [Altair](https://altair-viz.github.io/) Python interface to [Vega-Lite](https://vega.github.io/vega-lite/).
 
