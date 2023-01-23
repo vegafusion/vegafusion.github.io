@@ -222,9 +222,27 @@ __count_end                                    int64
 dtype: object
 ```
 
+## Supported Transforms
+Here is the current set of supported Vega-Lite/Vega transforms:
+
+ - [Aggregate](https://vega.github.io/vega-lite/docs/aggregate.html)
+ - [Bin](https://vega.github.io/vega-lite/docs/bin.html)
+ - [Calculate](https://vega.github.io/vega-lite/docs/calculate.html)
+ - [Collect](https://vega.github.io/vega/docs/transforms/collect/)
+ - [Extent](https://vega.github.io/vega/docs/transforms/extent/)
+ - [Filter](https://vega.github.io/vega-lite/docs/filter.html)
+ - [Fold](https://vega.github.io/vega-lite/docs/fold.html)
+ - [Identifier](https://vega.github.io/vega/docs/transforms/identifier/)
+ - [Impute](https://vega.github.io/vega-lite/docs/impute.html) 
+ - [Join Aggregate](https://vega.github.io/vega-lite/docs/joinaggregate.html)
+ - [Pivot](https://vega.github.io/vega-lite/docs/pivot.html)
+ - [Project](https://vega.github.io/vega/docs/transforms/project/)
+ - [Sequence](https://vega.github.io/vega/docs/transforms/sequence/)
+ - [Stack](https://vega.github.io/vega-lite/docs/stack.html)
+ - [Time Unit](https://vega.github.io/vega-lite/docs/timeunit.html)
+ - [Window](https://vega.github.io/vega-lite/docs/window.html)
 
 ## Unsupported Transforms
-
 VegaFusion's coverage of Vega transforms is not complete, but it is growing with each release. If a chart makes use of a transform that is not yet supported, an error will be raised by the `transformed_data()` function. 
 
 **Note:** Charts with unsupported transforms will still render properly using the mime and widget renderers as these transforms will be pushed to the client for evaluation by the Vega JavaScript library.
