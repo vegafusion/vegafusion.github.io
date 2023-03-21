@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debouncing" href="debouncing.html" />
-    <link rel="prev" title="VegaFusionWidget" href="widget.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="VegaFusionWidget" href="widget.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -139,7 +123,8 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="construction">
+             
+<section id="construction">
 <h1>Construction<a class="headerlink" href="#construction" title="Permalink to this heading"></a></h1>
 <p>A <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> can be constructed from:</p>
 <ol class="arabic simple">
@@ -148,7 +133,7 @@
 <li><p>A String containing a Vega or Vega-Lite JSON specification</p></li>
 </ol>
 <p>These values may be passed to the <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> as the sole positional argument, or as the <code class="docutils literal notranslate"><span class="pre">spec</span></code> keyword argument</p>
-<div class="section" id="construct-from-an-altair-chart">
+<section id="construct-from-an-altair-chart">
 <h2>Construct from an Altair Chart<a class="headerlink" href="#construct-from-an-altair-chart" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
@@ -164,8 +149,8 @@
 </pre></div>
 </div>
 <img width="519" alt="Histogram" src="https://user-images.githubusercontent.com/15064365/148783521-81c5d183-0a6f-41ca-a0c1-0c76e23d65df.png">
-</div>
-<div class="section" id="construct-from-a-vega-lite-specification-dictionary">
+</section>
+<section id="construct-from-a-vega-lite-specification-dictionary">
 <h2>Construct from a Vega-Lite Specification Dictionary<a class="headerlink" href="#construct-from-a-vega-lite-specification-dictionary" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
@@ -200,8 +185,8 @@
 </pre></div>
 </div>
 <img width="424" alt="Screen Shot 2022-01-10 at 9 39 23 AM" src="https://user-images.githubusercontent.com/15064365/148783961-8106bc35-f584-42de-ac9e-fb1a8d2af637.png">
-</div>
-<div class="section" id="construct-from-a-vega-specification-string">
+</section>
+<section id="construct-from-a-vega-specification-string">
 <h2>Construct from a Vega Specification String<a class="headerlink" href="#construct-from-a-vega-specification-string" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
@@ -337,11 +322,12 @@
 </pre></div>
 </div>
 <img width="360" alt="Screen Shot 2022-01-10 at 10 03 15 AM" src="https://user-images.githubusercontent.com/15064365/148787878-675daf43-f228-4486-96ad-788481e3315d.png">
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

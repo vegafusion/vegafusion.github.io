@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Example Gallery" href="example_gallery.html" />
-    <link rel="prev" title="Transformed Data" href="transformed_data.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="Transformed Data" href="transformed_data.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -134,27 +118,29 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="low-level-integration">
+             
+<section id="low-level-integration">
 <h1>Low Level Integration<a class="headerlink" href="#low-level-integration" title="Permalink to this heading"></a></h1>
 <p>The VegaFusion mime and widget renderers are built from lower-level primitives that can be used to integrate VegaFusion in non-Jupyter, and non-Python, contexts. Documentation of these lower-level constructs is not yet complete, so in the meantime please <a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">start a discussion</a> if you’re interested in integrating VegaFusion somewhere new.</p>
-<div class="section" id="pre-transform-vega-specifications">
+<section id="pre-transform-vega-specifications">
 <h2>Pre-transform Vega specifications<a class="headerlink" href="#pre-transform-vega-specifications" title="Permalink to this heading"></a></h2>
 <p>VegaFusion supports transforming Vega specifications into new Vega specifications that have had their data transformations already applied.  This is how the VegaFusion mime renderer works.  The pre-transform logic can be invoked directly using the <code class="docutils literal notranslate"><span class="pre">vegafusion.runtime.pre_transform_spec</span></code> function.</p>
 <p>See the <a class="reference external" href="https://github.com/hex-inc/vegafusion-demos/blob/main/notebooks/pre_transform_vega/pre_transform.ipynb">pre_transform.ipynb</a> notebook for more information.</p>
-</div>
-<div class="section" id="pre-transform-vega-datasets">
+</section>
+<section id="pre-transform-vega-datasets">
 <h2>Pre-transform Vega datasets<a class="headerlink" href="#pre-transform-vega-datasets" title="Permalink to this heading"></a></h2>
 <p>VegaFusion supports evaluating select datasets in a Vega specification and returning the results as pandas DataFrames. This is how the <code class="docutils literal notranslate"><span class="pre">vegafusion.transformed_data</span></code> function extracts transformed data from an Altair Chart object.</p>
 <p>See the <a class="reference external" href="https://github.com/hex-inc/vegafusion-demos/blob/main/notebooks/pre_transform_vega/pre_transform_datasets.ipynb">pre_transform_datasets.ipynb</a> notebook for more information.</p>
-</div>
-<div class="section" id="convert-vega-lite-to-vega">
+</section>
+<section id="convert-vega-lite-to-vega">
 <h2>Convert Vega-Lite to Vega<a class="headerlink" href="#convert-vega-lite-to-vega" title="Permalink to this heading"></a></h2>
 <p>VegaFusion works with Vega specifications and has no support for working with Vega-Lite specifications directly.  The <a class="reference external" href="https://github.com/vega/vl-convert">VlConvert</a> project was developed to make it easy to convert Vega-Lite to Vega without an external web browser or node.js runtime.  The VegaFusion mime renderer and the <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> function both rely on the <a class="reference external" href="https://pypi.org/project/vl-convert-python/"><code class="docutils literal notranslate"><span class="pre">vl-convert-python</span></code></a> package to convert the Vega-Lite specifications produced by Altair into Vega specifications that are then processed by VegaFusion.</p>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

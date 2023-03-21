@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Verbosity" href="verbosity.html" />
-    <link rel="prev" title="Debugging" href="debugging.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="Debugging" href="debugging.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -138,7 +122,8 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="planner-results">
+             
+<section id="planner-results">
 <h1>Planner Results<a class="headerlink" href="#planner-results" title="Permalink to this heading"></a></h1>
 <p>As discussed in the <a class="reference internal" href="how_it_works.html#planner"><span class="std std-ref">Planner</span></a> section, VegaFusion uses a planning phase to split an input Vega specification into a specification to run on the client and a specification to run on the server.  Additionally, a communication plan is produced that specifies which signal and dataset values must be passed between the server and client to preserve interactivity.  For debugging, the client spec, server spec, and communication plan are available as properties on the <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> instance after the chart has been displayed.</p>
 <p>First, wrap the chart in a <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> and display it.</p>
@@ -180,10 +165,11 @@ This browser does not support the video tag.
 <li><p><code class="docutils literal notranslate"><span class="pre">widget.client_vega_spec</span></code>: This is the portion of the full Vega spec that was planned to run on the client and be rendered by the Vega JavaScript Library.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">widget.comm_plan</span></code>: This is the specification of which signals and datasets must be transfered between the client and server in order to preserve the interactive behavior of the original specification.</p></li>
 </ul>
-</div>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

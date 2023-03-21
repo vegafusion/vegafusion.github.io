@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -29,31 +30,10 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="search" title="Search" href="../../search.html" />
+ 
+
+
 
 </head>
 
@@ -62,12 +42,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> VegaFusion
-            <img src="../../_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            VegaFusion
+              <img src="../../_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -127,20 +111,21 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="announcing-vegafusion-1-0">
+             
+<section id="announcing-vegafusion-1-0">
 <h1>Announcing VegaFusion 1.0<a class="headerlink" href="#announcing-vegafusion-1-0" title="Permalink to this heading"></a></h1>
 <p><strong>Mime renderer, transform evaluation, and a permissive license</strong></p>
 <p>By: Jon Mease</p>
 <hr class="docutils" />
 <p>The VegaFusion team is happy to announce the release of VegaFusion version 1.0. This release is the culmination of several months of work on both VegaFusion itself and its new dependency: <a class="reference external" href="https://medium.com/&#64;jonmmease/introducing-vlconvert-c763f0076e89">VlConvert</a>.  This version introduces a brand new mimetype based renderer that is compatible with many notebook and compute environments without requiring custom extensions. It also includes a new <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> function that makes it possible to evaluate the data transforms associated with an Altair <code class="docutils literal notranslate"><span class="pre">Chart</span></code> and return the result as a pandas DataFrame.</p>
 <p>Finally, we’re thrilled to announce that VegaFusion has been adopted by Hex and is now licensed under the same permissive BSD-3 license used by Vega, Vega-Lite, and Altair.</p>
-<div class="section" id="background">
+<section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h2>
 <p>VegaFusion scales Vega, Vega-Lite, and Altair visualizations by moving data transformations from the browser to a server (e.g. a Python kernel).</p>
 <p>The initial focus was on supporting complex interactive visualizations that require a live two-way connection between the client and server.  This approach works well, but it relies on a custom Jupyter widget extension which adds complexity and limits the environments it can be deployed in.</p>
 <p>To reduce complexity while addressing the more common scenario of non-interactive charts, VegaFusion 1.0 introduces an entirely new renderer that does not require any custom extensions but instead leverages the built-in rendering capabilities of modern notebooks and compute environments.</p>
-</div>
-<div class="section" id="vegafusion-mime-renderer">
+</section>
+<section id="vegafusion-mime-renderer">
 <h2>VegaFusion mime renderer<a class="headerlink" href="#vegafusion-mime-renderer" title="Permalink to this heading"></a></h2>
 <p>Altair comes with a default limit of 5,000 input rows to avoid crashing the user’s browser. Because all data transformations are applied in the browser by the Vega JavaScript library, the full input dataset must be loaded into the browser.  The VegaFusion mime renderer performs most common Vega transforms in the Python kernel, and so the row limit is applied to the transformed data rather than the input data. When the chart includes any form of aggregation, the transformed dataset typically has many fewer rows than the input dataset.</p>
 <p>To use the VegaFusion mime renderer, first install the <code class="docutils literal notranslate"><span class="pre">vegafusion</span></code> Python package with the <code class="docutils literal notranslate"><span class="pre">embed</span></code> extras enabled:</p>
@@ -179,11 +164,11 @@
 </pre></div>
 </div>
 <p><img alt="Flight Delay Histogram" src="https://user-images.githubusercontent.com/15064365/209973961-948b9d10-4202-4547-bbc8-d1981dcc8c4e.png" /></p>
-</div>
-<div class="section" id="transform-evaluation">
+</section>
+<section id="transform-evaluation">
 <h2>Transform evaluation<a class="headerlink" href="#transform-evaluation" title="Permalink to this heading"></a></h2>
 <p>VegaFusion now supports extracting the transformed data for an Altair Chart using the <code class="docutils literal notranslate"><span class="pre">vegafusion.transformed_data()</span></code> function. This is particularly useful when building a chart that includes a pipeline of transforms, as it’s now possible to see the intermediate results of each transform step.</p>
-<div class="section" id="example-top-k">
+<section id="example-top-k">
 <h3>Example: Top K<a class="headerlink" href="#example-top-k" title="Permalink to this heading"></a></h3>
 <p>Here is an example, based on the <a class="reference external" href="https://altair-viz.github.io/gallery/top_k_with_others.html">Top-K plot with Others</a> example from the Altair documentation, of how <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> can be helpful when building a complex chart.</p>
 <p>First, create an Altair <code class="docutils literal notranslate"><span class="pre">Chart</span></code> wrapping the data source URL.</p>
@@ -198,12 +183,12 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p></p></th>
-<th class="text-left head"><p>0</p></th>
-<th class="text-left head"><p>1</p></th>
-<th class="text-left head"><p>2</p></th>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-left"><p>0</p></th>
+<th class="head text-left"><p>1</p></th>
+<th class="head text-left"><p>2</p></th>
 </tr>
 </thead>
 <tbody>
@@ -300,11 +285,11 @@
 <span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-right head"><p></p></th>
-<th class="text-left head"><p>Director</p></th>
-<th class="text-right head"><p>aggregate_gross</p></th>
+<tr class="row-odd"><th class="head text-right"><p></p></th>
+<th class="head text-left"><p>Director</p></th>
+<th class="head text-right"><p>aggregate_gross</p></th>
 </tr>
 </thead>
 <tbody>
@@ -344,12 +329,12 @@
 <span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-right head"><p></p></th>
-<th class="text-left head"><p>Director</p></th>
-<th class="text-right head"><p>aggregate_gross</p></th>
-<th class="text-right head"><p>rank</p></th>
+<tr class="row-odd"><th class="head text-right"><p></p></th>
+<th class="head text-left"><p>Director</p></th>
+<th class="head text-right"><p>aggregate_gross</p></th>
+<th class="head text-right"><p>rank</p></th>
 </tr>
 </thead>
 <tbody>
@@ -396,13 +381,13 @@
 <span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">row_limit</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-right head"><p></p></th>
-<th class="text-left head"><p>Director</p></th>
-<th class="text-right head"><p>aggregate_gross</p></th>
-<th class="text-right head"><p>rank</p></th>
-<th class="text-left head"><p>ranked_director</p></th>
+<tr class="row-odd"><th class="head text-right"><p></p></th>
+<th class="head text-left"><p>Director</p></th>
+<th class="head text-right"><p>aggregate_gross</p></th>
+<th class="head text-right"><p>rank</p></th>
+<th class="head text-left"><p>ranked_director</p></th>
 </tr>
 </thead>
 <tbody>
@@ -514,11 +499,11 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-right head"><p></p></th>
-<th class="text-left head"><p>ranked_director</p></th>
-<th class="text-right head"><p>mean_aggregate_gross</p></th>
+<tr class="row-odd"><th class="head text-right"><p></p></th>
+<th class="head text-left"><p>ranked_director</p></th>
+<th class="head text-right"><p>mean_aggregate_gross</p></th>
 </tr>
 </thead>
 <tbody>
@@ -564,9 +549,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="increased-transform-coverage">
+</section>
+</section>
+<section id="increased-transform-coverage">
 <h2>Increased transform coverage<a class="headerlink" href="#increased-transform-coverage" title="Permalink to this heading"></a></h2>
 <p>VegaFusion’s coverage of Vega-Lite’s transforms is not yet complete, but it’s growing with each release. Support for the <a class="reference external" href="https://vega.github.io/vega-lite/docs/pivot.html">Pivot</a>, <a class="reference external" href="https://vega.github.io/vega-lite/docs/impute.html">Impute</a>, <a class="reference external" href="https://vega.github.io/vega-lite/docs/fold.html">Fold</a>, and <a class="reference external" href="https://vega.github.io/vega/docs/transforms/sequence/">Sequence</a> transforms was added in this release. Here is the full set of supported Vega-Lite/Vega transforms:</p>
 <ul class="simple">
@@ -588,20 +573,20 @@
 <li><p><a class="reference external" href="https://vega.github.io/vega-lite/docs/window.html">Window</a></p></li>
 </ul>
 <p>More on the way!</p>
-</div>
-<div class="section" id="leveraging-vlconvert">
+</section>
+<section id="leveraging-vlconvert">
 <h2>Leveraging VlConvert<a class="headerlink" href="#leveraging-vlconvert" title="Permalink to this heading"></a></h2>
 <p>Both the new mime renderer and the <code class="docutils literal notranslate"><span class="pre">transfomed_data()</span></code> function require the ability to convert Vega-Lite specifications (as produced by Altair) to Vega specifications (as consumed by VegaFusion). This functionality is provided by the Vega-Lite JavaScript library, which presents a challenge: How can we perform this conversion in Python without a web browser?</p>
 <p>To meet this challenge, we developed a new Python library called <a class="reference external" href="https://github.com/vega/vl-convert">VlConvert</a>.  You can read all about VlConvert in its <a class="reference external" href="https://medium.com/&#64;jonmmease/introducing-vlconvert-c763f0076e89">announcement post</a>, but in short it embeds the <a class="reference external" href="https://deno.land/">Deno</a> JavaScript runtime in a Python library for the purpose of running the Vega-Lite JavaScript library.</p>
 <p>While motivated by the needs of VegaFusion, VlConvert turned out to be a great foundation for implementing static image export, as it is a simple Python package that doesn’t require external dependencies on a web browser or Node.js.  In fact, VlConvert has been adopted by the Vega community and will be the default image export engine for the coming release of Altair 5!</p>
-</div>
-<div class="section" id="a-new-partnership-and-a-new-license">
+</section>
+<section id="a-new-partnership-and-a-new-license">
 <h2>A new partnership and a new license<a class="headerlink" href="#a-new-partnership-and-a-new-license" title="Permalink to this heading"></a></h2>
 <p>VegaFusion was first released in January 2022 under the copyleft AGPL license. I chose to use the AGPL license initially because I wanted to share the work with the Vega community, but I also wanted to leave open the possibility of building a company with a dual-license business model around the project.</p>
 <p>The day of the initial release, Barry McCardel (the CEO of <a class="reference external" href="https://hex.tech/">Hex Technologies</a>) reached out to me, and we started talking about how VegaFusion could help scale the <a class="reference external" href="https://learn.hex.tech/docs/logic-cell-types/display-cells/chart-cells">Hex chart cell</a> (which is itself built on Vega-Lite). I granted them a commercial license exception, and started working with the Hex team to integrate VegaFusion into Hex.  After months of working together with Barry and the Hex team, and lots of conversations around the future of the project, we decided that the best path forward was for me to continue working on VegaFusion as a member of Hex team, and for VegaFusion to be re-licensed to a permissive license that is compatible with the rest of the Vega ecosystem.</p>
 <p>The end result is that VegaFusion 1.0 is licensed under the <a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause">BSD-3</a> license. Also, to make it easier to take advantage of Hex’s testing infrastructure the VegaFusion repositories have been moved under the <a class="reference external" href="https://github.com/hex-inc">hex-inc</a> GitHub organization.</p>
-</div>
-<div class="section" id="learn-more">
+</section>
+<section id="learn-more">
 <h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this heading"></a></h2>
 <p>Check out these resources if you’d like to learn more:</p>
 <ul class="simple">
@@ -610,26 +595,33 @@
 <li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report and Issue</a></p></li>
 <li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussions</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
     
-
-<div class="section">
-  <span style="float: left">
-     Previous:
+    
+    Previous:
     
     <a href="../2022/2022-01-27_ProjectAnnouncement.html">
-       Announcing VegaFusion 0.1
+      
+      <span>Announcing VegaFusion 0.1</span>
     </a>
     
   </span>
-  <span>&nbsp;</span>
-  <span style="float: right">
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
     
   </span>
 </div>
+
+  
   
 </div>
 

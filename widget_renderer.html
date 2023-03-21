@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="VegaFusionWidget" href="widget.html" />
-    <link rel="prev" title="Mime Renderer" href="mime_renderer.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="Mime Renderer" href="mime_renderer.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -137,18 +121,19 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="widget-renderer">
+             
+<section id="widget-renderer">
 <h1>Widget Renderer<a class="headerlink" href="#widget-renderer" title="Permalink to this heading"></a></h1>
 <p>The VegaFusion widget renderer uses a custom Jupyter Widget to display Altair charts and maintain a live connection between the Python kernel and the chart in the browser.  This is a more complex setup than the mime renderer, but it makes it possible for chart <a class="reference external" href="https://altair-viz.github.io/user_guide/interactions.html">interactions</a> (e.g. histogram selection) to be processed by the VegaFusion runtime.  Note that for static charts, the mime renderer provides the same benefits as the widget renderer without requiring the custom Jupyter Widget extension.</p>
-<div class="section" id="installation">
+<section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>The widget renderer is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;vegafusion-jupyter[embed]&quot;</span>
 </pre></div>
 </div>
 <p>The required Jupyter Widget extensions for the Classic Notebook and JupyterLab are bundled with the Python package and should be enabled automatically.</p>
-</div>
-<div class="section" id="activation">
+</section>
+<section id="activation">
 <h2>Activation<a class="headerlink" href="#activation" title="Permalink to this heading"></a></h2>
 <p>The VegaFusion widget renderer can be enabled using the <code class="docutils literal notranslate"><span class="pre">vegafusion.enable_widget()</span></code> function. Here is a full example of an interactive chart that is displayed using the widget renderer:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -197,24 +182,25 @@
   <source src="https://user-images.githubusercontent.com/15064365/209974420-480121b4-b206-4bb2-b473-0c663e38ea5e.mov" type="video/mp4">
 This browser does not support the video tag.
 </video>
-</div>
-<div class="section" id="feather-data-transformer">
+</section>
+<section id="feather-data-transformer">
 <h2>Feather Data Transformer<a class="headerlink" href="#feather-data-transformer" title="Permalink to this heading"></a></h2>
 <p>The VegaFusion widget renderer provides a custom <a class="reference external" href="https://altair-viz.github.io/user_guide/data_transformers.html">data transformer</a>. When an Altair chart is created based on a pandas DataFrame, the <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code>’s data transformer will extract the DataFrame and save it to a <a class="reference external" href="https://arrow.apache.org/docs/python/feather.html">feather file</a> in a <code class="docutils literal notranslate"><span class="pre">_vegafusion_data</span></code> directory in the current directory.  The feather file’s name is generated based on a hash of the DataFrame’s contents, so new files will only be added to the directory when charts are created with new DataFrames.  Feel free to delete the directory when no interactive VegaFusion charts are currently being displayed, but deleting the directory while an interactive chart is being displayed may result in an error.</p>
 <p>This approach is implemented by the <code class="docutils literal notranslate"><span class="pre">&quot;vegafusion-feather&quot;</span></code> data transformer, which is automatically enabled by the <code class="docutils literal notranslate"><span class="pre">vegafusion.enable_widget()</span></code> function or when using <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> directly.</p>
-<div class="section" id="customizing-feather-file-directory">
+<section id="customizing-feather-file-directory">
 <h3>Customizing Feather File Directory<a class="headerlink" href="#customizing-feather-file-directory" title="Permalink to this heading"></a></h3>
 <p>The directory that these feather files are written to can be customized using the <code class="docutils literal notranslate"><span class="pre">data_dir</span></code> argument to <code class="docutils literal notranslate"><span class="pre">vegafusion.enable_widget()</span></code>. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
 <span class="n">vf</span><span class="o">.</span><span class="n">enable_widget</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="s1">&#39;my_data_dir&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

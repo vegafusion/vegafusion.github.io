@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Mime Renderer" href="mime_renderer.html" />
-    <link rel="prev" title="Installation" href="installation.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="Installation" href="installation.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -139,26 +123,27 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="supported-environments">
+             
+<section id="supported-environments">
 <h1>Supported Environments<a class="headerlink" href="#supported-environments" title="Permalink to this heading"></a></h1>
 <p>VegaFusion can display Altair visualizations is the following contexts</p>
-<div class="section" id="classic-notebook">
+<section id="classic-notebook">
 <h2>Classic Notebook<a class="headerlink" href="#classic-notebook" title="Permalink to this heading"></a></h2>
 <p>Both the VegaFusion mime and widget renderers are compatible with version 6 of the <a class="reference external" href="https://github.com/jupyter/notebook">Jupyter Notebook</a> (Sometimes referred to as the Classic Notebook since it predates JupyterLab). The Classic Notebook extension containing the VegaFusion widget is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package, and it is enabled automatically when the package is installed.</p>
-</div>
-<div class="section" id="jupyterlab">
+</section>
+<section id="jupyterlab">
 <h2>JupyterLab<a class="headerlink" href="#jupyterlab" title="Permalink to this heading"></a></h2>
 <p>Both the VegaFusion mime and widget renderers are compatible with version 3+ of <a class="reference external" href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a>.  The JupyterLab extension containing the VegaFusion widget is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> Python package, and it is enabled automatically when the package is installed.</p>
-</div>
-<div class="section" id="voila">
+</section>
+<section id="voila">
 <h2>Voila<a class="headerlink" href="#voila" title="Permalink to this heading"></a></h2>
 <p>Both the VegaFusion mime and widget renderers are compatible with the <a class="reference external" href="https://github.com/voila-dashboards/voila">Voila</a> dashboard toolkit. This works with or without the <a class="reference external" href="https://voila.readthedocs.io/en/latest/using.html#using-third-party-widgets-with-voila"><code class="docutils literal notranslate"><span class="pre">enable_nbextensions</span></code></a> flag.</p>
-</div>
-<div class="section" id="visual-studio-code">
+</section>
+<section id="visual-studio-code">
 <h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this heading"></a></h2>
 <p>Both the VegaFusion mime and widget renderers are compatible with Visual Studio Code <a class="reference external" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Python notebooks</a>. The widget extension will be downloaded automatically from a CDN location, so an active internet connection is required to use the widget renderer.</p>
-</div>
-<div class="section" id="hex">
+</section>
+<section id="hex">
 <h2>Hex<a class="headerlink" href="#hex" title="Permalink to this heading"></a></h2>
 <p>The VegaFusion mime renderer is compatible with the <a class="reference external" href="https://hex.tech/">Hex notebook</a>. VegaFusion comes pre-installed and the mime renderer can be enabled as usual.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
@@ -167,8 +152,8 @@
 </pre></div>
 </div>
 <p>The widget renderer is not compatible with Hex.</p>
-</div>
-<div class="section" id="colab">
+</section>
+<section id="colab">
 <h2>Colab<a class="headerlink" href="#colab" title="Permalink to this heading"></a></h2>
 <p>The VegaFusion mime renderer is compatible with <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">vegafusion</span><span class="p">[</span><span class="n">embed</span><span class="p">]</span>
@@ -191,8 +176,8 @@
 <span class="o">...</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="kaggle">
+</section>
+<section id="kaggle">
 <h2>Kaggle<a class="headerlink" href="#kaggle" title="Permalink to this heading"></a></h2>
 <p>The VegaFusion mime renderer is compatible with <a class="reference external" href="https://www.kaggle.com/docs/notebooks">Kaggle Notebooks</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">vegafusion</span><span class="p">[</span><span class="n">embed</span><span class="p">]</span>
@@ -204,8 +189,8 @@
 </pre></div>
 </div>
 <p>The widget renderer is not currently compatible with Kaggle.</p>
-</div>
-<div class="section" id="dash-streamlit-panel">
+</section>
+<section id="dash-streamlit-panel">
 <h2>Dash / Streamlit / Panel<a class="headerlink" href="#dash-streamlit-panel" title="Permalink to this heading"></a></h2>
 <p>Extensions for Dash, Streamlit, and Panel are not yet supported. See the following roadmap entries:</p>
 <ul class="simple">
@@ -213,11 +198,12 @@
 <li><p><a class="reference internal" href="roadmap.html#roadmap-streamlit"><span class="std std-ref">Streamlit support</span></a></p></li>
 <li><p><a class="reference internal" href="roadmap.html#roadmap-panel"><span class="std std-ref">Panel support</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Technology" href="technology.html" />
-    <link rel="prev" title="How VegaFusion Works" href="how_it_works.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="How VegaFusion Works" href="how_it_works.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -133,24 +117,26 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="architecture">
+             
+<section id="architecture">
 <h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h1>
-<div class="section" id="vegafusion-architecture">
+<section id="vegafusion-architecture">
 <h2>VegaFusion Architecture<a class="headerlink" href="#vegafusion-architecture" title="Permalink to this heading"></a></h2>
 <p>In the case of the VegaFusion widget renderer, the Planner runs entirely in the browser.  The responsibilities of the Runtime are split between the client and the server.  The client portion of the runtime (the middleware) is responsible for compiling the server specification into an efficient task graph representation.  As the root values of the task graph change (typically in response to user interaction events), the middleware traverses the graph and compares the nodes in the traversal with the communication plan to determine which node values to request from the server.</p>
 <p>The middleware serializes the task graph and the query node ids and sends them as a request to the server runtime.  The server runtime receives the request, and checks whether the requested nodes are already available in its cache. If not it recursively traverses the ancestors of the query nodes until it finds a node value that is in the cache, or an inline root value of the Task Graph specification. It then traverses back down the task graph, evaluating the task functions as it goes. These newly computed task values are stored in the cache, and finally the requested node values are sent to the client.</p>
-</div>
-<div class="section" id="architecture-advantages">
+</section>
+<section id="architecture-advantages">
 <h2>Architecture Advantages<a class="headerlink" href="#architecture-advantages" title="Permalink to this heading"></a></h2>
 <p>This architecture is more complex than what would be required for only the Jupyter Widget scenario.  A characteristic of Jupyter Widgets is that there is a one-to-one correspondence between the widget state stored in the browser and the state stored on the server. So it would be fine for the task graph specification and the task graph values to be one data structure that is mirrored between the client and server.</p>
 <p>This was actually the initial design. But it was soon apparent that this approach would not scale well to support future client server scenarios where one server process needs to support many clients. For example, when VegaFusion eventually supports Dash and custom client server configurations.  In these scenarios, it’s not desirable for the server to maintain the full state of every visualization for every user.  This is especially wasteful when many users are viewing nearly identical visualizations.</p>
 <p>With the VegaFusion runtime architecture, the server memory usage is independent of the number of simultaneous clients.  Each client request contains the full specification of the task graph, so the server doesn’t need to remember the exact previous state of a client.  At the same time, it would be very inefficient if the server always had to compute every value in the full task graph on each request.  This inefficiency is addressed with precise caching.  The caching is “precise” in that each node of the task graph has a cache key that is generated from both its internal specification and that of all of its parents.  This means that common subgraphs across requests will have a shared cache entry even if the downstream tasks are different.</p>
 <p>Another advantage of the approach is that a single client can freely change its task graph without having to notify the server runtime.  For example, a Vega editor backed by VegaFusion could send a slightly different task graph to the server as the spec is modified, but the cache will remain valid for the portions of the task graph that were not modified.  This effectively provides a hot reload capability.</p>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license_overview.html" />
-    <link rel="prev" title="About the Name" href="about_the_name.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="About the Name" href="about_the_name.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -133,10 +117,11 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="related-projects">
+             
+<section id="related-projects">
 <h1>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this heading"></a></h1>
 <p>Here are a few related projects that have some overlap with the goals of VegaFusion.</p>
-<div class="section" id="altair-transform">
+<section id="altair-transform">
 <h2><a class="reference external" href="https://github.com/altair-viz/altair-transform"><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code></a><a class="headerlink" href="#altair-transform" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> is a Python library created by Jake Vanderplas, one of the creators of Altair. It consists of pandas implementations of most of the Vega expression language and Vega Transforms that are available through Altair. It supports two main use cases:</p>
 <ol class="arabic simple">
@@ -145,19 +130,20 @@
 </ol>
 <p>These workflows were not supported by the initial version of VegaFusion, but support for both was added in version 1.0.</p>
 <p><code class="docutils literal notranslate"><span class="pre">altair-transform</span></code> does not support evaluating transforms on the server in interactive workflows like linked histogram brushing, which was the initial focus of VegaFusion.</p>
-</div>
-<div class="section" id="ibis-vega-transform">
+</section>
+<section id="ibis-vega-transform">
 <h2><a class="reference external" href="https://github.com/Quansight/ibis-vega-transform"><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code></a><a class="headerlink" href="#ibis-vega-transform" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> is a Python library and JupyterLab extension developed by <a class="reference external" href="https://www.quansight.com/">Quansight</a>. It translates pipelines of Vega transforms into <a class="reference external" href="https://ibis-project.org/">Ibis</a> query expressions, which can then be evaluated with a variety of Ibis database backends (in particular, OmniSci).</p>
 <p>The JupyterLab extension makes two-way communication between the browser and the Python kernel possible, and this is used to support interactive visualizations like histogram brushing.</p>
 <p>In contrast to the Planner approach used by VegaFusion, <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> replaces pipelines of Vega transforms with a custom transform type and then registers a JavaScript handler for this custom transform type.  This JavaScript handler then uses Jupyter Comms to communicate with the Python portion of the library. The Python library converts the requested Vega transforms into an ibis query, evaluates the query, and sends the resulting dataset back to the browser using a Jupyter Comm.</p>
 <p>An advantage of this approach is that the Vega JavaScript library remains in control of the entire specification so the external <code class="docutils literal notranslate"><span class="pre">ibis-vega-transform</span></code> library does not need to maintain an independent task graph in order to support interactivity.  A downside of this approach is that the result of every transform pipeline must be sent back to the client and be stored in the Vega dataflow graph.  Often times this is not a problem, because the transform pipeline includes an aggregation stage that significantly reduces the dataset size.  However, sometimes the result of a transform pipeline is quite large, but it is only used as input to other transform pipelines.  In this case, it is advantageous to keep the large intermediary result cached on the server and to not send it to the client at all.  This use case is one of the reasons that VegaFusion uses the Planner+Runtime architecture described previously.</p>
 <p>Currently, VegaFusion implements all of its transform logic in the Python process (with efficient multi-threading) and has no capability to connect to external data providers like databases.  This is certainly a desirable capability, and is on the VegaFusion roadmap as the <a class="reference internal" href="roadmap.html#roadmap-external-data-providers"><span class="std std-ref">External Data Providers</span></a> item.</p>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>

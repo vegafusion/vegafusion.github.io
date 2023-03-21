@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
 <meta content="VegaFusion" property="og:title" />
 <meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
 <meta content="en_US" property="og:locale" />
@@ -31,31 +32,10 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Debugging" href="debugging.html" />
-    <link rel="prev" title="Construction" href="widget_construction.html" />    
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+    <link rel="prev" title="Construction" href="widget_construction.html" />
+ 
+
+
 
 </head>
 
@@ -64,12 +44,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> VegaFusion
-            <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            VegaFusion
+              <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -138,7 +122,8 @@
           <!-- Disable top breadcrumb bar -->
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-              <div class="section" id="debouncing">
+             
+<section id="debouncing">
 <h1>Debouncing<a class="headerlink" href="#debouncing" title="Permalink to this heading"></a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> provides configurable <a class="reference external" href="https://css-tricks.com/debouncing-throttling-explained-examples/">debouncing</a> to control how frequently user interaction updates are sent from the browser to the Python kernel.</p>
 <p>The widget’s <code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> properties correspond to the <code class="docutils literal notranslate"><span class="pre">wait</span></code> and <code class="docutils literal notranslate"><span class="pre">max_wait</span></code> properties of the <a class="reference external" href="https://lodash.com/docs/#debounce">lodash debounce</a> function. VegaFusion uses sensible defaults (<code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> of 30ms and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> of 60ms), but it can be useful to increase the default values to handle interactions on large datasets.</p>
@@ -181,7 +166,7 @@
 <span class="n">widget</span>
 </pre></div>
 </div>
-<div class="section" id="default-debouncing">
+<section id="default-debouncing">
 <h2>Default debouncing<a class="headerlink" href="#default-debouncing" title="Permalink to this heading"></a></h2>
 <p>Here is what the default interactivity looks like using on a 2015 Macbook pro.</p>
 <video width="600" controls>
@@ -189,8 +174,8 @@
 This browser does not support the video tag.
 </video>
 <p>You can see that the server falls behind, resulting in a poor interaction experience.</p>
-</div>
-<div class="section" id="slower-debouncing">
+</section>
+<section id="slower-debouncing">
 <h2>Slower debouncing<a class="headerlink" href="#slower-debouncing" title="Permalink to this heading"></a></h2>
 <p>Debouncing can be adjusted to improve the interaction experience.  By setting <code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> to 50ms and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> the client will not send a request to the server until there has been a period of 50ms without any user interaction events.  This results in a user interaction experience where the chart is not updated until the full interaction has completed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">debounce_wait</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">debounce_max_wait</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -200,11 +185,12 @@ This browser does not support the video tag.
   <source src="https://user-images.githubusercontent.com/15064365/148806495-e2df06f9-655d-401f-8534-f2c41985b6ae.mov" type="video/mp4">
 This browser does not support the video tag.
 </video>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
            </div>
