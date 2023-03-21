@@ -19,7 +19,7 @@ mime_renderer
 widget_renderer
 widget
 transformed_data
-low_level
+integrations
 ```
 
 ```{toctree}

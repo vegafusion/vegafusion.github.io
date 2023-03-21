@@ -1,4 +1,4 @@
-# Low Level Integration
+# Low Level APIs
 The VegaFusion mime and widget renderers are built from lower-level primitives that can be used to integrate VegaFusion in non-Jupyter, and non-Python, contexts. Documentation of these lower-level constructs is not yet complete, so in the meantime please [start a discussion](https://github.com/hex-inc/vegafusion/discussions) if you're interested in integrating VegaFusion somewhere new.
 
 ## Pre-transform Vega specifications
