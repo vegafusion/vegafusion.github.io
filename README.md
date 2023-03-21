@@ -5,7 +5,7 @@ This repository contains the documentation website for VegaFusion
 Install dependencies
 
 ```
-pip install myst-parser sphinx-rtd-theme ablog
+pip install Sphinx==5.3 myst-parser sphinx-rtd-theme ablog
 ```
 
 Build the html documentation
