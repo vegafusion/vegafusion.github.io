@@ -13,6 +13,7 @@ jobs:
       with:
         docs-folder: "."
         pre-build-command: "pip install myst-parser sphinx-rtd-theme ablog"
+        build-command: "make clean && make html"
 
     # Publish built docs to gh-pages branch.
     # ===============================

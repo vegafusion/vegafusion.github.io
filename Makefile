@@ -14,6 +14,11 @@ help:
 
 .PHONY: help Makefile
 
+
+html:
+	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	${SPHINXDIR}python post-process-sphinx-html.py $(BUILDDIR)/html
+
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
