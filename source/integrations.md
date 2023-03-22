@@ -6,4 +6,5 @@ VegaFusion aims to integrate well with the broader PyData ecosystem. The pages b
 :maxdepth: 1
 duckdb
 polars
+dataframe_interchange
 ```

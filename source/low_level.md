@@ -14,4 +14,17 @@ See the [pre_transform_datasets.ipynb](https://github.com/hex-inc/vegafusion-dem
 ## Convert Vega-Lite to Vega
 VegaFusion works with Vega specifications and has no support for working with Vega-Lite specifications directly.  The [VlConvert](https://github.com/vega/vl-convert) project was developed to make it easy to convert Vega-Lite to Vega without an external web browser or node.js runtime.  The VegaFusion mime renderer and the `transformed_data()` function both rely on the [`vl-convert-python`](https://pypi.org/project/vl-convert-python/) package to convert the Vega-Lite specifications produced by Altair into Vega specifications that are then processed by VegaFusion.
 
+## Custom SQL Connections
+VegaFusion's support for evaluating Vega transforms in [DuckDB](duckdb.md) is built on a more general foundation that will be extended to support other SQL query engines in the future.  The [vegafusion-sql](https://github.com/hex-inc/vegafusion/tree/main/vegafusion-sql) crate is responsible for generating dialect specific SQL, and already has initial support for the following SQL dialects:
+ - Athena,
+ - BigQuery,
+ - ClickHouse,
+ - Databricks,
+ - DataFusion,
+ - DuckDB,
+ - MySql,
+ - Postgres,
+ - Redshift,
+ - Snowflake,
 
+Supporting an additional SQL database involves writing a new Python subclass of the [`SqlConnection`](https://github.com/hex-inc/vegafusion/blob/3210a9365a4ee5ab381316648bdf6ce26828cb0b/python/vegafusion/vegafusion/connection/__init__.py#L21) abstract class. An instance of this subclass may then be passed to the `vegafusion.runtime.set_connection` method.  If you're interested in using VegaFusion with a new SQL query engine, please [start a discussion](https://github.com/hex-inc/vegafusion/discussions).

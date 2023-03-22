@@ -2,7 +2,7 @@
 
 [Polars](https://www.pola.rs/) describes itself as a "Lightning-fast DataFrame library for Rust and Python". Polars has quickly [gained popularity](https://star-history.com/#pola-rs/polars&Date) as a faster alternative to pandas that also supports larger datasets.
 
-VegaFusion's polars integration makes it possible to input and output Polars DataFrames without conversion through pandas.
+VegaFusion's Polars integration makes it possible to input and output Polars DataFrames without conversion through pandas.
 
 Note: Polars support requires Altair 5.
 
@@ -37,6 +37,8 @@ chart
 ```
 
 ![visualization](https://user-images.githubusercontent.com/15064365/226755752-c88e37a5-80a8-4ccd-85d0-554974079cb6.png)
+
+When a Polars DataFrame is provided as the input to a chart, it is loaded into the DataFusion ([or DuckDB](duckdb.md)) query engine through the [DataFrame Interchange Protocol](dataframe_interchange.md).
 
 ## Polars DataFrames as Output
 When a Chart that references a Polars DataFrame is passed to `vegafusion.transformed_data`, the result will also be a Polars DataFrame. Here is a Polars version of the example from the [Transformed Data](transformed_data.md) section.
