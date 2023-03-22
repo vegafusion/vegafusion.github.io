@@ -15,7 +15,7 @@ conda install -c conda-forge "python-duckdb>=0.7"
 
 ## Vega transforms with DuckDB
 
-VegaFusion can be configured evaluate Vega transforms using the DuckDB python library by calling `vegafusion.runtime.set_connection("duckdb")`. This  
+VegaFusion can be configured to evaluate Vega transforms using the DuckDB Python library by calling `vegafusion.runtime.set_connection("duckdb")`.
 
 Once the DuckDB connection is enabled, pandas DataFrames referenced by Altair charts are automatically registered with DuckDB and Vega transforms are translated into DuckDB SQL queries. Here is a full example, adapted from the [2D Histogram Heatmap](https://altair-viz.github.io/gallery/histogram_heatmap.html) Altair gallery example.
 
@@ -30,7 +30,7 @@ vf.runtime.set_connection("duckdb")
 # Enable Mime Renderer
 vf.enable()
 
-# Load 201k row version of the Vega movies dataset
+# Load 201k row version of the Vega movies dataset with pandas
 movies = pd.read_parquet(
     "https://vegafusion-datasets.s3.amazonaws.com/vega/movies_201k.parquet"
 )
@@ -46,7 +46,7 @@ chart
 ```
 ![2D Histogram Heatmap](https://user-images.githubusercontent.com/15064365/226609213-2eba5e0b-1377-47d1-9ca9-32dc8f43fb8c.png)
 
-The transformed data can be extracted as usual:
+The [transformed data](../../transformed_data.md) can be extracted as usual:
 ```python
 vf.transformed_data(chart, row_limit=5).T
 ```
@@ -60,7 +60,7 @@ vf.transformed_data(chart, row_limit=5).T
 
 The default DataFusion connection can be re-enabled by calling `vegafusion.runtime.set_connection("datafusion")`
 
-## Reference external DuckDB tables
+## Access DuckDB tables
 VegaFusion also supports integration with external DuckDB connections, making it possible to reference DuckDB tables and views from Altair charts.  To begin, import `duckdb` and create a new connection.
 
 ```python

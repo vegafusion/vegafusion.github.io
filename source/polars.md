@@ -6,7 +6,7 @@ VegaFusion's Polars integration makes it possible to input and output Polars Dat
 
 Note: Polars support requires Altair 5.
 
-## Polars DataFrames as Input
+## Polars as Input
 Here is a full example that uses Polars to read a 201k row movies dataset from a remote parquet file. The DataFrame's `filter` method is then used to remove rows with NULL movie rating values. This filtered DataFrame is passed as the input to an Altair chart.
 
 ```python
@@ -40,12 +40,13 @@ chart
 
 When a Polars DataFrame is provided as the input to a chart, it is loaded into the DataFusion ([or DuckDB](duckdb.md)) query engine through the [DataFrame Interchange Protocol](dataframe_interchange.md).
 
-## Polars DataFrames as Output
+## Polars as Output
 When a Chart that references a Polars DataFrame is passed to `vegafusion.transformed_data`, the result will also be a Polars DataFrame. Here is a Polars version of the example from the [Transformed Data](transformed_data.md) section.
 
 ```python
 import altair as alt
 import vegafusion as vf
+import polars a pl
 
 # Enable mime renderer
 vf.enable()
