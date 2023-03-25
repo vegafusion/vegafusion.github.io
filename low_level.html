@@ -13,7 +13,7 @@
 <meta content="summary_large_image" property="twitter:card" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Low Level Integration &mdash; VegaFusion</title>
+  <title>Low Level APIs &mdash; VegaFusion</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Example Gallery" href="example_gallery.html" />
-    <link rel="prev" title="Transformed Data" href="transformed_data.html" />
+    <link rel="prev" title="DataFrame Interchange Protocol" href="dataframe_interchange.html" />
  
 
 
@@ -67,10 +67,12 @@
 <li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Low Level Integration</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Low Level APIs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#pre-transform-vega-specifications">Pre-transform Vega specifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#pre-transform-vega-datasets">Pre-transform Vega datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#convert-vega-lite-to-vega">Convert Vega-Lite to Vega</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-sql-connections">Custom SQL Connections</a></li>
 </ul>
 </li>
 </ul>
@@ -119,8 +121,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-<section id="low-level-integration">
-<h1>Low Level Integration<a class="headerlink" href="#low-level-integration" title="Permalink to this heading"></a></h1>
+<section id="low-level-apis">
+<h1>Low Level APIs<a class="headerlink" href="#low-level-apis" title="Permalink to this heading"></a></h1>
 <p>The VegaFusion mime and widget renderers are built from lower-level primitives that can be used to integrate VegaFusion in non-Jupyter, and non-Python, contexts. Documentation of these lower-level constructs is not yet complete, so in the meantime please <a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">start a discussion</a> if you’re interested in integrating VegaFusion somewhere new.</p>
 <section id="pre-transform-vega-specifications">
 <h2>Pre-transform Vega specifications<a class="headerlink" href="#pre-transform-vega-specifications" title="Permalink to this heading"></a></h2>
@@ -136,6 +138,23 @@
 <h2>Convert Vega-Lite to Vega<a class="headerlink" href="#convert-vega-lite-to-vega" title="Permalink to this heading"></a></h2>
 <p>VegaFusion works with Vega specifications and has no support for working with Vega-Lite specifications directly.  The <a class="reference external" href="https://github.com/vega/vl-convert">VlConvert</a> project was developed to make it easy to convert Vega-Lite to Vega without an external web browser or node.js runtime.  The VegaFusion mime renderer and the <code class="docutils literal notranslate"><span class="pre">transformed_data()</span></code> function both rely on the <a class="reference external" href="https://pypi.org/project/vl-convert-python/"><code class="docutils literal notranslate"><span class="pre">vl-convert-python</span></code></a> package to convert the Vega-Lite specifications produced by Altair into Vega specifications that are then processed by VegaFusion.</p>
 </section>
+<section id="custom-sql-connections">
+<h2>Custom SQL Connections<a class="headerlink" href="#custom-sql-connections" title="Permalink to this heading"></a></h2>
+<p>VegaFusion’s support for evaluating Vega transforms in <a class="reference internal" href="duckdb.html"><span class="std std-doc">DuckDB</span></a> is built on a more general foundation that will be extended to support other SQL query engines in the future.  The <a class="reference external" href="https://github.com/hex-inc/vegafusion/tree/main/vegafusion-sql">vegafusion-sql</a> crate is responsible for generating dialect specific SQL, and already has initial support for the following SQL dialects:</p>
+<ul class="simple">
+<li><p>Athena,</p></li>
+<li><p>BigQuery,</p></li>
+<li><p>ClickHouse,</p></li>
+<li><p>Databricks,</p></li>
+<li><p>DataFusion,</p></li>
+<li><p>DuckDB,</p></li>
+<li><p>MySql,</p></li>
+<li><p>Postgres,</p></li>
+<li><p>Redshift,</p></li>
+<li><p>Snowflake,</p></li>
+</ul>
+<p>Supporting an additional SQL database involves writing a new Python subclass of the <a class="reference external" href="https://github.com/hex-inc/vegafusion/blob/3210a9365a4ee5ab381316648bdf6ce26828cb0b/python/vegafusion/vegafusion/connection/__init__.py#L21"><code class="docutils literal notranslate"><span class="pre">SqlConnection</span></code></a> abstract class. An instance of this subclass may then be passed to the <code class="docutils literal notranslate"><span class="pre">vegafusion.runtime.set_connection</span></code> method.  If you’re interested in using VegaFusion with a new SQL query engine, please <a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">start a discussion</a>.</p>
+</section>
 </section>
 
 <div class="section ablog__blog_comments">
@@ -146,7 +165,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="transformed_data.html" class="btn btn-neutral float-left" title="Transformed Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dataframe_interchange.html" class="btn btn-neutral float-left" title="DataFrame Interchange Protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="example_gallery.html" class="btn btn-neutral float-right" title="Example Gallery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

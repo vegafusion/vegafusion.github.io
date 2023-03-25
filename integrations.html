@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+<meta content="VegaFusion" property="og:title" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
+<meta content="en_US" property="og:locale" />
+<meta content="https://vegafusion.io/" property="og:url" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
+<meta content="&#64;vegafusion_io" property="twitter:site" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
+<meta content="summary_large_image" property="twitter:card" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; VegaFusion</title>
+  <title>Integrations &mdash; VegaFusion</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/site.css" type="text/css" />
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-    
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,10 +29,14 @@
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DuckDB" href="duckdb.html" />
+    <link rel="prev" title="Transformed Data" href="transformed_data.html" />
+ 
+
+
+
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,7 +52,7 @@
               <img src="_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -47,14 +60,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supported_environments.html">Supported Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mime_renderer.html">Mime Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget_renderer.html">Widget Renderer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="widget.html">VegaFusionWidget</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transformed_data.html">Transformed Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="duckdb.html">DuckDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="polars.html">Polars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_interchange.html">DataFrame Interchange Protocol</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="low_level.html">Low Level APIs</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
@@ -102,22 +120,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search functionality.
-    </p>
-  </div>
-  </noscript>
+<section id="integrations">
+<h1>Integrations<a class="headerlink" href="#integrations" title="Permalink to this heading"></a></h1>
+<p>VegaFusion aims to integrate well with the broader PyData ecosystem. The pages below detail the integrations that are currently supported. If you have ideas for how VegaFusion could better support the ecosystem, please <a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">start a discussion</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="duckdb.html">DuckDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polars.html">Polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataframe_interchange.html">DataFrame Interchange Protocol</a></li>
+</ul>
+</div>
+</section>
 
+<div class="section ablog__blog_comments">
   
-  <div id="search-results">
   
-  </div>
+</div>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transformed_data.html" class="btn btn-neutral float-left" title="Transformed Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="duckdb.html" class="btn btn-neutral float-right" title="DuckDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
@@ -150,14 +175,7 @@
       gtag('config', 'G-LVD2GWXRQZ', {
           'anonymize_ip': false,
       });
-    </script>
-  <script>
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script id="searchindexloader"></script>
-   
-
+    </script> 
 
 </body>
 </html>

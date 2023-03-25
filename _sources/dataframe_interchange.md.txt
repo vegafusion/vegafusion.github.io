@@ -1,0 +1,2 @@
+# DataFrame Interchange Protocol
+In conjunction with Altair 5, VegaFusion can accept any DataFrame object that supports the [DataFrame Interchange Protocol](https://data-apis.org/dataframe-protocol/latest/index.html). Such objects are converted to Arrow using pyarrow and then processed directly by DataFusion ([or DuckDB](duckdb.md)).
