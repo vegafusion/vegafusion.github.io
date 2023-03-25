@@ -73,6 +73,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#pre-transform-vega-datasets">Pre-transform Vega datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#convert-vega-lite-to-vega">Convert Vega-Lite to Vega</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-sql-connections">Custom SQL Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#standalone-web-app">Standalone web app</a></li>
 </ul>
 </li>
 </ul>
@@ -142,18 +143,23 @@
 <h2>Custom SQL Connections<a class="headerlink" href="#custom-sql-connections" title="Permalink to this heading"></a></h2>
 <p>VegaFusion’s support for evaluating Vega transforms in <a class="reference internal" href="duckdb.html"><span class="std std-doc">DuckDB</span></a> is built on a more general foundation that will be extended to support other SQL query engines in the future.  The <a class="reference external" href="https://github.com/hex-inc/vegafusion/tree/main/vegafusion-sql">vegafusion-sql</a> crate is responsible for generating dialect specific SQL, and already has initial support for the following SQL dialects:</p>
 <ul class="simple">
-<li><p>Athena,</p></li>
-<li><p>BigQuery,</p></li>
-<li><p>ClickHouse,</p></li>
-<li><p>Databricks,</p></li>
-<li><p>DataFusion,</p></li>
-<li><p>DuckDB,</p></li>
-<li><p>MySql,</p></li>
-<li><p>Postgres,</p></li>
-<li><p>Redshift,</p></li>
-<li><p>Snowflake,</p></li>
+<li><p>Athena</p></li>
+<li><p>BigQuery</p></li>
+<li><p>ClickHouse</p></li>
+<li><p>Databricks</p></li>
+<li><p>DataFusion</p></li>
+<li><p>DuckDB</p></li>
+<li><p>MySql</p></li>
+<li><p>Postgres</p></li>
+<li><p>Redshift</p></li>
+<li><p>Snowflake</p></li>
 </ul>
 <p>Supporting an additional SQL database involves writing a new Python subclass of the <a class="reference external" href="https://github.com/hex-inc/vegafusion/blob/3210a9365a4ee5ab381316648bdf6ce26828cb0b/python/vegafusion/vegafusion/connection/__init__.py#L21"><code class="docutils literal notranslate"><span class="pre">SqlConnection</span></code></a> abstract class. An instance of this subclass may then be passed to the <code class="docutils literal notranslate"><span class="pre">vegafusion.runtime.set_connection</span></code> method.  If you’re interested in using VegaFusion with a new SQL query engine, please <a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">start a discussion</a>.</p>
+</section>
+<section id="standalone-web-app">
+<h2>Standalone web app<a class="headerlink" href="#standalone-web-app" title="Permalink to this heading"></a></h2>
+<p>The <a class="reference external" href="https://github.com/hex-inc/vegafusion-demos/tree/main/apps/vegafusion-editor-grpc-web"><code class="docutils literal notranslate"><span class="pre">vegafusion-editor-grpc-web</span></code></a> demo is an example of a simple web app that uses the <a class="reference external" href="https://www.npmjs.com/package/vegafusion-wasm">vegafusion-wasm</a> and <a class="reference external" href="https://www.npmjs.com/package/vegafusion-embed">vegafusion-embed</a> packages. It connects directly to an instance of the VegaFusion Server over <a class="reference external" href="https://github.com/grpc/grpc-web">gRPC-Web</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> and <code class="docutils literal notranslate"><span class="pre">vegafusion-embed</span></code> libraries are the foundation of the client portion of the <a class="reference internal" href="widget.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code></span></a>. By leveraging <a class="reference external" href="https://docs.rs/tonic-web/latest/tonic_web/">tonic’s support for gRPC-Web</a>, <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> is able to communicate with the VegaFusion server without an intermediary server or proxy.</p>
 </section>
 </section>
 
