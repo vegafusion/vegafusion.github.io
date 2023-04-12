@@ -1,8 +1,21 @@
 # Saving Charts
 VegaFusion 1.2 introduced a collection of functions to save Altair charts to files after pre-evaluating their data transformations and removing unused columns. For charts that reference large datasets, this results in faster save times and, in the case of HTML and JSON files, smaller file sizes. 
 
+## Dependencies
+VegaFusion's save functions depend on [VlConvert](https://github.com/vega/vl-convert), which can be installed using pip
+
+```
+pip instal vl-convert-python
+```
+
+or conda
+```
+conda install -c conda-forge vl-convert-python
+```
+**Note:** Conda packages are not available for the Apple Silicon architecture. See [conda-forge/vl-convert-python-feedstock#9](https://github.com/conda-forge/vl-convert-python-feedstock/issues/9)
+
 ## Standard Altair save
-Altair Chart objects provide a [`Chart.save()`](https://altair-viz.github.io/user_guide/saving_charts.html) method that may be used to save Altair charts to HTML, JSON (as Vega-Lite), or static image (PNG or SVG) files. When the chart references a pandas DataFrame, the full DataFrame is serialized to JSON and included in the chart specification that is saved.  As dataset sizes get larger, the time it takes to save these files increases rapidly, and for the case of HTML and JSON formats, the file size increases rapidly as well.
+Altair `Chart` objects provide a [`Chart.save()`](https://altair-viz.github.io/user_guide/saving_charts.html) method that may be used to save Altair charts to HTML, JSON (as Vega-Lite), or static image (PNG or SVG) files. When the chart references a pandas DataFrame, the full DataFrame is serialized to JSON and included in the chart specification that is saved.  As dataset sizes get larger, the time it takes to save these files increases rapidly, and for the case of HTML and JSON formats, the file size increases rapidly as well.
 
 VegaFusion's save functions improve the situation by pre-applying data transformations and removing unused columns before inlining the resulting data in the chart specification for saving.
 
