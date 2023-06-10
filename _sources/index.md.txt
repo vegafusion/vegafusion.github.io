@@ -178,12 +178,12 @@ flights = pd.read_parquet(
     "https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet"
 )
 
-brush = alt.selection(type='interval', encodings=['x'])
+brush = alt.selection_interval(encodings=['x'])
 
 # Define the base chart, with the common parts of the
 # background and highlights
 base = alt.Chart().mark_bar().encode(
-    x=alt.X(alt.repeat('column'), type='quantitative', bin=alt.Bin(maxbins=20)),
+    x=alt.X(alt.repeat('column')).bin(maxbins=20),
     y='count()'
 ).properties(
     width=160,
@@ -193,7 +193,7 @@ base = alt.Chart().mark_bar().encode(
 # gray background with selection
 background = base.encode(
     color=alt.value('#ddd')
-).add_selection(brush)
+).add_params(brush)
 
 # blue highlights on the selected data
 highlight = base.transform_filter(brush)

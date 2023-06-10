@@ -148,12 +148,12 @@
     <span class="s2">&quot;https://vegafusion-datasets.s3.amazonaws.com/vega/flights_1m.parquet&quot;</span>
 <span class="p">)</span>
 
-<span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
 
 <span class="c1"># Define the base chart, with the common parts of the</span>
 <span class="c1"># background and highlights</span>
 <span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">()</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;quantitative&#39;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">20</span><span class="p">)),</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s1">&#39;column&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">bin</span><span class="p">(</span><span class="n">maxbins</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span>
 <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
     <span class="n">width</span><span class="o">=</span><span class="mi">160</span><span class="p">,</span>
@@ -163,7 +163,7 @@
 <span class="c1"># gray background with selection</span>
 <span class="n">background</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
     <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ddd&#39;</span><span class="p">)</span>
-<span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_params</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
 
 <span class="c1"># blue highlights on the selected data</span>
 <span class="n">highlight</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
