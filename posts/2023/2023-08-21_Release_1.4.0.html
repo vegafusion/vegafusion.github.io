@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" lang="en" name="description" xml:lang="en" />
+<meta content="VegaFusion" property="og:title" />
+<meta content="VegaFusion provides serverside acceleration of the Vega visualization grammar" property="og:description" />
+<meta content="en_US" property="og:locale" />
+<meta content="https://vegafusion.io/" property="og:url" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="og:image" />
+<meta content="&#64;vegafusion_io" property="twitter:site" />
+<meta content="https://vegafusion.io/_static/vegafusion_social.png" property="twitter:image" />
+<meta content="summary_large_image" property="twitter:card" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Announcing VegaFusion 1.4 &mdash; VegaFusion</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/site.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+ 
+
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            VegaFusion
+              <img src="../../_static/VegaFusionLogo-Color.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../supported_environments.html">Supported Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mime_renderer.html">Mime Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widget_renderer.html">Widget Renderer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../widget.html">VegaFusionWidget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../transformed_data.html">Transformed Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../save.html">Saving Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../low_level.html">Low Level APIs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../example_gallery.html">Example Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../background.html">Background and Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_it_works.html">How VegaFusion Works</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about_the_name.html">About the Name</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../related_projects.html">Related Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license_overview.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citation.html">Citing VegaFusion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Future</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">VegaFusion Roadmap</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/">Source Code</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report an Issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussion</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Blog</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../blog.html">Posts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">VegaFusion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <!-- Disable top breadcrumb bar -->
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+<section id="announcing-vegafusion-1-4">
+<h1>Announcing VegaFusion 1.4<a class="headerlink" href="#announcing-vegafusion-1-4" title="Permalink to this heading"></a></h1>
+<p><strong>Improved Vega coverage, external data source foundations, extended architecture support</strong></p>
+<p>By: Jon Mease</p>
+<hr class="docutils" />
+<p>The VegaFusion team is happy to announce the release of version 1.4. Along with the usual bug fixes and updates to the core Arrow and DataFusion dependencies, this release improves coverage of Vega’s features by supporting <code class="docutils literal notranslate"><span class="pre">q1</span></code>/<code class="docutils literal notranslate"><span class="pre">q3</span></code> aggregation functions and bitwise operators. It also lays important foundations for supporting external data sources and compute engines, and adds additional architectures for pip and conda packages.</p>
+<section id="improved-vega-coverage">
+<h2>Improved Vega coverage<a class="headerlink" href="#improved-vega-coverage" title="Permalink to this heading"></a></h2>
+<p>VegaFusion 1.4 adds support for the <code class="docutils literal notranslate"><span class="pre">q1</span></code> and <code class="docutils literal notranslate"><span class="pre">q3</span></code> aggregation functions. This makes it possible for VegaFusion to evaluate all the transforms associated with a Vega-Lite boxplot. Here’s a Vega-Altair example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="n">vf</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_boxplot</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="s2">&quot;min-max&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;Miles_per_Gallon:Q&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">zero</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;Origin:N&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">chart</span>
+</pre></div>
+</div>
+<p><img alt="boxplot" src="https://github.com/vegafusion/vegafusion.github.io/assets/15064365/acf29249-314d-4582-8176-80110690d452" /></p>
+<p>An easy way to see that the transforms are supported is to extract the transformed data with <a class="reference internal" href="../../transformed_data.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">vf.transformed_data</span></code></span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vf</span><span class="o">.</span><span class="n">transformed_data</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p></p></th>
+<th class="head text-left"><p>Origin</p></th>
+<th class="head text-right"><p>lower_box_Miles_per_Gallon</p></th>
+<th class="head text-right"><p>upper_box_Miles_per_Gallon</p></th>
+<th class="head text-right"><p>mid_box_Miles_per_Gallon</p></th>
+<th class="head text-right"><p>lower_whisker_Miles_per_Gallon</p></th>
+<th class="head text-right"><p>upper_whisker_Miles_per_Gallon</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-left"><p>USA</p></td>
+<td class="text-right"><p>15</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>18.5</p></td>
+<td class="text-right"><p>9</p></td>
+<td class="text-right"><p>39</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>1</p></td>
+<td class="text-left"><p>Europe</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>30.65</p></td>
+<td class="text-right"><p>26.5</p></td>
+<td class="text-right"><p>16.2</p></td>
+<td class="text-right"><p>44.3</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>2</p></td>
+<td class="text-left"><p>Japan</p></td>
+<td class="text-right"><p>25.7</p></td>
+<td class="text-right"><p>34.05</p></td>
+<td class="text-right"><p>31.6</p></td>
+<td class="text-right"><p>18</p></td>
+<td class="text-right"><p>46.6</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition, the full complement of bitwise operators are now supported in the Vega expression language including <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">^</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>.</p>
+</section>
+<section id="external-data-source-foundations">
+<h2>External Data Source Foundations<a class="headerlink" href="#external-data-source-foundations" title="Permalink to this heading"></a></h2>
+<p>VegaFusion 1.4 lays some important foundations toward the goal of supporting external data sources and compute engines. The <code class="docutils literal notranslate"><span class="pre">vegafusion.dataset.sql.SqlDataset</span></code> abstract class defines the interface for implementing SQL data sources in Python for any of VegaFusion’s 10 supported SQL dialects. Implementations for DuckDB and Snowpark are also provided. In addition, the <code class="docutils literal notranslate"><span class="pre">vegafusion.dataset.DataFrameDataset</span></code> abstract class defines the interface for implementing VegaFusion’s data transformations with external DataFrame libraries. Motivating examples include the future ability to dispatch VegaFusion data transformations to the <a class="reference external" href="https://ibis-project.org/">Ibis</a> and <a class="reference external" href="https://www.pola.rs/">Polars</a> Python libraries.</p>
+<p>In the coming release of Vega-Altair 5.1, it will be possible to pass implementations of <code class="docutils literal notranslate"><span class="pre">SqlDataset</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrameDataset</span></code> to Altair <code class="docutils literal notranslate"><span class="pre">Chart</span></code> objects instead of pandas DataFrames. Stay tuned for more information and examples after the release of Altair 5.1!</p>
+</section>
+<section id="extended-architecture-support">
+<h2>Extended Architecture Support<a class="headerlink" href="#extended-architecture-support" title="Permalink to this heading"></a></h2>
+<p>VegaFusion wheels are now built and published to PyPI for the aarch64 Linux architecture. In addition, conda-forge packages are now published for the Apple Silicon architecture.</p>
+</section>
+<section id="updates-to-arrow-and-datafusion-dependencies">
+<h2>Updates to Arrow and DataFusion dependencies<a class="headerlink" href="#updates-to-arrow-and-datafusion-dependencies" title="Permalink to this heading"></a></h2>
+<p>VegaFusion 1.4 updates the dependency on arrow-rs to <a class="reference external" href="https://github.com/apache/arrow-rs/blob/master/CHANGELOG-old.md#4200-2023-06-16">version 42.0.0</a> and DataFusion to <a class="reference external" href="https://github.com/apache/arrow-datafusion/blob/main/dev/changelog/27.0.0.md">version 27.0.0</a>.</p>
+</section>
+<section id="looking-ahead">
+<h2>Looking ahead<a class="headerlink" href="#looking-ahead" title="Permalink to this heading"></a></h2>
+<p>The coming release of Vega-Altair 5.1 will include first-class integration with VegaFusion to support extracting transformed data from a chart with <code class="docutils literal notranslate"><span class="pre">chart.transformed_data()</span></code>. It will also include a <code class="docutils literal notranslate"><span class="pre">&quot;vegafusion&quot;</span></code> data transformer that will cause Altair to use VegaFusion to pre-evaluate data transformations and remove unused columns when saving or displaying charts. The timeline has not been decided on yet, but the plan is to eventually deprecate VegaFusion’s <code class="docutils literal notranslate"><span class="pre">transformed_data</span></code> and <code class="docutils literal notranslate"><span class="pre">save_*</span></code> functions and the VegaFusion mime renderer in favor of the integrations built into Altair.</p>
+<p>Another near-term focus is on lowering the barrier to contributing to VegaFusion by adopting the <a class="reference external" href="https://prefix.dev/docs/pixi/overview">Pixi</a> environment manager.</p>
+</section>
+<section id="learn-more">
+<h2>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this heading"></a></h2>
+<p>Check out these resources to learn more:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/releases/tag/v1.4.0">1.4.0 Changelog</a></p></li>
+<li><p><a class="reference external" href="https://vegafusion.io/">VegaFusion Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion">VegaFusion GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report and Issue</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussions</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+  
+  
+
+
+<div class="section ablog__prev-next">
+  <span class="ablog__prev">
+    
+    
+    Previous:
+    
+    <a href="2023-06-10_Release_1.3.0.html">
+      
+      <span>Announcing VegaFusion 1.3</span>
+    </a>
+    
+  </span>
+  <span class="ablog__spacer">&nbsp;</span>
+  <span class="ablog__next">
+    
+  </span>
+</div>
+
+  
+  
+</div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jon Mease.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LVD2GWXRQZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LVD2GWXRQZ', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
