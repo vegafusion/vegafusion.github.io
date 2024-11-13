@@ -152,7 +152,7 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="vega_coverage/supported_transforms.html">
+  <a class="nav-link nav-internal" href="vega_coverage/optimized_transforms.html">
     Vega Coverage
   </a>
 </li>
@@ -301,7 +301,7 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="vega_coverage/supported_transforms.html">
+  <a class="nav-link nav-internal" href="vega_coverage/optimized_transforms.html">
     Vega Coverage
   </a>
 </li>
@@ -425,14 +425,31 @@
         width=300px
     >
 </div>
-<h4>Building blocks for scaling Vega visualizations</h4><section id="purpose">
+<h4>Building blocks for analyzing, accelerating, and scaling Vega visualizations</h4><section id="purpose">
 <h1>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">#</a></h1>
-<p>The VegaFusion project provides Rust, Python, and JavaScript libraries for analyzing and scaling <a class="reference external" href="https://vega.github.io/vega/">Vega</a> visualizations. The goal is to provide low-level building blocks that higher level Vega systems (such as <a class="reference external" href="https://altair-viz.github.io/">Vega-Altair</a> in Python) can integrate with.</p>
+<p>The VegaFusion project provides Rust, Python, and JavaScript libraries for analyzing, accelerating, and scaling <a class="reference external" href="https://vega.github.io/vega/">Vega</a> visualizations. The goal is to provide low-level building blocks that higher level Vega systems (such as <a class="reference external" href="https://altair-viz.github.io/">Vega-Altair</a> in Python) can integrate with.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you’ve arrived here looking for information on how to scale Vega-Altair visualizations to support larger datasets, see the Vega-Altair documentation on the <a class="reference external" href="https://altair-viz.github.io/user_guide/large_datasets.html#vegafusion-data-transformer"><code class="docutils literal notranslate"><span class="pre">&quot;vegafusion&quot;</span></code> data transformer</a>.</p>
 </div>
 </section>
+<section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h1>
+<p>See <a class="reference internal" href="about/how_it_works.html"><span class="std std-doc">How it works</span></a> for more details on the VegaFusion architecture.</p>
+<div
+    style="margin:30px 40px 50px 40px;text-align:center"
+>
+    <img
+        src="_static/chart_state_diagram_light.svg"
+        class="only-light"
+        width="calc(100% - 80px)"
+    >
+    <img
+        src="_static/chart_state_diagram_dark.svg"
+        class="only-dark"
+        width="calc(100% - 80px)"
+    >
+</div></section>
 <section id="python-installation">
 <h1>Python Installation<a class="headerlink" href="#python-installation" title="Link to this heading">#</a></h1>
 <p>The VegaFusion Python package can be installed into a Python environment using pip</p>
@@ -489,6 +506,7 @@
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Purpose</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#python-installation">Python Installation</a></li>
 </ul>
 

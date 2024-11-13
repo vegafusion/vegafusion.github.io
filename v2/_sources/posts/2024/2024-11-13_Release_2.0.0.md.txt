@@ -5,7 +5,7 @@ author: Jon Mease
 ---
 
 # VegaFusion 2.0
-**A new era**
+**A new era: Building blocks for scaling Vega visualizations:**
 
 By: Jon Mease
 

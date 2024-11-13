@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://vegafusion.io</id>
   <title>VegaFusion Blog - Posts in Release</title>
-  <updated>2024-11-13T13:58:12.449167+00:00</updated>
+  <updated>2024-11-13T20:06:48.792744+00:00</updated>
   <link href="https://vegafusion.io"/>
   <link href="https://vegafusion.io/posts/category/release/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -16,7 +16,7 @@
     </author>
     <content type="html">&lt;section id="vegafusion-2-0"&gt;
 
-&lt;p&gt;&lt;strong&gt;A new era&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A new era: Building blocks for scaling Vega visualizations:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;By: Jon Mease&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;p&gt;Details to follow…&lt;/p&gt;
@@ -34,7 +34,7 @@
 &lt;/section&gt;
 </content>
     <link href="https://vegafusion.io/posts/2024/2024-11-13_Release_2.0.0.html"/>
-    <summary>A new era</summary>
+    <summary>A new era: Building blocks for scaling Vega visualizations:</summary>
     <published>2024-11-13T00:00:00-05:00</published>
   </entry>
   <entry>
