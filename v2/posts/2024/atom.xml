@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://vegafusion.io</id>
+  <title>VegaFusion Blog - Posted in 2024</title>
+  <updated>2024-11-13T13:58:12.563210+00:00</updated>
+  <link href="https://vegafusion.io"/>
+  <link href="https://vegafusion.io/posts/2024/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <subtitle>VegaFusion Updates</subtitle>
+  <entry>
+    <id>https://vegafusion.io/posts/2024/2024-11-13_Release_2.0.0.html</id>
+    <title>VegaFusion 2.0</title>
+    <updated>2024-11-13T00:00:00-05:00</updated>
+    <author>
+      <name>Jon Mease</name>
+    </author>
+    <content type="html">&lt;section id="vegafusion-2-0"&gt;
+
+&lt;p&gt;&lt;strong&gt;A new era&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;By: Jon Mease&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Details to follow…&lt;/p&gt;
+&lt;section id="learn-more"&gt;
+&lt;h2&gt;Learn more&lt;/h2&gt;
+&lt;p&gt;Check out these resources to learn more:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/releases/tag/v2.0.0"&gt;2.0.0 Changelog&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://vegafusion.io/"&gt;VegaFusion Documentation&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion"&gt;VegaFusion GitHub&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/issues"&gt;Report and Issue&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions"&gt;Start a Discussions&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://vegafusion.io/posts/2024/2024-11-13_Release_2.0.0.html"/>
+    <summary>A new era</summary>
+    <published>2024-11-13T00:00:00-05:00</published>
+  </entry>
+</feed>

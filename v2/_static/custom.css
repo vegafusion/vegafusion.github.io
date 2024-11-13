@@ -1,0 +1,47 @@
+:root {
+    /* Make the table hover background lighter */
+    --pst-color-table-row-hover-bg: color-mix(in srgb, #6432bd 30%, transparent) !important;
+}
+
+.sidebar-logo {
+    max-width: 100px;
+    width: auto;
+    height: auto;
+    margin-left: 0;
+}
+
+/* Color the header of the table */
+table.docutils th {
+    background-color: #8523a7;
+    color: white;
+}
+
+/* make dropdown background transparent, and fit in cell */
+details.sd-dropdown summary.sd-card-header {
+    border: 0 !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;   
+}
+
+details.sd-dropdown {
+    box-shadow: none !important;
+}
+
+details.sd-dropdown summary.sd-summary-title {
+    width: fit-content;
+    padding: .2em .3em .2em .4em;
+    font-weight: normal !important;
+}
+
+.sd-mb-3, .sd-my-3 {
+    margin: 0 !important;
+}
+
+summary.sd-card-header+div.sd-summary-content {
+    background-color: transparent !important;
+}
+
+/* Center the contents of the second column */
+table.table td:nth-child(2) {
+    text-align: center;
+}
