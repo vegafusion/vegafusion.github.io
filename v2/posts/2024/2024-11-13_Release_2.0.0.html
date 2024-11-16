@@ -568,16 +568,66 @@
                 <article class="bd-article">
                    <section id="vegafusion-2-0">
 <h1>VegaFusion 2.0<a class="headerlink" href="#vegafusion-2-0" title="Link to this heading">#</a></h1>
-<p><strong>A new era: Building blocks for scaling Vega visualizations:</strong></p>
+<p><strong>A new era: Building blocks for analyzing, accelerating, andscaling Vega visualizations:</strong></p>
 <p>By: Jon Mease</p>
 <hr class="docutils" />
-<p>Details to follow…</p>
+<p>The VegaFusion team is excited to announce the release of VegaFusion 2.0. This major release represents a significant evolution in VegaFusion’s architecture and target audience. The focus has been on simplification - making VegaFusion easier to maintain and easier to integrate into larger Vega systems to accelerate and scale Vega visualizations.</p>
+<section id="modernized-rust-core">
+<h2>Modernized Rust Core<a class="headerlink" href="#modernized-rust-core" title="Link to this heading">#</a></h2>
+<p>The core Rust implementation has been significantly simplified by taking advantage of modern DataFusion functionality:</p>
+<ul class="simple">
+<li><p>New <code class="docutils literal notranslate"><span class="pre">get_column_usage()</span></code> utility function for analyzing the column dependencies of datasets in a Vega spec.</p></li>
+<li><p>Custom User Defined Functions (UDFs) have been largely replaced with DataFusion’s native capabilities.</p></li>
+<li><p>Vega transforms are now implemented directly against the DataFusion DataFrame API, rather than using the circuitous SQL generation approach of VegaFusion 1.</p></li>
+<li><p>Updated to DataFusion 43 and Arrow 52.3 for improved performance and bug fixes.</p></li>
+</ul>
+</section>
+<section id="javascript-webassembly">
+<h2>JavaScript / WebAssembly<a class="headerlink" href="#javascript-webassembly" title="Link to this heading">#</a></h2>
+<p>The JavaScript integration has been simplified while maintaining full functionality:</p>
+<ul class="simple">
+<li><p>Removed the separate <code class="docutils literal notranslate"><span class="pre">vegafusion-embed</span></code> package as the <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> package now renders charts using vega-embed.</p></li>
+<li><p>The full VegaFusion runtime is now compiled to WebAssembly as part of the <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> pacakge, making it possible to run VegaFusion entirely in the browser without requiring an external server.</p></li>
+<li><p>Connecting to external VegaFusion servers via gRPC-Web remains supported.</p></li>
+</ul>
+</section>
+<section id="python-removal-of-upstreamed-vega-altair-integration">
+<h2>Python: Removal of Upstreamed Vega-Altair Integration<a class="headerlink" href="#python-removal-of-upstreamed-vega-altair-integration" title="Link to this heading">#</a></h2>
+<p>All the VegaFusion 1.x logic for integrating with Vega-Altair has been upstreamed into the Vega-Altair project itself. So this functionality has been removed in VegaFusion 2.0.</p>
+<p>In particular:</p>
+<ul class="simple">
+<li><p>To use VegaFusion with Vega-Altair, activate the <a class="reference external" href="https://altair-viz.github.io/user_guide/large_datasets.html#vegafusion-data-transformer"><code class="docutils literal notranslate"><span class="pre">&quot;vegafusion&quot;</span></code> data transformer</a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">vegafusion-jupyter</span></code> package has been retired in favor of using Altair’s built-in <code class="docutils literal notranslate"><span class="pre">JupyterChart</span></code> for Altair charts and Vega-Lite specs. For Vega specs, the new <a class="reference external" href="https://anywidget.dev/">AnyWidget</a>-based <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> is included in the <code class="docutils literal notranslate"><span class="pre">vegafusion</span></code> package.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vf.enable()</span></code> has been removed. Instead, use the <code class="docutils literal notranslate"><span class="pre">&quot;vegafusion&quot;</span></code> data transformer along with any of Altair’s built-in renderers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vf.save()</span></code> has been removed. Instead, use Altair’s native <code class="docutils literal notranslate"><span class="pre">chart.save()</span></code> method with the <code class="docutils literal notranslate"><span class="pre">&quot;vegafusion&quot;</span></code> data transformer enabeld.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vf.transformed_data()</span></code> has been removed. Instead, use Altair’s native <code class="docutils literal notranslate"><span class="pre">chart.transformed_data()</span></code> method.</p></li>
+</ul>
+</section>
+<section id="python-enhanced-dataframe-compatibility">
+<h2>Python: Enhanced DataFrame Compatibility<a class="headerlink" href="#python-enhanced-dataframe-compatibility" title="Link to this heading">#</a></h2>
+<p>VegaFusion 2.0 brings improved DataFrame compatibility:</p>
+<ul class="simple">
+<li><p>Support for any <a class="reference external" href="https://narwhals-dev.github.io/narwhals/">Narwhals</a>-compatible DataFrame type as inline datasets.</p></li>
+<li><p>Zero-copy sharing of Arrow data from Polars to VegaFusion’s DataFusion runtime is now supported thanks to the <a class="reference external" href="https://github.com/kylebarron/arro3">arro3</a> project..</p></li>
+<li><p>The DuckDB SQL connection has been removed, but DuckDB relations are now directly supported as inline datasets, with automatic column pruning prior to conversion to Arrow.</p></li>
+<li><p>Reduced Python dependencies. VegaFusion now requires only <a class="reference external" href="https://pypi.org/project/arro3-core/"><code class="docutils literal notranslate"><span class="pre">arrow3-core</span></code></a>, <a class="reference external" href="https://pypi.org/project/packaging/"><code class="docutils literal notranslate"><span class="pre">packaging</span></code></a>, and <a class="reference external" href="https://pypi.org/project/narwhals/"><code class="docutils literal notranslate"><span class="pre">narwhals</span></code></a>. In particular, <code class="docutils literal notranslate"><span class="pre">pyarrow</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> are no longer required dependencies.</p></li>
+</ul>
+</section>
+<section id="new-documentation">
+<h2>New Documentation<a class="headerlink" href="#new-documentation" title="Link to this heading">#</a></h2>
+<p>VegaFusion 2.0 launches with completely revamped documentation:</p>
+<ul class="simple">
+<li><p>New PyData Sphinx theme at <a class="reference external" href="http://vegafusion.io/v2/">vegafusion.io</a></p></li>
+<li><p>Standalone examples in Python and Rust</p></li>
+<li><p>Comprehensive support tables for Vega transforms and expressions</p></li>
+</ul>
+</section>
 <section id="learn-more">
 <h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
 <p>Check out these resources to learn more:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/releases/tag/v2.0.0">2.0.0 Changelog</a></p></li>
-<li><p><a class="reference external" href="https://vegafusion.io/">VegaFusion Documentation</a></p></li>
+<li><p><a class="reference external" href="https://vegafusion.io/v2">VegaFusion Documentation</a></p></li>
 <li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion">VegaFusion GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/issues">Report and Issue</a></p></li>
 <li><p><a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions">Start a Discussions</a></p></li>
@@ -634,6 +684,11 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modernized-rust-core">Modernized Rust Core</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript-webassembly">JavaScript / WebAssembly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-removal-of-upstreamed-vega-altair-integration">Python: Removal of Upstreamed Vega-Altair Integration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-enhanced-dataframe-compatibility">Python: Enhanced DataFrame Compatibility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-documentation">New Documentation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learn-more">Learn more</a></li>
 </ul>
   </nav></div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Column Usage &#8212; VegaFusion  documentation</title>
+    <title>Jupyter Widget &#8212; VegaFusion  documentation</title>
   
   
   
@@ -47,13 +47,13 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'features/column_usage';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'features/jupyter_widget';</script>
     <script src="../_static/custom-icon.js?v=11992a64"></script>
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Transform Data" href="transform_data.html" />
-    <link rel="prev" title="Features" href="features.html" /> 
+    <link rel="next" title="Vega-Lite" href="vega-lite.html" />
+    <link rel="prev" title="JavaScript Embed" href="embed.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" /> 
@@ -395,7 +395,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Features</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Column Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="column_usage.html">Column Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform_data.html">Transform Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform_spec.html">Transform Spec</a></li>
 <li class="toctree-l1"><a class="reference internal" href="transform_extract.html">Transform Extract</a></li>
@@ -403,7 +403,7 @@
 <li class="toctree-l1"><a class="reference internal" href="inline_datasets.html">Inline Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="grpc.html">gRPC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="embed.html">JavaScript Embed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jupyter_widget.html">Jupyter Widget</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Jupyter Widget</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vega-lite.html">Vega-Lite</a></li>
 </ul>
 </div>
@@ -443,7 +443,7 @@
     
     <li class="breadcrumb-item"><a href="features.html" class="nav-link">Features</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Column Usage</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Jupyter Widget</span></li>
   </ul>
 </nav>
 </div>
@@ -459,46 +459,167 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <section id="column-usage">
-<h1>Column Usage<a class="headerlink" href="#column-usage" title="Link to this heading">#</a></h1>
-<p>VegaFusion provides a function for introspecting a Vega specification and determining which columns are referenced from each root dataset. A root dataset is one defined at the top-level of the spec that includes a <code class="docutils literal notranslate"><span class="pre">url</span></code> or <code class="docutils literal notranslate"><span class="pre">values</span></code> properties. This is useful in contexts where it’s more efficient to minimize the number of columns provided to the Vega specification. For example, the Python library uses this function to determine how to downsample the input DataFrame columns prior to converting to Arrow.</p>
-<p>When VegaFusion cannot precisely determine which columns are referenced from each root dataset, this function returns <code class="docutils literal notranslate"><span class="pre">None</span></code> or <code class="docutils literal notranslate"><span class="pre">null</span></code> for the corresponding dataset.</p>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="vegafusion.get_column_usage">
-<span class="sig-prename descclassname"><span class="pre">vegafusion.</span></span><span class="sig-name descname"><span class="pre">get_column_usage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#vegafusion.get_column_usage" title="Link to this definition">#</a></dt>
-<dd><p>Compute the columns from each root dataset that are referenced in a
-Vega spec.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>spec</strong> – Vega spec</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>Dict from root-level dataset name to either</p>
-<ul class="simple">
-<li><p>A list of columns that are referenced in this dataset if this can
-be determined precisely</p></li>
-<li><p>None if it was not possible to determine the full set of columns
-that are referenced from this dataset</p></li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict[str, list[str] | None]</p>
-</dd>
-</dl>
-</dd></dl>
+                   <section id="jupyter-widget">
+<h1>Jupyter Widget<a class="headerlink" href="#jupyter-widget" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> is a Jupyter widget for rendering Vega specs backed by VegaFusion. It is based on <a class="reference external" href="https://github.com/manzt/anywidget">AnyWidget</a>, and is compatible with a wide range of Jupyter-based environments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> is only compatible with Vega specifications, not with Vega-Lite. For Vega-Lite, either use the <a class="reference external" href="https://altair-viz.github.io/user_guide/jupyter_chart.html">JupyterChart</a> widget from the Vega-Altair project, or convert the Vega-Lite spec to Vega using <a class="reference external" href="https://github.com/vega/vl-convert">vl-convert</a>.</p>
+</div>
+<section id="construction">
+<h2>Construction<a class="headerlink" href="#construction" title="Link to this heading">#</a></h2>
+<p>Construct a VegaFusionWidget from a Vega specification dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">vegafusion</span> <span class="k">as</span> <span class="nn">vf</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">vegafusion.jupyter</span> <span class="kn">import</span> <span class="n">VegaFusionWidget</span>
 
-<p>See <a class="reference external" href="https://github.com/vega/vegafusion/tree/v2/examples/python-examples/column_usage.py">column_usage.py</a> for a complete example.</p>
+<span class="n">vega_spec</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">{</span>
+<span class="s2">  &quot;$schema&quot;: &quot;https://vega.github.io/schema/vega/v5.json&quot;,</span>
+<span class="s2">  &quot;description&quot;: &quot;A binned scatter plot example showing aggregate counts per binned cell.&quot;,</span>
+<span class="s2">  &quot;width&quot;: 200,</span>
+<span class="s2">  &quot;height&quot;: 200,</span>
+<span class="s2">  &quot;padding&quot;: 5,</span>
+<span class="s2">  &quot;autosize&quot;: &quot;pad&quot;,</span>
+
+<span class="s2">  &quot;data&quot;: [</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;name&quot;: &quot;source&quot;,</span>
+<span class="s2">      &quot;url&quot;: &quot;data/cars.json&quot;,</span>
+<span class="s2">      &quot;transform&quot;: [</span>
+<span class="s2">        {</span>
+<span class="s2">          &quot;type&quot;: &quot;filter&quot;,</span>
+<span class="s2">          &quot;expr&quot;: &quot;datum[&#39;Horsepower&#39;] != null &amp;&amp; datum[&#39;Miles_per_Gallon&#39;] != null &amp;&amp; datum[&#39;Acceleration&#39;] != null&quot;</span>
+<span class="s2">        }</span>
+<span class="s2">      ]</span>
+<span class="s2">    },</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;name&quot;: &quot;summary&quot;,</span>
+<span class="s2">      &quot;source&quot;: &quot;source&quot;,</span>
+<span class="s2">      &quot;transform&quot;: [</span>
+<span class="s2">        {</span>
+<span class="s2">          &quot;type&quot;: &quot;extent&quot;, &quot;field&quot;: &quot;Horsepower&quot;,</span>
+<span class="s2">          &quot;signal&quot;: &quot;hp_extent&quot;</span>
+<span class="s2">        },</span>
+<span class="s2">        {</span>
+<span class="s2">          &quot;type&quot;: &quot;bin&quot;, &quot;field&quot;: &quot;Horsepower&quot;, &quot;maxbins&quot;: 10,</span>
+<span class="s2">          &quot;extent&quot;: {&quot;signal&quot;: &quot;hp_extent&quot;},</span>
+<span class="s2">          &quot;as&quot;: [&quot;hp0&quot;, &quot;hp1&quot;]</span>
+<span class="s2">        },</span>
+<span class="s2">        {</span>
+<span class="s2">          &quot;type&quot;: &quot;extent&quot;, &quot;field&quot;: &quot;Miles_per_Gallon&quot;,</span>
+<span class="s2">          &quot;signal&quot;: &quot;mpg_extent&quot;</span>
+<span class="s2">        },</span>
+<span class="s2">        {</span>
+<span class="s2">          &quot;type&quot;: &quot;bin&quot;, &quot;field&quot;: &quot;Miles_per_Gallon&quot;, &quot;maxbins&quot;: 10,</span>
+<span class="s2">          &quot;extent&quot;: {&quot;signal&quot;: &quot;mpg_extent&quot;},</span>
+<span class="s2">          &quot;as&quot;: [&quot;mpg0&quot;, &quot;mpg1&quot;]</span>
+<span class="s2">        },</span>
+<span class="s2">        {</span>
+<span class="s2">          &quot;type&quot;: &quot;aggregate&quot;,</span>
+<span class="s2">          &quot;groupby&quot;: [&quot;hp0&quot;, &quot;hp1&quot;, &quot;mpg0&quot;, &quot;mpg1&quot;]</span>
+<span class="s2">        }</span>
+<span class="s2">      ]</span>
+<span class="s2">    }</span>
+<span class="s2">  ],</span>
+
+<span class="s2">  &quot;scales&quot;: [</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;name&quot;: &quot;x&quot;,</span>
+<span class="s2">      &quot;type&quot;: &quot;linear&quot;,</span>
+<span class="s2">      &quot;round&quot;: true,</span>
+<span class="s2">      &quot;nice&quot;: true,</span>
+<span class="s2">      &quot;zero&quot;: true,</span>
+<span class="s2">      &quot;domain&quot;: {&quot;data&quot;: &quot;source&quot;, &quot;field&quot;: &quot;Horsepower&quot;},</span>
+<span class="s2">      &quot;range&quot;: &quot;width&quot;</span>
+<span class="s2">    },</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;name&quot;: &quot;y&quot;,</span>
+<span class="s2">      &quot;type&quot;: &quot;linear&quot;,</span>
+<span class="s2">      &quot;round&quot;: true,</span>
+<span class="s2">      &quot;nice&quot;: true,</span>
+<span class="s2">      &quot;zero&quot;: true,</span>
+<span class="s2">      &quot;domain&quot;: {&quot;data&quot;: &quot;source&quot;, &quot;field&quot;: &quot;Miles_per_Gallon&quot;},</span>
+<span class="s2">      &quot;range&quot;: &quot;height&quot;</span>
+<span class="s2">    },</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;name&quot;: &quot;size&quot;,</span>
+<span class="s2">      &quot;type&quot;: &quot;linear&quot;,</span>
+<span class="s2">      &quot;zero&quot;: true,</span>
+<span class="s2">      &quot;domain&quot;: {&quot;data&quot;: &quot;summary&quot;, &quot;field&quot;: &quot;count&quot;},</span>
+<span class="s2">      &quot;range&quot;: [0,360]</span>
+<span class="s2">    }</span>
+<span class="s2">  ],</span>
+
+<span class="s2">  &quot;axes&quot;: [</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;scale&quot;: &quot;x&quot;,</span>
+<span class="s2">      &quot;grid&quot;: true,</span>
+<span class="s2">      &quot;domain&quot;: false,</span>
+<span class="s2">      &quot;orient&quot;: &quot;bottom&quot;,</span>
+<span class="s2">      &quot;tickCount&quot;: 5,</span>
+<span class="s2">      &quot;title&quot;: &quot;Horsepower&quot;</span>
+<span class="s2">    },</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;scale&quot;: &quot;y&quot;,</span>
+<span class="s2">      &quot;grid&quot;: true,</span>
+<span class="s2">      &quot;domain&quot;: false,</span>
+<span class="s2">      &quot;orient&quot;: &quot;left&quot;,</span>
+<span class="s2">      &quot;titlePadding&quot;: 5,</span>
+<span class="s2">      &quot;title&quot;: &quot;Miles_per_Gallon&quot;</span>
+<span class="s2">    }</span>
+<span class="s2">  ],</span>
+
+<span class="s2">  &quot;legends&quot;: [</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;size&quot;: &quot;size&quot;,</span>
+<span class="s2">      &quot;title&quot;: &quot;Count&quot;,</span>
+<span class="s2">      &quot;format&quot;: &quot;s&quot;,</span>
+<span class="s2">      &quot;symbolFillColor&quot;: &quot;#4682b4&quot;,</span>
+<span class="s2">      &quot;symbolStrokeColor&quot;: &quot;transparent&quot;,</span>
+<span class="s2">      &quot;symbolType&quot;: &quot;circle&quot;</span>
+<span class="s2">    }</span>
+<span class="s2">  ],</span>
+
+<span class="s2">  &quot;marks&quot;: [</span>
+<span class="s2">    {</span>
+<span class="s2">      &quot;name&quot;: &quot;marks&quot;,</span>
+<span class="s2">      &quot;type&quot;: &quot;symbol&quot;,</span>
+<span class="s2">      &quot;from&quot;: {&quot;data&quot;: &quot;summary&quot;},</span>
+<span class="s2">      &quot;encode&quot;: {</span>
+<span class="s2">        &quot;update&quot;: {</span>
+<span class="s2">          &quot;x&quot;: {&quot;scale&quot;: &quot;x&quot;, &quot;signal&quot;: &quot;(datum.hp0 + datum.hp1) / 2&quot;},</span>
+<span class="s2">          &quot;y&quot;: {&quot;scale&quot;: &quot;y&quot;, &quot;signal&quot;: &quot;(datum.mpg0 + datum.mpg1) / 2&quot;},</span>
+<span class="s2">          &quot;size&quot;: {&quot;scale&quot;: &quot;size&quot;, &quot;field&quot;: &quot;count&quot;},</span>
+<span class="s2">          &quot;shape&quot;: {&quot;value&quot;: &quot;circle&quot;},</span>
+<span class="s2">          &quot;fill&quot;: {&quot;value&quot;: &quot;#4682b4&quot;}</span>
+<span class="s2">        }</span>
+<span class="s2">      }</span>
+<span class="s2">    }</span>
+<span class="s2">  ]</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="n">VegaFusionWidget</span><span class="p">(</span><span class="n">vega_spec</span><span class="p">)</span>
+</pre></div>
+</div>
+<img width="360" alt="Screen Shot 2022-01-10 at 10 03 15 AM" src="../_static/widget_output.svg">
 </section>
-<section id="rust">
-<h2>Rust<a class="headerlink" href="#rust" title="Link to this heading">#</a></h2>
-<p>See <a class="reference external" href="https://github.com/vega/vegafusion/tree/v2/examples/rust-examples/examples/column_usage.rs">column_usage.rs</a> for a complete example.</p>
+<section id="debouncing">
+<h2>Debouncing<a class="headerlink" href="#debouncing" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> provides configurable <a class="reference external" href="https://css-tricks.com/debouncing-throttling-explained-examples/">debouncing</a> to control how frequently user interaction updates are sent from the browser to the Python kernel.</p>
+<p>The widget’s <code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> properties correspond to the <code class="docutils literal notranslate"><span class="pre">wait</span></code> and <code class="docutils literal notranslate"><span class="pre">max_wait</span></code> properties of the <a class="reference external" href="https://lodash.com/docs/#debounce">lodash debounce</a> function. VegaFusion uses sensible defaults (<code class="docutils literal notranslate"><span class="pre">debounce_wait</span></code> of 30ms and <code class="docutils literal notranslate"><span class="pre">debounce_max_wait</span></code> of 60ms), but it can be useful to increase the default values to handle interactions on large datasets.</p>
 </section>
-<section id="javascript">
-<h2>JavaScript<a class="headerlink" href="#javascript" title="Link to this heading">#</a></h2>
-<p>See the <a class="reference external" href="https://github.com/vega/vegafusion/tree/v2/examples/editor-demo/src/index.js">Editor Demo</a> for example usage of the <code class="docutils literal notranslate"><span class="pre">getColumnUsage</span></code> function in the <code class="docutils literal notranslate"><span class="pre">vegafusion-wasm</span></code> package.</p>
+<section id="planner-results">
+<h2>Planner Results<a class="headerlink" href="#planner-results" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">VegaFusionWidget</span></code> also supports displaying the results of the planner. See <a class="reference internal" href="../about/how_it_works.html"><span class="std std-doc">How it Works</span></a> for more details.</p>
+<p>The following properties are available:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">widget.spec</span></code>: This is the original Vega specification</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">widget.transformed_spec</span></code>: This is the initial transformed Vega specification produced by VegaFusion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">widget.server_spec</span></code>: This is the portion of the full Vega spec that was planned to run on the server (The Python kernel in this case)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">widget.client_spec</span></code>: This is the portion of the full Vega spec that was planned to run on the client and be rendered by the Vega JavaScript Library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">widget.comm_plan</span></code>: This is the specification of which signals and datasets must be transfered between the client and server in order to preserve the interactive behavior of the original specification.</p></li>
+</ul>
 </section>
 </section>
 
@@ -516,20 +637,20 @@ that are referenced from this dataset</p></li>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="features.html"
+       href="embed.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Features</p>
+        <p class="prev-next-title">JavaScript Embed</p>
       </div>
     </a>
     <a class="right-next"
-       href="transform_data.html"
+       href="vega-lite.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Transform Data</p>
+        <p class="prev-next-title">Vega-Lite</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -552,19 +673,16 @@ that are referenced from this dataset</p></li>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vegafusion.get_column_usage"><code class="docutils literal notranslate"><span class="pre">get_column_usage()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rust">Rust</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#javascript">JavaScript</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#debouncing">Debouncing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#planner-results">Planner Results</a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="../_sources/features/column_usage.md.txt">
+    <a href="../_sources/features/jupyter_widget.md.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
