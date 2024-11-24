@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://vegafusion.io</id>
+  <title>VegaFusion Blog - Posted in 2022</title>
+  <updated>2024-11-24T01:41:44.997831+00:00</updated>
+  <link href="https://vegafusion.io"/>
+  <link href="https://vegafusion.io/posts/2022/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
+  <subtitle>VegaFusion Updates</subtitle>
+  <entry>
+    <id>https://vegafusion.io/posts/2022/2022-01-27_ProjectAnnouncement.html</id>
+    <title>VegaFusion 0.1</title>
+    <updated>2022-01-27T00:00:00-05:00</updated>
+    <author>
+      <name>Jon Mease</name>
+    </author>
+    <content type="html">&lt;section id="vegafusion-0-1"&gt;
+
+&lt;p&gt;&lt;strong&gt;Server-side acceleration for the Vega visualization grammar with Rust and WebAssembly&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;By: Jon Mease&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Today, I’m happy to announce a new open source project I’ve been working on since stepping down as Plotly’s Chief Scientist this past fall. It’s called VegaFusion.&lt;/p&gt;
+&lt;p&gt;VegaFusion provides server-side acceleration for the &lt;a class="reference external" href="https://vega.github.io/"&gt;Vega&lt;/a&gt; visualization grammar. While not limited to Python, the initial application of VegaFusion is the acceleration of the &lt;a class="reference external" href="https://altair-viz.github.io/"&gt;Altair&lt;/a&gt; Python interface to &lt;a class="reference external" href="https://vega.github.io/vega-lite/"&gt;Vega-Lite&lt;/a&gt;. Its design was motivated by years of experience working on visualization libraries (&lt;a class="reference external" href="https://plotly.com/python/"&gt;Plotly&lt;/a&gt;, &lt;a class="reference external" href="https://holoviews.org/"&gt;HoloViews&lt;/a&gt;, and &lt;a class="reference external" href="https://datashader.org/"&gt;Datashader&lt;/a&gt;) and dashboard technologies (&lt;a class="reference external" href="https://dash.plotly.com/"&gt;Dash&lt;/a&gt;, &lt;a class="reference external" href="https://ipywidgets.readthedocs.io/en/latest/index.html"&gt;Jupyter Widgets&lt;/a&gt;, and &lt;a class="reference external" href="https://panel.holoviz.org/"&gt;Panel&lt;/a&gt;).&lt;/p&gt;
+&lt;section id="quickstart-accelerate-altair-in-jupyter"&gt;
+&lt;h2&gt;Quickstart: Accelerate Altair in Jupyter&lt;/h2&gt;
+&lt;p&gt;VegaFusion can be used to provide server-side acceleration for Altair visualizations when displayed in Jupyter contexts (Classic notebook, JupyterLab, and Voila).  It also eliminates the Altair &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;MaxRowsError&lt;/span&gt;&lt;/code&gt; when generating a chart with over 5000 rows.&lt;/p&gt;
+&lt;p&gt;First, install the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vegafusion-jupyter&lt;/span&gt;&lt;/code&gt; package, along with &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vega-datasets&lt;/span&gt;&lt;/code&gt; for the example below.&lt;/p&gt;
+&lt;div class="highlight-bash notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class="w"&gt; &lt;/span&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;vegafusion-jupyter[embed]&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;vega-datasets
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Then, open a Jupyter notebook (either the classic notebook, or a notebook inside JupyterLab), and run these two lines to import and enable the VegaFusion Altair renderer.&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;vegafusion&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;vf&lt;/span&gt;
+&lt;span class="n"&gt;vf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jupyter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;enable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;VegaFusion will now be used to accelerate any Altair chart. For example, here’s the &lt;a class="reference external" href="https://altair-viz.github.io/gallery/selection_layer_bar_month.html"&gt;interactive average&lt;/a&gt; Altair gallery example.&lt;/p&gt;
+&lt;div class="highlight-python notranslate"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;altair&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;alt&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;vega_datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;
+
+&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;seattle_weather&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;brush&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;selection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;interval&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encodings&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;x&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="n"&gt;bars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Chart&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark_bar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;month(date):O&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mean(precipitation):Q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;opacity&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;condition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;brush&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OpacityValue&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;OpacityValue&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.7&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_selection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;brush&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Chart&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mark_rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;firebrick&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mean(precipitation):Q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SizeValue&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;transform_filter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;brush&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;chart&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;alt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;layer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bars&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;chart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;video width="600" controls&gt;
+  &lt;source src="https://user-images.githubusercontent.com/15064365/148408648-43a5cfd0-b0d8-456e-a77a-dd344d8d07df.mov" type="video/mp4"&gt;
+This browser does not support the video tag.
+&lt;/video&gt;
+&lt;p&gt;Histogram binning, aggregation, selection filtering, and average calculations will now be evaluated in the Python kernel process with efficient parallelization, rather than in the single-threaded browser context.&lt;/p&gt;
+&lt;p&gt;You can see that VegaFusion acceleration is working by noticing that the Python &lt;a class="reference external" href="https://experienceleague.adobe.com/docs/experience-platform/data-science-workspace/jupyterlab/overview.html?lang=en#kernel-sessions"&gt;kernel is running&lt;/a&gt; as the selection region is created or moved. You can also notice the VegaFusion logo in the dropdown menu button.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="vega-ecosystem-background"&gt;
+&lt;h2&gt;Vega Ecosystem Background&lt;/h2&gt;
+&lt;p&gt;VegaFusion is designed to complement the Vega visualization ecosystem. In particular, the &lt;a class="reference external" href="https://vega.github.io/"&gt;Vega&lt;/a&gt;, &lt;a class="reference external" href="https://vega.github.io/vega-lite/"&gt;Vega-Lite&lt;/a&gt;, and &lt;a class="reference external" href="https://altair-viz.github.io/"&gt;Altair&lt;/a&gt; projects.  If you’re not familiar with these projects, it will be helpful to take a few minutes to browse their documentation as background for understanding what VegaFusion adds.&lt;/p&gt;
+&lt;section id="transforms-and-signals"&gt;
+&lt;h3&gt;Transforms and Signals&lt;/h3&gt;
+&lt;p&gt;One powerful feature of the Vega visualization grammar is that it includes a rich collection of data manipulation functions called &lt;a class="reference external" href="https://vega.github.io/vega/docs/transforms/"&gt;transforms&lt;/a&gt;.  Transforms have functionality that is similar to that provided by SQL queries or Pandas DataFrame operations, but they are specifically designed to cover data preprocessing tasks that are useful in constructing data visualizations.&lt;/p&gt;
+&lt;p&gt;For additional flexibility, Vega also provides the concept of &lt;a class="reference external" href="https://vega.github.io/vega/docs/signals/"&gt;signals&lt;/a&gt;. These are scalar variables that can be constructed using the &lt;a class="reference external" href="https://vega.github.io/vega/docs/expressions/"&gt;Vega expression language&lt;/a&gt;, which is a subset of JavaScript.  Transforms can accept and produce signals.&lt;/p&gt;
+&lt;p&gt;There are at least two significant advantages to having data transformations and signals included in a visualization specification.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;First, it makes it possible for a visualization to accept raw data files as input and then perform its own data cleaning and manipulation.  This often removes the need to generate temporary intermediary data files.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Second, it enables higher-level libraries like Vega-Lite to automate the creation of rich interactive visualizations with features like &lt;a class="reference external" href="https://vega.github.io/vega-lite/examples/interactive_layered_crossfilter.html"&gt;cross filtering&lt;/a&gt; and &lt;a class="reference external" href="https://altair-viz.github.io/gallery/select_detail.html"&gt;drill down&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="motivation-for-vegafusion"&gt;
+&lt;h2&gt;Motivation for VegaFusion&lt;/h2&gt;
+&lt;p&gt;Vega makes it possible to create declarative JSON specifications of rich interactive visualizations that are fully self-contained. They can run entirely in a web browser without requiring access to an external database or a Python library like Pandas.&lt;/p&gt;
+&lt;p&gt;For datasets of a few tens of thousands rows or fewer, this architecture often results in extremely smooth and responsive interactivity. However, this architecture doesn’t scale very well to datasets of hundreds of thousands of rows or more.  This is the gap VegaFusion aims to fill.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="how-vegafusion-works"&gt;
+&lt;h2&gt;How VegaFusion Works&lt;/h2&gt;
+&lt;p&gt;VegaFusion has two primary components: The Planner and the Runtime.&lt;/p&gt;
+&lt;section id="planner"&gt;
+&lt;h3&gt;Planner&lt;/h3&gt;
+&lt;p&gt;The Planner starts with an arbitrary Vega specification (typically generated by Vega-Lite, but this is not a requirement). The Planner’s job is to partition the specification into two valid Vega specifications, one that will execute in the browser with the Vega JavaScript library, and one that will execute on the server with the VegaFusion Runtime.&lt;/p&gt;
+&lt;p&gt;VegaFusion does not (yet) provide full coverage of all of Vega’s transforms and all of the features of the Vega expression language.  The planner uses information about which transforms and expression functions are supported to make decisions about which parts of the original Vega specification can be included in the resulting server specification.  The advantage of this approach is that VegaFusion can accept any Vega specification, and as more support is added over time, more of the input specification will be eligible for inclusion in the server specification.&lt;/p&gt;
+&lt;p&gt;Along with the client and server specifications, the planner also creates a communication plan.  The communication plan determines which datasets and signals must be passed from server to client, and from client to server in order for the interactive behavior of the original specification to be preserved.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="runtime"&gt;
+&lt;h3&gt;Runtime&lt;/h3&gt;
+&lt;p&gt;After planning, the server specification is compiled into a VegaFusion task graph.  The job of the Runtime is to calculate the value of requested nodes within a task graph.&lt;/p&gt;
+&lt;p&gt;A task graph includes the values of the root nodes (those with no parents), but it does not include the values of any of the interior nodes (those with parents).  Each node in the task graph is a pure function of the values of its parents.  This enables the Runtime to calculate the value of any node in the Task graph from the specification, while keeping the overall task graph size small enough to be efficiently transferred between the client and the server.  The Runtime uses fingerprinting and precise caching to avoid repeated calculations of the same nodes.  The cache is “precise” in the sense that cached values can be shared across visualizations that share a common substructure, even if the full specifications are not identical.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="technology"&gt;
+&lt;h2&gt;Technology&lt;/h2&gt;
+&lt;section id="vegafusion-technology-stack"&gt;
+&lt;h3&gt;VegaFusion Technology Stack&lt;/h3&gt;
+&lt;p&gt;VegaFusion uses a fairly diverse technology stack. The Planner and Runtime are both implemented in Rust.&lt;/p&gt;
+&lt;p&gt;In the context of &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vegafusion-jupyter&lt;/span&gt;&lt;/code&gt;, the Planner is compiled to WebAssembly using &lt;a class="reference external" href="https://github.com/rustwasm/wasm-pack"&gt;wasm-pack&lt;/a&gt; and wrapped in a TypeScript API using &lt;a class="reference external" href="https://github.com/rustwasm/wasm-bindgen"&gt;wasm-bindgen&lt;/a&gt;.  This TypeScript API is used to integrate the WebAssembly library into the VegaFusion Jupyter Widget.&lt;/p&gt;
+&lt;p&gt;The Runtime is wrapped in a Python API using &lt;a class="reference external" href="https://github.com/PyO3/pyo3"&gt;PyO3&lt;/a&gt;, resulting in the &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vegafusion-python&lt;/span&gt;&lt;/code&gt; package.  The &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vegafusion-jupyter&lt;/span&gt;&lt;/code&gt; package is used to integrate &lt;code class="docutils literal notranslate"&gt;&lt;span class="pre"&gt;vegafusion-python&lt;/span&gt;&lt;/code&gt; with Altair and the Python portion of VegaFusion Jupyter Widget.&lt;/p&gt;
+&lt;p&gt;The Task Graph specifications are defined as protocol buffer messages. The &lt;a class="reference external" href="https://github.com/tokio-rs/prost"&gt;prost&lt;/a&gt; library is used to generate Rust data structures from these protocol buffer messages.  When Arrow tables appear as task graph root values, they are serialized inside the protocol buffer specification using the &lt;a class="reference external" href="https://arrow.apache.org/docs/format/Columnar.html#serialization-and-interprocess-communication-ipc"&gt;Apache Arrow IPC format&lt;/a&gt;.  The binary representation of the task graph protocol buffer message is what is transferred across the Jupyter Comms protocol.&lt;/p&gt;
+&lt;img width="749" alt="VegaFusion Jupyter Architecture Diagram" src="https://user-images.githubusercontent.com/15064365/148417030-19420ef2-50de-40cf-bd42-c39e1147049c.png"&gt;
+&lt;/section&gt;
+&lt;section id="datafusion-integration"&gt;
+&lt;h3&gt;DataFusion integration&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/apache/arrow-datafusion"&gt;Apache Arrow DataFusion&lt;/a&gt; is an SQL compatible query engine that integrates with the Rust implementation of Apache Arrow.  VegaFusion uses DataFusion to implement many of the Vega transforms, and it compiles the Vega expression language directly into the DataFusion expression language.  In addition to being really fast, a particularly powerful characteristic of DataFusion is that it provides many interfaces that can be extended with custom Rust logic.  For example, VegaFusion defines many custom UDFs that are designed to implement the precise semantics of the Vega expression language and the Vega expression functions.&lt;/p&gt;
+&lt;img width="200" alt="DataFusion Logo" src="https://github.com/apache/arrow-datafusion/raw/master/docs/source/_static/images/DataFusion-Logo-Background-White.svg"&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="examples"&gt;
+&lt;h2&gt;Examples&lt;/h2&gt;
+&lt;p&gt;VegaFusion is compatible with all of the examples in the &lt;a class="reference external" href="https://altair-viz.github.io/gallery/index.html"&gt;Altair gallery&lt;/a&gt;. Here are a few additional examples that demonstrate the benefits of server-side acceleration.&lt;/p&gt;
+&lt;section id="large-altair-gallery-examples"&gt;
+&lt;h3&gt;Large Altair Gallery Examples&lt;/h3&gt;
+&lt;p&gt;The following examples are modifications of Altair Gallery examples that use larger datasets.  Each example displays the same plot with plain Altair and with Altair + VegaFusion to make is easy to compare performance.  You can try them out using the binder links below.&lt;/p&gt;
+&lt;section id="interactive-crossfilter"&gt;
+&lt;h4&gt;Interactive Crossfilter&lt;/h4&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/flights_crossfilter.ipynb"&gt;Notebook file&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Fflights_crossfilter.ipynb"&gt;&lt;img alt="Binder" src="https://mybinder.org/badge_logo.svg" /&gt;&lt;/a&gt; - Voila Dashboard&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://gesis.mybinder.org/binder/v2/gh/vegafusion/demos/93a9a68100de0d6282b114f8cf01cbb30c672267?urlpath=lab%2Ftree%2Fnotebooks%2Flarge_altair_examples%2Fflights_crossfilter.ipynb"&gt;&lt;img alt="Binder" src="https://mybinder.org/badge_logo.svg" /&gt;&lt;/a&gt; - Jupyterlab&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;video controls&gt;
+  &lt;source src="https://user-images.githubusercontent.com/15064365/150031835-5b5b4294-eb88-47db-bbcc-91e89708ce40.mov" type="video/mp4"&gt;
+This browser does not support the video tag.
+&lt;/video&gt;
+&lt;/section&gt;
+&lt;section id="interactive-average"&gt;
+&lt;h4&gt;Interactive Average&lt;/h4&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/large_altair_examples/interactive_average.ipynb"&gt;Notebook file&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://mybinder.org/v2/gh/vegafusion/demos/HEAD?urlpath=voila%2Frender%2Fnotebooks%2Flarge_altair_examples%2Finteractive_average.ipynb"&gt;&lt;img alt="Binder" src="https://mybinder.org/badge_logo.svg" /&gt;&lt;/a&gt; - Voila Dashboard&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://gesis.mybinder.org/binder/v2/gh/vegafusion/demos/93a9a68100de0d6282b114f8cf01cbb30c672267?urlpath=lab%2Ftree%2Fnotebooks%2Flarge_altair_examples%2Finteractive_average.ipynb"&gt;&lt;img alt="Binder" src="https://mybinder.org/badge_logo.svg" /&gt;&lt;/a&gt; - JupyterLab&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;video controls&gt;
+  &lt;source src="https://user-images.githubusercontent.com/15064365/150031863-3d877f08-2f9a-41a3-8cbb-95bc52f8b206.mov" type="video/mp4"&gt;
+This browser does not suppor class="video-border"t the video tag.
+&lt;/video&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="million-taxi-rides"&gt;
+&lt;h3&gt;10 Million Taxi Rides&lt;/h3&gt;
+&lt;p&gt;This example creates a dashboard to explore 10 million taxi rides in New York City from January 2015.  It supports zoom-based rasterization of the pickup locations (similar to &lt;a class="reference external" href="https://datashader.org/"&gt;Datashader&lt;/a&gt;), and combines that with cross filtering across a histogram of trip distances and a heatmap of tip rate by hour and day of the week.&lt;/p&gt;
+&lt;p&gt;See the &lt;a class="reference external" href="https://examples.pyviz.org/nyc_taxi/nyc_taxi.html"&gt;PyViz documentation example&lt;/a&gt; for more information on the dataset.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/vegafusion/demos/blob/main/notebooks/nyc_taxi/nyc_taxi.ipynb"&gt;Notebook file&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;video controls&gt;
+  &lt;source src="https://vegafusion-datasets.s3.amazonaws.com/screencasts/10MillionTaxiRides.mov" type="video/mp4"&gt;
+This browser does not support the video tag.
+&lt;/video&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+&lt;section id="about-the-name"&gt;
+&lt;h2&gt;About the Name&lt;/h2&gt;
+&lt;p&gt;There are two meanings behind the name “VegaFusion”&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;It’s a reference to the &lt;a class="reference external" href="https://github.com/apache/arrow-datafusion"&gt;Apache Arrow DataFusion&lt;/a&gt; library described above&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Vega and Altair are named after stars, and stars are powered by nuclear fusion&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="licensing-and-funding"&gt;
+&lt;h2&gt;Licensing and Funding&lt;/h2&gt;
+&lt;p&gt;At least until a sustainable funding model is established, VegaFusion will be developed under the &lt;a class="reference external" href="https://www.gnu.org/licenses/agpl-3.0.en.html"&gt;AGPLv3 license&lt;/a&gt;.  This is a copy-left license in the GPL family of licenses. As with all &lt;a class="reference external" href="https://opensource.org/licenses/alphabetical"&gt;OSI approved licenses&lt;/a&gt;, there are no restrictions on what code licensed under the AGPL can be used for. However, the requirements for what must be shared publicly are greater than for licenses that are more commonly used in the Python ecosystem like &lt;a class="reference external" href="https://opensource.org/licenses/Apache-2.0"&gt;Apache-2&lt;/a&gt;, &lt;a class="reference external" href="https://opensource.org/licenses/MIT"&gt;MIT&lt;/a&gt;, and &lt;a class="reference external" href="https://opensource.org/licenses/BSD-3-Clause"&gt;BSD-3&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="roadmap"&gt;
+&lt;h2&gt;Roadmap&lt;/h2&gt;
+&lt;p&gt;This is only the beginning for VegaFusion. There are a lot of possible future directions, and many of them are detailed in the roadmap.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="learn-more"&gt;
+&lt;h2&gt;Learn more&lt;/h2&gt;
+&lt;p&gt;Here are some ways that you can get in touch to learn more.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;p&gt;Check out the code on &lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/"&gt;GitHub&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start a discussion on &lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions"&gt;GitHub Discussions&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;And of course, if something doesn’t work please &lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/issues"&gt;open an issue&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks!&lt;/p&gt;
+&lt;/section&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://vegafusion.io/posts/2022/2022-01-27_ProjectAnnouncement.html"/>
+    <summary>Server-side acceleration for the Vega visualization grammar with Rust and WebAssembly</summary>
+    <published>2022-01-27T00:00:00-05:00</published>
+  </entry>
+  <entry>
+    <id>https://vegafusion.io/posts/2022/2022-01-19_Release_0.0.1.html</id>
+    <title>VegaFusion 0.0.1</title>
+    <updated>2022-01-19T00:00:00-05:00</updated>
+    <author>
+      <name>Jon Mease</name>
+    </author>
+    <content type="html">&lt;section id="vegafusion-0-0-1"&gt;
+
+&lt;p&gt;The first public version of VegaFusion has been released as 0.0.1.  Full project announcement to follow!&lt;/p&gt;
+&lt;/section&gt;
+</content>
+    <link href="https://vegafusion.io/posts/2022/2022-01-19_Release_0.0.1.html"/>
+    <summary>The first public version of VegaFusion has been released as 0.0.1.  Full project announcement to follow!</summary>
+    <published>2022-01-19T00:00:00-05:00</published>
+  </entry>
+</feed>

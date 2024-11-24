@@ -4,7 +4,7 @@ category: Release
 author: Jon Mease
 ---
 
-# Announcing VegaFusion 1.4
+# VegaFusion 1.4
 **Improved Vega coverage, external data source foundations, extended architecture support**
 
 By: Jon Mease
@@ -32,7 +32,7 @@ chart
 ```
 ![boxplot](https://github.com/vegafusion/vegafusion.github.io/assets/15064365/acf29249-314d-4582-8176-80110690d452)
 
-An easy way to see that the transforms are supported is to extract the transformed data with [`vf.transformed_data`](../../transformed_data.md).
+An easy way to see that the transforms are supported is to extract the transformed data with `vf.transformed_data`.
 
 ```python
 vf.transformed_data(chart)

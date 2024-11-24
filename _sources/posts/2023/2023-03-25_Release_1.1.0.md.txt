@@ -4,7 +4,7 @@ category: Release
 author: Jon Mease
 ---
 
-# Announcing VegaFusion 1.1
+# VegaFusion 1.1
 **DuckDB and Polars support, Altair 5 compatibility, and lots of bug fixes**
 
 By: Jon Mease
@@ -49,7 +49,7 @@ chart
 ```
 ![2D Histogram Heatmap](https://user-images.githubusercontent.com/15064365/226609213-2eba5e0b-1377-47d1-9ca9-32dc8f43fb8c.png)
 
-Additionally, the [transformed data](../../transformed_data.md) can be extracted as usual:
+Additionally, the transformed data can be extracted as usual:
 ```python
 vf.transformed_data(chart, row_limit=5).T
 ```
@@ -131,7 +131,7 @@ chart
 ```
 ![2D Histogram Heatmap](https://user-images.githubusercontent.com/15064365/226609213-2eba5e0b-1377-47d1-9ca9-32dc8f43fb8c.png)
 
-See the new [DuckDB connection docs](../../duckdb.md) for more information.
+See the DuckDB connection docs for more information.
 
 ## Polars support
 
@@ -172,7 +172,7 @@ chart
 ![visualization](https://user-images.githubusercontent.com/15064365/226755752-c88e37a5-80a8-4ccd-85d0-554974079cb6.png)
 
 ### Polars as Output
-When a Chart that references a Polars DataFrame is passed to `vegafusion.transformed_data`, the result will also be a Polars DataFrame. Here is a Polars version of the example from the [Transformed Data](../../transformed_data.md) section.
+When a Chart that references a Polars DataFrame is passed to `vegafusion.transformed_data`, the result will also be a Polars DataFrame. Here is a Polars version of the example from the Transformed Data section.
 
 ```python
 import altair as alt
@@ -238,7 +238,7 @@ shape: (10, 2)
 | Peter Jackson         |                5.95566e+08 |
 | All Others            |                8.87602e+07 |
 
-See the [Polars Integration docs](../../polars.md) for more information.
+See the Polars Integration docs for more information.
 
 ## DataFrame Interchange Protocol
 The "Polars as Input" workflow above is powered by a more general abstraction: The [DataFrame Interchange Protocol](https://data-apis.org/dataframe-protocol/latest/index.html). Along with Altair 5, VegaFusion 1.1 adds support for inputting any DataFrame object that supports this protocol including pyarrow Tables, Vaex DataFrames, cuDF DataFrames, and more.

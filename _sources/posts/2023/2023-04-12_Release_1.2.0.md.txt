@@ -4,7 +4,7 @@ category: Release
 author: Jon Mease
 ---
 
-# Announcing VegaFusion 1.2
+# VegaFusion 1.2
 **Pre-transform and Save Altair Charts**
 
 By: Jon Mease
@@ -22,7 +22,7 @@ VegaFusion's new save functions improve the situation by pre-applying data trans
 Here are two examples of the benefits of the new `save_html` function compared to the standard Altair `Chart.save` method. 
 
 ### With aggregations
-Let's save a one million row histogram chart to an HTML file. First create and display the histogram with the VegaFusion [Mime Renderer](./../../mime_renderer.md) enabled.
+Let's save a one million row histogram chart to an HTML file. First create and display the histogram with the VegaFusion Mime Renderer enabled.
 
 ```
 import pandas as pd
