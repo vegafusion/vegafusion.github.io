@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://vegafusion.io</id>
   <title>VegaFusion Blog</title>
-  <updated>2024-11-25T22:10:34.958711+00:00</updated>
+  <updated>2024-11-25T22:12:34.817377+00:00</updated>
   <link href="https://vegafusion.io"/>
   <link href="https://vegafusion.io/posts/atom.xml" rel="self"/>
   <generator uri="https://ablog.readthedocs.io/" version="0.11.12">ABlog</generator>
@@ -16,7 +16,7 @@
     </author>
     <content type="html">&lt;section id="vegafusion-2-0"&gt;
 
-&lt;p&gt;&lt;strong&gt;A new era: Building blocks for analyzing, accelerating, andscaling Vega visualizations:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A new era: Building blocks for analyzing, accelerating, and scaling Vega visualizations:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;By: Jon Mease&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;p&gt;The VegaFusion team is excited to announce the release of VegaFusion 2.0. This major release represents a significant evolution in VegaFusion’s architecture and target audience. The focus has been on simplification - making VegaFusion easier to maintain and easier to integrate into larger Vega systems to accelerate and scale Vega visualizations.&lt;/p&gt;
@@ -78,13 +78,13 @@
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://vegafusion.io/v2"&gt;VegaFusion Documentation&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion"&gt;VegaFusion GitHub&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/issues"&gt;Report and Issue&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions"&gt;Start a Discussions&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a class="reference external" href="https://github.com/hex-inc/vegafusion/discussions"&gt;Start a Discussion&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/section&gt;
 &lt;/section&gt;
 </content>
     <link href="https://vegafusion.io/posts/2024/2024-11-13_Release_2.0.0.html"/>
-    <summary>A new era: Building blocks for analyzing, accelerating, andscaling Vega visualizations:</summary>
+    <summary>A new era: Building blocks for analyzing, accelerating, and scaling Vega visualizations:</summary>
     <published>2024-11-13T00:00:00-05:00</published>
   </entry>
   <entry>
